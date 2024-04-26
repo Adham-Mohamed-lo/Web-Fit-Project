@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="Login-Style.css">
+</head>
+<body>
+    <div class="form-container" id="login-container">
+        <h2>Login</h2>
+        <form id="login-form" action="login.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div class="form-container" id="signup-container" style="display: none;">
+        <h2>Signup</h2>
+        <form id="signup-form" action="signup.php" method="post">
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" name="signup-username">
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" name="signup-password">
+            <input type="submit" value="Signup">
+        </form>
+    </div>
+
+    <button class="signup-button" onclick="toggleSignupForm()">Signup</button>
+
+    <script src="Login-JavaScript.js"></script>
+</body>
+</html>
