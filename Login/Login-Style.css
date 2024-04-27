@@ -93,16 +93,6 @@ section {
 }
 
 
-.form-container {
-    background-color: rgb(255, 255, 255);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    height: auto;
-    transition: height 0.3s ease-in-out;
-    margin-right: 20px;
-}
 
 h2 {
     text-align: center;
@@ -121,8 +111,74 @@ label {
     color: rgb(51, 51, 51);
 }
 
-input[type="text"],
+
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: rgb(0, 123, 255);
+}
+
+input[type="submit"],
+.signup-button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(12, 6, 51);
+    border: 2px solid rgb(12, 6, 51);
+    padding: 15px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 18px;
+}
+
+input[type="submit"]:hover,
+.signup-button:hover {
+    background-color: rgb(12, 6, 51);
+    color: rgb(255, 255, 255);
+}
+
+#login-container {
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+    transition: height 0.3s ease-in-out;
+    margin: 0 auto; 
+    margin-top: 20px; 
+    width: 650px;
+    height: auto;
+}
+#signup-container {
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+    transition: height 0.3s ease-in-out;
+    margin: 0 auto; 
+    margin-top: 20px;  
+    width: 800px;
+    height: auto;
+}
+
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.left-column,
+.right-column {
+    width: 48%;
+}
+
+.left-column label,
+.right-column label {
+    display: block;
+    margin-bottom: 5px;
+}input[type="text"],
+input[type="email"],
 input[type="password"],
+input[type="number"],
+select,
 input[type="submit"],
 .signup-button {
     padding: 15px;
@@ -133,7 +189,9 @@ input[type="submit"],
     font-size: 18px;
 }
 
+
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus {
     border-color: rgb(0, 123, 255);
 }
