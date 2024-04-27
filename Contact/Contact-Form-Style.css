@@ -15,7 +15,7 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: blueviolet;
+    background: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ body {
 }
 
 .contactform {
-    background: rgb(55, 11, 96);
+    background: rgb(5, 118, 75);
 }
 
 .submit-form {
@@ -59,4 +59,87 @@ body {
     border-radius: 100px;
     padding: 50px;
     position: absolute;
+}
+
+.text3 {
+    font-size: 25px;
+    position: relative;
+    top: 20px;
+    left: 20px;
+    padding-top: 10px;
+    color: rgb(5, 118, 75);
+    text-align: left;
+}
+
+form {
+    padding: 0 50px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.inputbox {
+    height: 70%;
+    width: 70%;
+    margin: 30px 0;
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgb(5, 118, 75);
+    outline: none;
+    border-radius: 20px;
+    padding-left: 20px;
+    font-size: 16px;
+
+}
+
+.inputbox label {
+    position: absolute;
+    top: 5%;
+    left: 10px;
+    padding-left: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    font-weight: 300;
+    color: rgb(5, 118, 75);
+    transition: .3s;
+
+}
+
+.inputbox .input:focus~label,
+.inputbox .input:valid~label {
+    top: -1px;
+    left: 10px;
+    background-color: white;
+    font-weight: 300;
+    font-size: 12px;
+    padding: 5px;
+
+}
+
+textarea.input {
+    resize: none;
+    min-height: 150px;
+    overflow: auto;
+}
+
+.mesgbtn {
+    position: relative;
+    top: 3px;
+    background-color: rgb(5, 118, 75);
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    height: 45px;
+    width: 30%;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+
+
 }

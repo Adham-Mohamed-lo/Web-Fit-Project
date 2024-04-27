@@ -36,10 +36,14 @@ nav a:hover {
 .title {
     display: flex;
     justify-content: center;
-    color: rgb(100, 149, 237);
+    color: rgb(5, 118, 75);
+    ;
     font-size: 2.2em;
     font-weight: 800;
     margin-bottom: 30px;
+    padding: 50px;
+
+
 }
 
 .content {
@@ -68,7 +72,8 @@ margin-top: 50px;
 }
 
 .card .icon {
-    color: rgb(58, 108, 244);
+    color: rgb(5, 118, 75);
+    ;
     font-size: 8em;
     text-align: center;
 }
@@ -82,4 +87,13 @@ margin-top: 50px;
 .card p {
     color: rgb(102, 102, 102);
     font-size: 1.1em;
+}
+
+.info p {
+    color: rgb(5, 118, 75);
+}
+
+.opencontact {
+    color: rgb(5, 118, 75);
+    ;
 }
