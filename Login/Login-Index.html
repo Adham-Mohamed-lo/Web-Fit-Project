@@ -5,8 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="Login-Style.css">
+    
 </head>
 <body>
+    <header>
+        <h1>WEB-FIT</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#shop">Shop</a>
+        <a href="Contact/Contact-Index.html">Contact</a>
+        <a href="#plans" class="join-button">Join Us</a>
+        <a href="Login/Login-Index.html" target="_parent">Login</a>  
+    </nav>
     <div class="form-container" id="login-container">
         <h2>Login</h2>
         <form id="login-form" action="login.php" method="post">
@@ -15,6 +27,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password">
             <input type="submit" value="Login">
+            <button class="signup-button" onclick="toggleSignupForm()">Signup</button>
         </form>
     </div>
 
@@ -28,8 +41,6 @@
             <input type="submit" value="Signup">
         </form>
     </div>
-
-    <button class="signup-button" onclick="toggleSignupForm()">Signup</button>
 
     <script src="Login-JavaScript.js"></script>
 </body>
