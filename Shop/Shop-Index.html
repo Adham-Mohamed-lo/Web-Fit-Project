@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
+
 <body>
   <header>
     <h1>WEB-FIT Shop</h1>
 
     <div class="cart-info">
-      <span class="cart-count">0</span> items 
+      <span class="cart-count">0</span> items
       <div id="cart-Btn"><i class="fas fa-shopping-cart"></i></div>
     </div>
-    
+
   </header>
   <nav>
-    <a href="#home">Home</a>
-    <a href="About/about.html">About</a>
-    <a href="Shop-Index.html">Shop</a>
-    <a href="Contact/Contact-Index.html">Contact</a>
-    <a href="#plans" class="join-button">Join Us</a>
-    <a href="Login/Login-Index.html" target="_parent">Login</a>
-    
+    <a href="../Index.html">Home</a>
+    <a href="../About/About-Index.html">About</a>
+    <a href="../Shop/Shop-Index.html">Shop</a>
+    <a href="../Contact/Contact-Index.html">Contact</a>
+    <a href="../Plans/Plans-Index.html" class="join-button">Join Us</a>
+    <a href="../Login/Login-Index.html" target="_parent">Login</a>
+
   </nav>
   <main>
-    
+
 
     <section id="products">
       <h2>Our Products</h2>
@@ -37,27 +39,28 @@
       </div>
     </section>
 
-  </section>
+    </section>
 
-  <div class="cart-overlay" id="cart-overlay">
-    <div class="cart-container">
-      <div class="cart-header">
-        <h2>Your Cart</h2>
-        <span class="cart-close" id="cart-close">&times;</span>
+    <div class="cart-overlay" id="cart-overlay">
+      <div class="cart-container">
+        <div class="cart-header">
+          <h2>Your Cart</h2>
+          <span class="cart-close" id="cart-close">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items">
+
+        </div>
+        <div class="cart-total" id="cart-total">Total: $0.00</div>
+        <button id="checkout-btn-cart" class="checkout-btn">Checkout</button>
       </div>
-      <div class="cart-items" id="cart-items">
-      
-      </div>
-      <div class="cart-total" id="cart-total">Total: $0.00</div>
-      <button id="checkout-btn-cart" class="checkout-btn">Checkout</button> 
     </div>
-  </div>
 
   </main>
-  
+
   <footer>
     <p>&copy; 2024 Web Shop. All rights reserved.</p>
   </footer>
   <script src="Shop-JavaScript.js"></script>
 </body>
+
 </html>

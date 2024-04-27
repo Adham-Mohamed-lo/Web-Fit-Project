@@ -93,7 +93,7 @@ function removeFromCart(item) {
 
 function displayCart() {
   const cartContainer = document.querySelector(".cart-items");
-  
+
   cartContainer.innerHTML = "";
 
   let totalPrice = 0;
@@ -184,37 +184,36 @@ document.addEventListener("DOMContentLoaded", function () {
   const cartBtn = document.querySelector("#cart-Btn");
   const cartOverlay = document.querySelector("#cart-overlay");
   const cartCloseBtn = document.querySelector("#cart-close");
-  const cartSymbol = document.querySelector(".cart-count"); 
+  const cartSymbol = document.querySelector(".cart-count");
 
   cartBtn.addEventListener("click", function () {
-    cartOverlay.style.display = "flex"; 
-    document.body.style.overflow = "hidden"; 
+    cartOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
   });
 
   cartSymbol.addEventListener("click", function () {
-    cartOverlay.style.display = "flex"; 
-    document.body.style.overflow = "hidden"; 
+    cartOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
   });
 
   cartCloseBtn.addEventListener("click", function () {
-    cartOverlay.style.display = "none"; 
-    document.body.style.overflow = ""; 
+    cartOverlay.style.display = "none";
+    document.body.style.overflow = "";
   });
 
   const checkoutBtnCart = document.querySelector("#checkout-btn-cart");
   checkoutBtnCart.addEventListener("click", checkout);
 });
 
-
 function checkout() {
   if (cart.length === 0) {
     alert("Your cart is empty. Add products to your cart first.");
   } else {
     alert("Redirecting to checkout page...");
-    cart = []; // Clear the cart after checkout
+    cart = []; 
     updateCartUI();
     displayCart();
   }
 }
 
-generateProductCards(); 
+generateProductCards();

@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(12, 6, 51);
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav {
+    background-color: rgb(42, 42, 42);
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 0 20px;
+}
+
+nav a:hover {
+    color: rgb(132, 253, 136);
+}
