@@ -3,14 +3,22 @@ body {
     color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
+    background-color: rgb(12, 6, 51); /* Dark purple */
 }
 
+/* Header styles */
 header {
     background-color: rgb(12, 6, 51);
     padding: 10px 0;
     text-align: center;
 }
 
+header h1 {
+    margin: 0;
+    color: #fff;
+}
+
+/* Navigation styles */
 nav {
     background-color: rgb(42, 42, 42);
     padding: 10px 0;
@@ -25,4 +33,60 @@ nav a {
 
 nav a:hover {
     color: rgb(132, 253, 136);
+}
+
+/* Choose Your Plan styles */
+.choose-plan {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.choose-plan h2 {
+    font-size: 24px; /* Larger font size */
+    color: rgb(132, 253, 136); /* Green */
+}
+
+/* Plans container */
+.plans-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+/* Plan styles */
+.plan {
+    width: 30%;
+    background-color: rgb(42, 20, 98); /* Darker purple */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.plan h2 {
+    color: #fff;
+}
+
+.plan ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.plan ul li {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.plan button {
+    background-color: rgb(132, 253, 136); /* Light green */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.plan button:hover {
+    background-color: rgb(104, 201, 107); /* Darker green */
 }
