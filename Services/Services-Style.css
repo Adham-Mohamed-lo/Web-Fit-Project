@@ -34,7 +34,7 @@ nav a:hover {
 .title {
   display: flex;
   justify-content: center;
-  color: rgb(12, 6, 51);
+  color: white;
   font-size: 2.2em;
   font-weight: 800;
   margin-bottom: 30px;
