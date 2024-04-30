@@ -27,7 +27,7 @@
       <input type="text" id="username" name="username">
       <label for="password">Password:</label>
       <input type="password" id="password" name="password">
-      <input type="submit"  id= "login-button" value="Login">
+      <input type="submit"  id= "login-button" onclick="login()" value="Login">
       <input type="button" id="signup-button" onclick="toggleSignupForm()" value="Signup">
     </form>
   </div>
@@ -68,7 +68,7 @@
           <input type="password" id="confirm-password" name="confirm-password" required><br />
         </div>
       </div>
-      <button class="signup-container-button" onclick="toggleSignupForm()">Signup</button>
+      <button class="signup-container-button" onclick="signUp()">Signup</button>
     </form>
   </div>
 
