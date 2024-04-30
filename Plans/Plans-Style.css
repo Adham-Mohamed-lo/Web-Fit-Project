@@ -1,24 +1,19 @@
+
+
 body {
     font-family: Arial, sans-serif;
     color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
-    background-color: rgb(12, 6, 51); /* Dark purple */
+    background-color: rgb(12, 6, 51);;
 }
 
-/* Header styles */
 header {
     background-color: rgb(12, 6, 51);
     padding: 10px 0;
     text-align: center;
 }
 
-header h1 {
-    margin: 0;
-    color: #fff;
-}
-
-/* Navigation styles */
 nav {
     background-color: rgb(42, 42, 42);
     padding: 10px 0;
