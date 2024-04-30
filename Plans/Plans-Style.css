@@ -30,28 +30,28 @@ nav a:hover {
     color: rgb(132, 253, 136);
 }
 
-/* Choose Your Plan styles */
+
 .choose-plan {
     text-align: center;
     margin-top: 50px;
 }
 
 .choose-plan h2 {
-    font-size: 24px; /* Larger font size */
-    color: rgb(132, 253, 136); /* Green */
+    font-size: 24px; 
+    color: rgb(132, 253, 136); 
 }
 
-/* Plans container */
+
 .plans-container {
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
 }
 
-/* Plan styles */
+
 .plan {
     width: 30%;
-    background-color: rgb(42, 20, 98); /* Darker purple */
+    background-color: rgb(42, 20, 98); 
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -73,7 +73,7 @@ nav a:hover {
 }
 
 .plan button {
-    background-color: rgb(132, 253, 136); /* Light green */
+    background-color: rgb(132, 253, 136); 
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -83,5 +83,5 @@ nav a:hover {
 }
 
 .plan button:hover {
-    background-color: rgb(104, 201, 107); /* Darker green */
+    background-color: rgb(104, 201, 107); 
 }

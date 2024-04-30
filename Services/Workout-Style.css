@@ -34,7 +34,7 @@ nav a:hover {
 .title {
   display: flex;
   justify-content: center;
-  color: white;
+  color: rgb(12, 6, 51);
   font-size: 2.2em;
   font-weight: 800;
   margin-bottom: 30px;
@@ -89,29 +89,52 @@ nav a:hover {
 .opencontact {
   color: rgb(0, 0, 0);
 }
-.coachimage{
-    width:250px;
+.manimage{
+    width:350px;
+    
+   
 }
-.plansimage{
+.planimage{
     width:250px
 }
 .info h3{
     color:rgb(12, 6, 51);
+    text-align: center;
 }
-.coachcard h3{
-    color:rgb(12, 6, 51);
+
+.weightcard h3{
+    text-align: center;
+   
 }
-.coachcard p{
-    color:black;
+.weightcard p{
+    text-align: center;
 }
-.shopimage{
-    width:240px;
-    margin: 1px;
-    
+.cardioimage{
+    width:350px
 }
-.shopcard h3{
-    color:rgb(12, 6, 51);
+.cardiocard h3{
+    text-align: center;
 }
-.shopcard p{
-    color:black;
+.cardiocard p{
+    text-align: center;
+}
+.yogaimage{
+    width:350px;
+}
+.yogacard h3{
+    text-align: center;
+   
+}
+.yogacard p{
+    text-align: center;
+}
+.fitnessimage{
+    width:350px;
+}
+.fitness h3{
+    text-align: center;
+   
+}
+.fitness p{
+    text-align: center;
 }
