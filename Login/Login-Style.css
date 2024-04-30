@@ -101,7 +101,9 @@ button[type="button"]:hover,
 .signup-button:hover {
   background-color: rgb(8, 67, 35);
 }
-
+#login-button:hover {
+  background-color: rgb(8, 67, 35);
+}
 .row {
   display: flex;
   justify-content: space-between;

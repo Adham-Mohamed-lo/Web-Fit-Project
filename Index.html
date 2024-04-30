@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="Style.css"> 
 </head>
-<body>
+<body> 
     <header>
         <h1>WEB-FIT</h1>
       </header>
@@ -26,11 +26,43 @@
             <p>"Your health is an investment, not an expense."</p>
         </div>
     </section>
-    <section class="icon-container">
-        <i class="fas fa-dumbbell icon" title="Coaches"></i>
-        <i class="fas fa-id-card icon" title="Membership/Plans"></i>
-        <i class="fas fa-shopping-cart icon" title="Shop/Products"></i>
-    </section>
+    <section class="cards services" id="services">
+        <h2 class="title">Services</h2>
+        <div class="content">
+          <div class="card" id="coachescard">
+            <div class="icon">
+            <img src="../Images/coachphoto.jpeg" class="coachimage">
+            </div>
+            <div class="coachcard">
+              <h3>Coaches</h3>
+              <p>Meet our team of dedicated coaches, ready to personalize your fitness journey and guide you to success at WEB-FIT</p>
+            </div>
+          </div>
+          <script src="Services-JavaScript.js"></script>
+          <div class="card" id="membershipCard">
+            <div class="icon">
+                <img src="../Images/planss.jpeg" class="plansimage">
+            </div>
+            <div class="info">
+              <h3>Membership Plans</h3>
+              <p>Offer individuals comprehensive support and guidance to achieve their fitness goals through tailored exercise routines, dietary advice, and structured meal plans</p>
+              
+            </div>
+          </div>
+          <script src="Services-JavaScript.js"></script>
+          <div class="card" id="shopcard">
+            <div class="icon">
+            <img src="../Images/shop.jpeg" class="shopimage">
+            </div>
+            <div class="shopcard">
+              <h3>Shop Products</h3>
+              <p>Offer fitness supplements tailored to individual workout preferences,providing convenience and quality for achieving fitness goals</p>
+            </div>
+          </div>
+          <script src="Services-JavaScript.js"></script>
+
+        </div>
+      </section>
 
     <script src="JavaScript.js"></script>
 </body>
