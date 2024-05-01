@@ -16,28 +16,34 @@ function toggleSignupForm() {
 
   function signUp() {
     // Retrieve form input values
-    const fullName = document.getElementById('signup-fullname').value;
-    const username = document.getElementById('signup-username').value;
-    const email = document.getElementById('signup-email').value;
-    const age = document.getElementById('signup-age').value;
+    const fullName = document.getElementById('signup-fullname').value.trim();
+    const username = document.getElementById('signup-username').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const age = document.getElementById('signup-age').value.trim();
     const gender = document.getElementById('signup-gender').value;
     const password = document.getElementById('signup-password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
 
+    // Check if any field is empty
+    if (!fullName || !username || !email || !age || !gender || !password || !confirmPassword) {
+        alert('Please fill out all the fields.');
+        return;
+    }
+
     // Check if passwords match
     if (password !== confirmPassword) {
-      alert('Passwords do not match!');
-      return;
+        alert('Passwords do not match!');
+        return;
     }
 
     // Construct data object to save to localStorage
     const userData = {
-      fullName: fullName,
-      username: username,
-      email: email,
-      age: age,
-      gender: gender,
-      password: password
+        fullName: fullName,
+        username: username,
+        email: email,
+        age: age,
+        gender: gender,
+        password: password
     };
 
     // Save user data to localStorage (for demonstration purposes only)
@@ -45,7 +51,7 @@ function toggleSignupForm() {
 
     // Inform the user that signup was successful
     alert('Signup successful!');
-  }
+}
 
   function login() {
     // Retrieve form input values
