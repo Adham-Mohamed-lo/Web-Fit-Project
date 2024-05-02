@@ -109,15 +109,4 @@ nav a:hover {
 .workoutcard p{
     color:black;
 }
-.mealimage{
-    width:240px;
-    margin: 1px;
-    
-}
-.mealcard h3{
-    color:rgb(12, 6, 51);
-    text-align: center;
-}
-.mealcard p{
-    color:black;
-}
+

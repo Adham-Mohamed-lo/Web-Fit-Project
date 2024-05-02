@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Madimi+One&family=Ojuju:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Ojuju:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
     font-family: Arial, sans-serif;
@@ -8,27 +8,28 @@ body {
 }
 
 header {
-    background-color: rgb(12, 6, 51);
+    background-color: rgb(255, 255, 255);
     padding: 10px 0;
     text-align: center;
 }
 
 nav {
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(5, 129, 79);
     padding: 10px 0;
     text-align: center;
+     
 }
 
 nav a {
     color: rgb(255, 255, 255);
     text-decoration: none;
     padding: 0 20px;
+    font-size: 1.2em;
 }
 
 nav a:hover {
-    color: rgb(132, 253, 136);
+    color:rgb(25, 155, 105);
 }
-
 
 
 .title {
@@ -66,7 +67,7 @@ nav a:hover {
 }
 
 .card .icon {
-  color: rgb(5, 118, 75);
+  color: rgb(255, 255, 255);
   font-size: 8em;
   text-align: center;
 }
@@ -83,35 +84,46 @@ nav a:hover {
 }
 
 .info p {
-  color: rgb(0, 0, 0);
+  color: black;
+}
+h1{
+  color:black;
+ 
 }
 
 .opencontact {
-  color: rgb(0, 0, 0);
+  color: black;
 }
 .coachimage{
     width:250px;
+    background-color:rgb(5, 118, 75) ;
+    background: rgb(5, 118, 75);
 }
 .plansimage{
     width:250px
 }
 .info h3{
-    color:rgb(12, 6, 51);
+    color: rgb(5, 118, 75);
+}
+.info p{
+  color:rgb(0, 0, 0);
 }
 .coachcard h3{
-    color:rgb(12, 6, 51);
+    color:rgb(5, 118, 75);
 }
 .coachcard p{
-    color:black;
+  color:rgb(0, 0, 0);
 }
+
+
 .shopimage{
     width:240px;
     margin: 1px;
     
 }
 .shopcard h3{
-    color:rgb(12, 6, 51);
+    color:rgb(5, 118, 75);
 }
 .shopcard p{
-    color:black;
+    color: rgb(0, 0, 0);
 }
