@@ -34,6 +34,15 @@ nav a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+#book-now-btn {
+    position: absolute;
+    bottom: 130px; 
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px; 
+    padding: 15px 30px; 
+}
+
 h2 {
     color: #333;
     text-align: center;
