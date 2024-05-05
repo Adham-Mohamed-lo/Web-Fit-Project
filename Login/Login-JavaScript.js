@@ -4,17 +4,17 @@ function toggleSignupForm() {
     const signupButton = document.querySelector('.signup-button');
 
     if (loginContainer.style.display === 'none') {
-      loginContainer.style.display = 'block';
-      signupContainer.style.display = 'none';
-      signupButton.textContent = 'Signup';
+        loginContainer.style.display = 'block';
+        signupContainer.style.display = 'none';
+        signupButton.textContent = 'Signup';
     } else {
-      loginContainer.style.display = 'none';
-      signupContainer.style.display = 'block';
-      signupButton.textContent = 'Back to Login';
+        loginContainer.style.display = 'none';
+        signupContainer.style.display = 'block';
+        signupButton.textContent = 'Back to Login';
     }
-  }
+}
 
-  function signUp() {
+function signUp() {
     // Retrieve form input values
     const fullName = document.getElementById('signup-fullname').value.trim();
     const username = document.getElementById('signup-username').value.trim();
@@ -27,6 +27,24 @@ function toggleSignupForm() {
     // Check if any field is empty
     if (!fullName || !username || !email || !age || !gender || !password || !confirmPassword) {
         alert('Please fill out all the fields.');
+        return;
+    }
+
+    // Check if age is less than 1
+    if (parseInt(age) < 1) {
+        alert('Age must be 1 or greater.');
+        return;
+    }
+
+    // Check if full name contains numbers
+    if (/\d/.test(fullName)) {
+        alert('Full name should not contain numbers.');
+        return;
+    }
+
+    // Check if email contains "@" and "."
+    if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+        alert('Please enter a valid email address.');
         return;
     }
 
@@ -53,7 +71,7 @@ function toggleSignupForm() {
     alert('Signup successful!');
 }
 
-  function login() {
+function login() {
     // Retrieve form input values
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -66,7 +84,6 @@ function toggleSignupForm() {
         const userData = JSON.parse(userDataString);
         if (userData.username === username) {
             foundUser = userData;
-            
             break;
         }
     }
