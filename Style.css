@@ -178,26 +178,13 @@ section {
   .shopcard p{
       color:black;
   }
-  .popup-container {
-    display: none;
-    position: fixed;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    width: 500px;
-    height: 500px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    z-index: 9999;
-}
+  
 #close_quick_test_button {
-    background-color: rgb(12, 6, 51);
-    color: #fff;
+    background-color:white;
+    color: rgb(12, 6, 51);
     border: none;
     font-size: larger;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: fixed;
@@ -221,3 +208,81 @@ section {
     transition: background-color 0.3s ease;
  
 }
+
+  
+  #caloriesResult {
+    margin-top: 20px;
+  }
+ #weight,#height,#age,#gender{
+    color:rgb(12, 6, 51);
+ }
+ .popup-container {
+    display: inline;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
+    background-color: rgb(12, 6, 51);
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 9999;
+}
+ 
+.left-content,
+.right-content {
+    flex: 1;
+    padding: 0 20px;
+}
+.left-content {
+    color: white;
+}
+.right-content {
+    color: white;
+    text-align: top;
+}
+
+.caloriesForm label {
+    display: block; 
+    color: white; 
+    margin-bottom: 5px; 
+}
+#result_label{
+    text-align: right;
+    text-align: top;
+}
+#quiz_label {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 15px; 
+  
+}
+#gender,#caloriesForm input[type="number"],
+#caloriesForm select {
+    color: rgb(12, 6, 51);
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+ #caloriesForm button[type="submit"] {
+     background-color: white;
+     color: rgb(12, 6, 51);
+     border: none;
+     font-size: 20px;
+     padding: 10px 20px;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+     border-radius: 30px;
+ }
+ 
+ #close_quick_test_button:hover,
+ #caloriesForm button[type="submit"]:hover {
+     background-color: rgb(0, 86, 179);
+ }

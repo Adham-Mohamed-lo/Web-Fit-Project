@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutrition, Gym, and Supplements</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Style.css"> 
-   
+    <link rel="stylesheet" href="style.css">
 </head>
 <body> 
   <header>
     <h1>WEB-FIT</h1>
-</header>
-<nav>
+  </header>
+  <nav>
     <a href="Index.html">Home</a>
     <a href="About/About-Index.html">About</a>
     <a href="Shop/Shop-Index.html">Shop</a>
@@ -20,28 +18,50 @@
     <a href="Plans/Plans-Index.html" class="join-button">Join Us</a>
     <a href="Login/Login-Index.html" target="_parent">Login</a>
     <a href="Services/Services-Index.html">Services</a>
-</nav>
-<section class="background-image">
+  </nav>
+  <section class="background-image">
     <div class="quote">
-        <p>"Your health is an investment, not an expense."</p>
+      <p>"Your health is an investment, not an expense."</p>
     </div>
-</section>
-<button class="popup-button" onclick="togglePopup()">Quick Test</button>
+  </section>
+  <button class="popup-button" onclick="togglePopup()">Quick Test</button>
 
-<div class="popup-container" id="popupContainer">
-   
-    <h2>Quick Test Popup</h2>
-    <p>This is the content of your popup.</p>
-    
+  <container class="popup-container" id="popupContainer">
+    <div class="left-content">
+        <h2 id="quiz_label">Calories Calculator</h2>
+        <form id="caloriesForm">
+            <label for="weight">Weight (kg):</label><br>
+            <input type="number" id="weight" name="weight" required><br>
+
+            <label for="height">Height (cm):</label><br>
+            <input type="number" id="height" name="height" required><br>
+
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age" required><br>
+
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br><br>
+
+            <button type="button" id="calculateButton">Calculate BMR</button>
+
+        </form>
+    </div>
+    <div class="right-content">
+        <h2 id="result_label">Calories Result</h2>
+        <div id="result"></div>
+    </div>
     <button onclick="togglePopup()" id="close_quick_test_button">Close</button>
-</div>
+  </container>
 
-<section class="cards services" id="services">
+  <section class="cards services" id="services">
     <h2 class="title">Services</h2>
     <div class="content">
       <div class="card" id="coachescard" onclick="redirectToCoachesPage()">
         <div class="icon">
-        <img src="Images/coachphoto.jpeg" class="coachimage">
+          <img src="Images/coachphoto.jpeg" class="coachimage">
         </div>
         <div class="coachcard">
           <h3>Coaches</h3>
@@ -51,28 +71,26 @@
 
       <div class="card" id="membershipCard">
         <div class="icon">
-            <img src="Images/planss.jpeg" class="plansimage">
+          <img src="Images/planss.jpeg" class="plansimage">
         </div>
         <div class="info">
           <h3>Membership Plans</h3>
           <p>Offer individuals comprehensive support and guidance to achieve their fitness goals through tailored exercise routines, dietary advice, and structured meal plans</p>
-
         </div>
       </div>
 
       <div class="card" id="shopcard">
         <div class="icon">
-        <img src="Images/shop.jpeg" class="shopimage">
+          <img src="Images/shop.jpeg" class="shopimage">
         </div>
         <div class="shopcard">
           <h3>Shop Products</h3>
           <p>Offer fitness supplements tailored to individual workout preferences,providing convenience and quality for achieving fitness goals</p>
         </div>
       </div>
-
-
     </div>
   </section>
-<script src="JavaScript.js"></script>
+
+  <script src="JavaScript.js"></script> 
 </body>
 </html>

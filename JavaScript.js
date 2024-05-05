@@ -17,15 +17,22 @@ function togglePopup() {
     popup.style.display = (popup.style.display === "none") ? "block" : "none";
 }
 
-function calculateCalories() {
-    var age = parseInt(document.getElementById("age").value);
-    var gender = document.getElementById("gender").value;
+document.getElementById("calculateButton").addEventListener("click", function() {
     var weight = parseFloat(document.getElementById("weight").value);
     var height = parseFloat(document.getElementById("height").value);
-    var activityLevel = parseFloat(document.getElementById("activityLevel").value);
-    var weightGoal = document.getElementById("weightGoal").value;
+    var age = parseInt(document.getElementById("age").value);
+    var gender = document.getElementById("gender").value;
 
-    
+    var bmr;
+    if (gender === "male") {
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+    } else {
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+    }
+
     var resultElement = document.getElementById("result");
-    resultElement.innerHTML = "Calories: [Your calculated calories]";
-}
+    var resultLabelElement = document.getElementById("result_label");
+    resultElement.innerHTML = " calories per day:" + bmr.toFixed(0)  ;
+    resultLabelElement.insertAdjacentElement('afterend', resultElement);
+});
+
