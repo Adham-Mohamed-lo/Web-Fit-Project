@@ -25,36 +25,39 @@
     </div>
   </section>
   <button class="popup-button" onclick="togglePopup()">Quick Test</button>
-
   <container class="popup-container" id="popupContainer">
     <div class="left-content">
-        <h2 id="quiz_label">Calories Calculator</h2>
-        <form id="caloriesForm">
-            <label for="weight">Weight (kg):</label><br>
-            <input type="number" id="weight" name="weight" required><br>
-
-            <label for="height">Height (cm):</label><br>
-            <input type="number" id="height" name="height" required><br>
-
-            <label for="age">Age:</label><br>
-            <input type="number" id="age" name="age" required><br>
-
-            <label for="gender">Gender:</label><br>
-            <select id="gender" name="gender" required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select><br><br>
-
-            <button type="button" id="calculateButton">Calculate BMR</button>
-
-        </form>
+      <h2 id="quiz_label">Calories Calculator</h2>
+      <form id="caloriesForm">
+        <label for="weight">Weight (kg):</label><br>
+        <input type="number" id="weight" name="weight" required><br>
+  
+        <label for="height">Height (cm):</label><br>
+        <input type="number" id="height" name="height" required><br>
+  
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+  
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select><br><br>
+        <div class="right-content">
+          <div id="result_container" style="display: none;">
+            <h2 id="result_label">Calories Result</h2>
+            <div id="result"></div>
+          </div>
+        </div>
+        <button type="button" id="calculateButton">Calculate BMR</button>
+  
+      </form>
     </div>
-    <div class="right-content">
-        <h2 id="result_label">Calories Result</h2>
-        <div id="result"></div>
-    </div>
-    <button onclick="togglePopup()" id="close_quick_test_button">Close</button>
+    
+    
+    <button onclick="togglePopup()" id="close_quick_test_button">X</button>
   </container>
+  
 
   <section class="cards services" id="services">
     <h2 class="title">Services</h2>
