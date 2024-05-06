@@ -9,7 +9,7 @@
 
 .card {
   width: 33.33%;
-  max-width: 100%; /* Ensure cards don't exceed container width */
+  max-width: 100%; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 8px;
   padding: 16px;
@@ -21,6 +21,9 @@
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+#about_team{
+  font-size:22px;
 }
 
 .about-section {
@@ -46,21 +49,41 @@
 .contact-form {
   display: none;
 }
-
+#header{
+  font-size: 50px;
+}
 .contact-button {
+  
   border: none;
   outline: 0;
-  display: inline-block;
+  font-size: 40px;
   padding: 8px;
   color: white;
   background-color: #000000;
   text-align: center;
   cursor: pointer;
-  width: 100%;
-  border-radius: 4px;
+  width: 20%;
+  border-radius: 30px;
   transition: background-color 0.3s ease;
+
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  margin: 0 auto; 
 }
+
 
 .contact-button:hover {
   background-color: #333333;
+}
+#card2 {
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 20px; 
+}
+
+.card {
+  width: 30%; 
 }
