@@ -5,24 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="Login-Style.css">
+  <link rel="stylesheet" href="../Navigation/Navigation-Style.css" />
 </head>
 <body>
-  <header>
-    <h1>WEB-FIT</h1>
-  </header>
-  <nav>
-    <a href="../Index.html">Home</a>
-    <a href="../About/About-Index.html">About</a>
-    <a href="../Shop/Shop-Index.html">Shop</a>
-    <a href="../Contact/Contact-Index.html">Contact</a>
-    <a href="../Plans/Plans-Index.html" class="join-button">Join Us</a>
-    <a href="../Login/Login-Index.html" target="_parent">Login</a>
-    <a href="../Services/Services-Index.html">Services</a>
-  </nav>
+  <div class="header-nav-container">
+    <header>
+      <h1>WEB-FIT</h1>
+    </header>
+    <nav>
+      <a href="../Home-Index.html">Home</a>
+      <a href="../About/About-Index.html">About</a>
+      <a href="../Shop/Shop-Index.html">Shop</a>
+      <a href="../Contact/Contact-Index.html">Contact</a>
+      <a href="../Plans/Plans-Index.html">Join Us</a>
+      <a href="../Login/Login-Index.html">Login</a>
+    </nav>
+  </div>
 
   <div class="form-container" id="login-container">
     <h2>Login Form</h2>
-    <form id="login-form" action="login.php" method="post">
+    <form id="login-form" >
       <label for="username">Username:</label>
       <input type="text" id="username" name="username">
       <label for="password">Password:</label>
@@ -34,7 +36,7 @@
 
   <div class="form-container" id="signup-container" style="display: none">
     <h2>Signup</h2>
-    <form id="signup-form" action="signup.php" method="post">
+    <form id="signup-form" >
       <div class="row">
         <div class="left-column">
           <label for="signup-fullname">Full Name:</label>
