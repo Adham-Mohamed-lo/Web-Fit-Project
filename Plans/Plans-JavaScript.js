@@ -1,5 +1,5 @@
 function openpayment() {
-    window.open('Payment.Index.html', '_self');
+    window.open('payment-indexfree.html', '_self');
   }
   document.getElementById('subscribebtn').addEventListener('click', openpayment);
 

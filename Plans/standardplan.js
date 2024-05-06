@@ -1,5 +1,5 @@
 function goToWorkoutPage() {
-    window.location.href = "workoutpage.html";
+    window.location.href = "front-workoutpage.html";
 }
 
 function goToMealPlanPage() {
