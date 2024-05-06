@@ -1,43 +1,22 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(248, 248, 248);
-}
-
-body::-webkit-scrollbar {
-  width: 0; 
-}
-
-
-header {
-  background-color: rgb(12, 6, 51);
-  color: rgb(255, 255, 255);
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav {
-  background-color: rgb(42, 42, 42);
-  padding: 10px 0;
-  text-align: center;
-}
-
-nav a {
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  padding: 0 20px;
-}
-
-nav a:hover {
-  color: rgb(132, 253, 136);
-}
-
+/* Main Section */
 main {
   padding: 20px;
 }
+
+#products {
+  padding: 20px; 
+  color: black;
+}
+
+#products h2 {
+  text-align: center;
+  color:#0eaa5c;
+  font-size: 2.2em;
+  font-weight: 800;
+  margin-bottom: 60px;
+}
+
+
 
 .product-list {
   display: grid;
@@ -48,13 +27,14 @@ main {
 .product-card {
   background-color: rgb(255, 255, 255);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease;
+  box-shadow:  8px 8px 16px #8b8b8b,-8px -8px 16px #ffffff;
 }
+
 .product-card:hover {
   transform: scale(1.04);
 }
@@ -77,7 +57,7 @@ main {
 }
 
 button {
-  background-color: rgb(0, 123, 255);
+  background-color: #0eaa5c;
   color: rgb(255, 255, 255);
   border: none;
   padding: 8px 16px;
@@ -86,11 +66,25 @@ button {
 }
 
 button:hover {
-  background-color: rgb(0, 86, 179);
+  background-color: #145c38;
 }
+
 .cart-info {
   display: flex;
   align-items: center;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #0eaa5c;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 1000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-info:hover {
+  background-color: #145c38;
 }
 
 .cart-count {
@@ -102,27 +96,19 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   color: rgb(255, 255, 255);
   border-radius: 50%;
   cursor: pointer;
   margin-left: 10px;
-  transition: color 0.3s ease; /* Add transition for color change */
-  background-color: transparent; /* Remove background color */
+  transition: color 0.3s ease;
+  background-color: transparent;
 }
-
-#cart-Btn:hover {
-  color: rgb(0, 86, 179); /* Change icon color on hover */
-}
-
-#cart-Btn i {
-  font-size: 15px;
-}
-
 
 .cart-overlay {
-  position: absolute;
+  position: fixed;
+  color: black;
   top: 0;
   left: 0;
   width: 100%;
@@ -143,19 +129,18 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 80%;
   max-width: 600px;
-  
 }
 
 .cart-container::-webkit-scrollbar {
-  width: 0; 
+  width: 0;
 }
-
 
 .cart-close {
   cursor: pointer;
   font-size: 30px;
-  padding: 5px; 
+  padding: 5px;
 }
+
 .cart-header {
   display: flex;
   justify-content: space-between;
@@ -169,22 +154,22 @@ button:hover {
   max-height: 500px;
   overflow-y: auto;
 }
-/* Style the scrollbar */
+
 .cart-items::-webkit-scrollbar {
-  width: 8px; 
+  width: 8px;
 }
 
 .cart-items::-webkit-scrollbar-track {
-  background-color: rgb(241, 241, 241); 
+  background-color: rgb(241, 241, 241);
 }
 
 .cart-items::-webkit-scrollbar-thumb {
-  background-color: rgb(136, 136, 136); 
-  border-radius: 4px; 
+  background-color: rgb(136, 136, 136);
+  border-radius: 4px;
 }
 
 .cart-items::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(85, 85, 85); 
+  background-color: rgb(85, 85, 85);
 }
 
 .cart-item {

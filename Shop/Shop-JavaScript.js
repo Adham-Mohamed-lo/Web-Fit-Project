@@ -181,7 +181,7 @@ function checkout() {
 generateProductCards();
 
 document.addEventListener("DOMContentLoaded", function () {
-  const cartBtn = document.querySelector("#cart-Btn");
+  const cartBtn = document.querySelector(".cart-info");
   const cartOverlay = document.querySelector("#cart-overlay");
   const cartCloseBtn = document.querySelector("#cart-close");
   const cartSymbol = document.querySelector(".cart-count");

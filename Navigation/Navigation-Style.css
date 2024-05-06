@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&family=Ojuju:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
+body {
+  font-family: Arial, sans-serif;
+  color: rgb(255, 255, 255);
+  margin: 0;
+  padding: 0;
+   padding-top: 60px; 
+  overflow-y: scroll
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.header-nav-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; 
+  font-family: Arial, sans-serif;
+  background-color:white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid rgb(14, 170, 92);
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1;
+  height: 50px;
+}
+
+header {
+  color: rgb(14, 170, 92);
+  padding: 10px;
+  text-align: center;
+}
+
+nav {
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1;
+  font-size: large;
+  margin-right: 120px;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 18px;
+  transition: color 0.3s ease;
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 5px;
+  flex-grow: 1;
+
+}
+
+nav a:hover {
+  color:rgb(14, 170, 92);
+  background-color: rgb(245, 245, 245);
+}
+
