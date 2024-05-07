@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership</title>
+    <link rel="stylesheet" href="standardplan.css" />
+    <script src="standardplan.js"></script>
+</head>
+<body>
+    <header>
+        <h1>WEB-FIT</h1>
+    </header>
+    <nav>
+        <a href="../Home-Index.html">Home</a>
+        <a href="../About/About-Index.html">About</a>
+        <a href="../Shop/Shop-Index.html">Shop</a>
+        <a href="../Contact/Contact-Index.html">Contact</a>
+        <a href="../Plans/Plans-Index.html" class="join-button">Join Us</a>
+        <a href="../Login/Login-Index.html" target="_parent">Login</a>
+        <a href="../Services/Services-Index.html">Services</a>
+    </nav>
+    <section class="cards membership" id="membership">
+        <h2 class="title">Membership</h2>
+        <div class="content">
+            <div class="card" id="workoutCard" onclick="goToWorkoutPage()">
+                <div class="icon">
+                    <img src="../Images/workout2.jpeg" class="workoutimage">
+                </div>
+                <div class="workoutcard">
+                    <h3>Workout</h3>
+                    <p>Offers essential advice on setting goals, understanding basic workout principles aimed at empowering individuals to confidently start their fitness journey</p>
+                </div>
+            </div>
+            <div class="card" onclick="goToMealPlanPage()">
+                <div class="icon">
+                    <img src="../Images/plan.jpeg" class="planimage">
+                </div>
+                <div class="info">
+                    <h3>Diet Plans/Recipes</h3>
+                    <p>Discover a variety of delicious and nutritious meal options designed to support your health goals, simplify your meal planning, and delight your taste buds</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+</body>
+</html>

@@ -1,10 +1,10 @@
 function openpayment() {
-    window.open('payment-indexfree.html', '_self');
+    window.open('free-plan.html', '_self');
   }
   document.getElementById('subscribebtn').addEventListener('click', openpayment);
 
   function openpayment2() {
-    window.open('Payment.Index.html', '_self');
+    window.open('Payment-Indexfree.html', '_self');
   }
   document.getElementById('subscribebtn2').addEventListener('click', openpayment2);
   function opencoaches() {

@@ -3,5 +3,5 @@ function goToWorkoutPage() {
 }
 
 function goToMealPlanPage() {
-    window.location.href = "meal_plan_page.html";
+    window.location.href = "meal.html";
 }

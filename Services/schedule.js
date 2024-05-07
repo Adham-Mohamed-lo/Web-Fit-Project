@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { day: 'Thursday', morning: { time: '9:00 AM - 11:00 AM', activity: 'Strength Training' }, afternoon: { time: '3:00 PM - 5:00 PM', activity: 'Cardio Workout' }, evening: { time: '6:00 PM - 7:30 PM', activity: 'Pilates' } },
         { day: 'Friday', morning: { time: '8:00 AM - 10:00 AM', activity: 'Weight Training' }, afternoon: { time: '4:00 PM - 6:00 PM', activity: 'Functional Training' }, evening: { time: '6:30 PM - 8:00 PM', activity: 'Group Fitness Class' } },
         { day: 'Saturday', morning: { time: '9:00 AM - 11:00 AM', activity: 'Cardio Workout' }, afternoon: { time: '3:00 PM - 5:00 PM', activity: 'Strength Training' }, evening: { time: '6:00 PM - 7:30 PM', activity: 'Yoga Session' } },
-        { day: 'Sunday', morning: null, afternoon: null, evening: null } // Rest day
+        { day: 'Sunday', morning: null, afternoon: null, evening: null } 
+        
+        
     ];
 
     const scheduleContainer = document.getElementById('schedule-container');
@@ -44,3 +46,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     scheduleContainer.appendChild(scheduleTable);
 });
+window.onload = function() {
+    // Function to move the "Book Now" button beneath the table
+    function moveButtonBeneathTable() {
+        var scheduleContainer = document.getElementById('schedule-container');
+        var bookNowBtn = document.getElementById('book-now-btn');
+
+        // Append the button after the table
+        scheduleContainer.parentNode.insertBefore(bookNowBtn, scheduleContainer.nextSibling);
+    }
+
+    // Call the function to move the button when the page loads
+    moveButtonBeneathTable();
+};

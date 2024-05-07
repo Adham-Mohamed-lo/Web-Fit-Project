@@ -35,12 +35,19 @@ nav a {
 }
 
 #book-now-btn {
-    position: absolute;
-    bottom: 130px; 
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px; 
-    padding: 15px 30px; 
+    display: inline-block;
+    margin-top: 20px;
+    background-color:rgb(14, 170, 92);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#book-now-btn:hover {
+    background-color: rgb(14, 170, 92);
 }
 
 h2 {
@@ -66,4 +73,18 @@ h2 {
 
 .schedule-table td {
     background-color: #fafafa;
+}
+/* Remove underline from all <a> tags */
+a {
+    text-decoration: none;
+}
+
+/* Remove underline from <a> tags with class "no-underline" */
+.no-underline {
+    text-decoration: none;
+}
+
+/* Remove underline from <a> tag with ID "special-link" */
+#special-link {
+    text-decoration: none;
 }
