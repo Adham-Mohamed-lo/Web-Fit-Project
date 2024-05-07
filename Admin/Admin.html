@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="Admin.css">
+    <script src="Admin.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <ul class="admin-menu">
+            <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
+            <li><a href="#">Remove Products</a></li>
+            <li><a href="#">Edit Products</a></li>
+            <li><a href="#">View Products</a></li>
+            <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
+            <li><a href="#">Remove Coaches</a></li>
+            <li><a href="#">Edit Coaches</a></li>
+            <li><a href="#">View Coaches</a></li>
+        </ul>
+    </div>
+
+    <!-- Add Products Container -->
+    <div class="action-container hidden" id="addProductsContainer">
+        <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
+        <h1>Add Products</h1>
+        <img src="../Images/addproducts.png" alt="Add Products" class="product-image">
+        <div id="addProductForm">
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" required>
+                <div id="productNameError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Product Price:</label>
+                <input type="number" id="productPrice" name="productPrice" required>
+                <div id="productPriceError" class="error-message"></div>
+            </div>
+            <button type="button" class="btn-action" onclick="validateForm()">Add Product</button>
+            <div id="successMessage" class="success-message"></div>
+        </div>
+    </div>
+    <div class="action-container hidden" id="addCoachesContainer">
+        <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
+        <h1>Add Coaches</h1>
+        <img src="../Images/addproducts.png" alt="Add Coaches" class="product-image">
+        <div id="addCoachForm">
+            <div class="form-group">
+                <label for="coachName">Coach Name:</label>
+                <input type="text" id="coachName" name="coachName" required>
+                <div id="coachNameError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="coachSpecialty">Coach Specialty:</label>
+                <input type="text" id="coachSpecialty" name="coachSpecialty" required>
+                <div id="coachSpecialtyError" class="error-message"></div>
+            </div>
+            <button type="button" class="btn-action" onclick="validateCoachForm()">Add Coach</button>
+            <div id="coachSuccessMessage" class="success-message"></div>
+        </div>
+    </div>
+</body>
+</html>
