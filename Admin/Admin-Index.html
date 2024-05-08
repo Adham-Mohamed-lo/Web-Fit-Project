@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="Admin-Style.css">
-    
-
 </head>
 <body>
     <div class="container">
         <h1>Admin Panel</h1>
-        <ul class="admin-menu">
-            <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
-            <li><a href="#">Remove Products</a></li>
-            <li><a href="#">Edit Products</a></li>
-            <li><a href="#">View Products</a></li>
-            <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
-            <li><a href="#">Remove Coaches</a></li>
-            <li><a href="#">Edit Coaches</a></li>
-            <li><a href="#">View Coaches</a></li>
-        </ul>
+        <div class="actions-container">
+            <!-- Container for Product Buttons -->
+            <div class="container" id="Products_container">
+                <h2>Product Actions</h2>
+                <ul class="admin-menu">
+                    <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
+                    <li><a href="#">Remove Products</a></li>
+                    <li><a href="#">Edit Products</a></li>
+                    <li><a href="#">View Products</a></li>
+                </ul>
+            </div>
+            <!-- Container for Coach Buttons -->
+            <div class="container" id="Coaches_container">
+                <h2>Coach Actions</h2>
+                <ul class="admin-menu">
+                    <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
+                    <li><a href="#">Remove Coaches</a></li>
+                    <li><a href="#">Edit Coaches</a></li>
+                    <li><a href="#">View Coaches</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- Add Products Container -->
@@ -43,6 +53,8 @@
             <div id="successMessage" class="success-message"></div>
         </div>
     </div>
+
+    <!-- Add Coaches Container -->
     <div class="action-container hidden" id="addCoachesContainer">
         <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
         <h1>Add Coaches</h1>
