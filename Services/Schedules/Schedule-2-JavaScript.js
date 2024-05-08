@@ -1,19 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const scheduleData = [
-        { day: 'Monday', morning: { time: '9:00 AM - 10:30 AM', activity: 'Zumba Fitness' }, afternoon: null, evening: { time: '6:00 PM - 7:30 PM', activity: 'Zumba Toning' } },
-        { day: 'Tuesday', morning: { time: '10:00 AM - 11:30 AM', activity: 'Zumba Gold' }, afternoon: { time: '4:00 PM - 5:30 PM', activity: 'Zumba Fitness' }, evening: null },
-        { day: 'Wednesday', morning: { time: '9:00 AM - 10:30 AM', activity: 'Zumba Fitness' }, afternoon: null, evening: { time: '6:00 PM - 7:30 PM', activity: 'Zumba Gold' } },
-        { day: 'Thursday', morning: { time: '10:00 AM - 11:30 AM', activity: 'Zumba Toning' }, afternoon: { time: '4:00 PM - 5:30 PM', activity: 'Zumba Fitness' }, evening: null },
-        { day: 'Friday', morning: { time: '9:00 AM - 10:30 AM', activity: 'Zumba Fitness' }, afternoon: null, evening: { time: '6:00 PM - 7:30 PM', activity: 'Zumba Toning' } },
-        { day: 'Saturday', morning: { time: '10:00 AM - 11:30 AM', activity: 'Zumba Gold' }, afternoon: null, evening: { time: '5:00 PM - 6:30 PM', activity: 'Zumba Fitness' } },
-        { day: 'Sunday', morning: null, afternoon: null, evening: null } // Rest day
+        { day: 'Monday', morning: { time: '8:00 AM - 10:00 AM', activity: 'Vinyasa Yoga' }, afternoon: null, evening: { time: '6:30 PM - 8:00 PM', activity: 'Hatha Yoga' } },
+        { day: 'Tuesday', morning: { time: '9:00 AM - 11:00 AM', activity: 'Ashtanga Yoga' }, afternoon: { time: '3:00 PM - 5:00 PM', activity: 'Yin Yoga' }, evening: null },
+        { day: 'Wednesday', morning: { time: '8:00 AM - 10:00 AM', activity: 'Hatha Yoga' }, afternoon: null, evening: { time: '7:00 PM - 8:30 PM', activity: 'Restorative Yoga' } },
+        { day: 'Thursday', morning: { time: '9:00 AM - 11:00 AM', activity: 'Power Yoga' }, afternoon: { time: '3:00 PM - 5:00 PM', activity: 'Yin Yoga' }, evening: null },
+        { day: 'Friday', morning: { time: '8:00 AM - 10:00 AM', activity: 'Vinyasa Yoga' }, afternoon: null, evening: { time: '6:30 PM - 8:00 PM', activity: 'Ashtanga Yoga' } },
+        { day: 'Saturday', morning: { time: '9:00 AM - 11:00 AM', activity: 'Hatha Yoga' }, afternoon: null, evening: { time: '6:00 PM - 7:30 PM', activity: 'Yin Yoga' } },
+        { day: 'Sunday', morning: null, afternoon: null, evening: null } 
     ];
 
     const scheduleContainer = document.getElementById('schedule-container');
     const scheduleTable = document.createElement('table');
     scheduleTable.classList.add('schedule-table');
 
-    // Create table headers
     const tableHeaders = ['Day', 'Morning', 'Afternoon', 'Evening'];
     const tableHeaderRow = document.createElement('tr');
     tableHeaders.forEach(headerText => {
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     scheduleTable.appendChild(tableHeaderRow);
 
-    // Create table rows
     scheduleData.forEach(day => {
         const row = document.createElement('tr');
         const dayCell = document.createElement('td');

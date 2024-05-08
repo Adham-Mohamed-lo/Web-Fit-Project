@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const scheduleTable = document.createElement('table');
     scheduleTable.classList.add('schedule-table');
 
-    // Create table headers
     const tableHeaders = ['Day', 'Morning', 'Afternoon', 'Evening'];
     const tableHeaderRow = document.createElement('tr');
     tableHeaders.forEach(headerText => {
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     scheduleTable.appendChild(tableHeaderRow);
 
-    // Create table rows
     scheduleData.forEach(day => {
         const row = document.createElement('tr');
         const dayCell = document.createElement('td');
@@ -47,15 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
     scheduleContainer.appendChild(scheduleTable);
 });
 window.onload = function() {
-    // Function to move the "Book Now" button beneath the table
     function moveButtonBeneathTable() {
         var scheduleContainer = document.getElementById('schedule-container');
         var bookNowBtn = document.getElementById('book-now-btn');
 
-        // Append the button after the table
         scheduleContainer.parentNode.insertBefore(bookNowBtn, scheduleContainer.nextSibling);
     }
 
-    // Call the function to move the button when the page loads
     moveButtonBeneathTable();
 };

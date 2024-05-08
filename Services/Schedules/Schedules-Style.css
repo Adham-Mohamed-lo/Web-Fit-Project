@@ -1,44 +1,19 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
-nav {
-    background-color: #444;
-    text-align: center;
-    padding: 10px 0;
-}
-
-nav a {
-    text-decoration: none;
-    color: #fff;
-    margin: 0 10px;
-    font-weight: bold;
-}
-
 .schedule {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow:hidden ;
 }
 
 #book-now-btn {
     display: inline-block;
     margin-top: 20px;
-    background-color:rgb(14, 170, 92);
-    color: #fff;
+    background-color: rgb(14, 170, 92);
+    color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -47,14 +22,22 @@ nav a {
 }
 
 #book-now-btn:hover {
-    background-color: rgb(14, 170, 92);
+    background-color: rgb(20, 92, 56);
+}
+
+h1 {
+    color: rgb(14, 170, 92);
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 40px;
 }
 
 h2 {
-    color: #333;
+    color: rgb(14, 170, 92);
     text-align: center;
     margin-bottom: 20px;
 }
+
 
 .schedule-table {
     width: 100%;
@@ -74,17 +57,34 @@ h2 {
 .schedule-table td {
     background-color: #fafafa;
 }
-/* Remove underline from all <a> tags */
+
 a {
     text-decoration: none;
 }
 
-/* Remove underline from <a> tags with class "no-underline" */
+
 .no-underline {
     text-decoration: none;
 }
 
-/* Remove underline from <a> tag with ID "special-link" */
+
 #special-link {
     text-decoration: none;
+}
+
+
+@media screen and (max-width: 800px) {
+    .schedule {
+        max-width: calc(100% - 40px);
+        padding: 15px;
+    }
+   
+    
+    #book-now-btn {
+        margin-top: 10px;
+    }
+    
+    h1, h2 {
+        padding: 20px;
+    }
 }

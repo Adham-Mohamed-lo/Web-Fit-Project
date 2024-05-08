@@ -1,0 +1,77 @@
+
+.title {
+  display: flex;
+  justify-content: center;
+  color: rgb(14, 170, 92);
+  font-size: 2.2em;
+  font-weight: 800;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#contact {
+  margin-top: 50px;
+}
+
+.card {
+  background-color: rgb(255, 255, 255);
+  width: 21.25em;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 25px;
+  margin: 15px;
+  transition: transform 0.7s ease;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card .icon {
+  color:rgb(20, 92, 56);
+  font-size: 8em;
+  text-align: center;
+}
+
+.card p {
+  color: black;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.card h3 {
+  color:rgb(14, 170, 92);
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+.info p {
+  color: black;
+  text-align: center;
+}
+.info h3{
+    color:rgb(14, 170, 92);
+    text-align: center;
+}
+
+
+.workoutimage{
+    width:245px;
+   
+}
+.planimage{
+    width:250px
+}
+
+.workoutcard p{
+    color:black;
+}
+

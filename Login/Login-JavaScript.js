@@ -70,6 +70,8 @@ function signUp() {
   alert("Signup successful!");
 }
 
+let isLoggedIn = false;
+
 function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
@@ -92,7 +94,20 @@ function login() {
 
   if (password === foundUser.password) {
     alert("Login successful!");
+    isLoggedIn = true; 
+    sessionStorage.setItem("isLoggedIn", "true"); 
+    console.log("isLoggedIn set to true  " + isLoggedIn);
+    
   } else {
     alert("Incorrect password.");
+    isLoggedIn = false; 
+    sessionStorage.setItem("isLoggedIn", "false"); 
+    console.log("isLoggedIn set to false  " + isLoggedIn);
   }
 }
+
+
+function logout() {
+  sessionStorage.removeItem('isLoggedIn'); 
+}
+

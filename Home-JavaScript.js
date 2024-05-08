@@ -1,10 +1,10 @@
 function openMembership() {
-  window.open('Services/Membership-index.html', '_self'); 
+  window.open('Services/Member Ship/Membership-Index.html', '_self'); 
 }
 document.getElementById('membershipCard').addEventListener('click', openMembership);
 
 function openCoaches() {
-  window.open('Services/coaches-page.html', '_self'); 
+  window.open('Services/Coaches Page/Coaches-Page-Index.html', '_self'); 
 }
 document.getElementById('coachescard').addEventListener('click', openCoaches);
 

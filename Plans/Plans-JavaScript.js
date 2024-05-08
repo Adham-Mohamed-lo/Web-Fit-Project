@@ -1,13 +1,19 @@
-function openpayment() {
-    window.open('free-plan.html', '_self');
+document.addEventListener("DOMContentLoaded", function () {
+  function openpayment() {
+    window.open("free-plan.html", "_self");
   }
-  document.getElementById('subscribebtn').addEventListener('click', openpayment);
+
+  document.getElementById("subscribebtn").addEventListener("click", openpayment);
 
   function openpayment2() {
-    window.open('Payment-Indexfree.html', '_self');
+    window.open("Payment-Indexfree.html", "_self");
   }
-  document.getElementById('subscribebtn2').addEventListener('click', openpayment2);
+
+  document.getElementById("subscribebtn2").addEventListener("click", openpayment2);
+
   function opencoaches() {
-    window.open('../Services/coaches-page.html', '_self');
+    window.open("../Services/coaches-page.html", "_self");
   }
-  document.getElementById('subscribebtn3').addEventListener('click', opencoaches);
+
+  document.getElementById("subscribebtn3").addEventListener("click", opencoaches);
+});
