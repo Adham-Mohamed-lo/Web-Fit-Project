@@ -2,7 +2,7 @@
 #signup-container {
   background-color: rgb(255, 255, 255);
   width: 450px;
-  margin: auto;
+  
   padding: 20px;
   border-radius: 8px;
   position: fixed;
@@ -80,11 +80,13 @@ input[type="submit"]:hover,
   background-color: rgb(20, 92, 56);
 }
 
-footer {
-  position: static;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
+.footer {
+  position: fixed; 
+  left: 0; 
+  bottom: 0; 
+  width: 100%; 
+  background-color: #333; 
+  color: white; 
+  padding: 20px; 
+  text-align: center; 
 }
