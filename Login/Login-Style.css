@@ -2,7 +2,6 @@
 #signup-container {
   background-color: rgb(255, 255, 255);
   width: 450px;
-  
   padding: 20px;
   border-radius: 8px;
   position: fixed;
@@ -80,13 +79,30 @@ input[type="submit"]:hover,
   background-color: rgb(20, 92, 56);
 }
 
-.footer {
-  position: fixed; 
-  left: 0; 
-  bottom: 0; 
-  width: 100%; 
-  background-color: #333; 
-  color: white; 
-  padding: 20px; 
-  text-align: center; 
+@media screen and (max-width: 800px) {
+  #login-container,
+  #signup-container {
+    width: 88%;
+    max-width: 400px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  button[type="submit"],
+  button[type="button"],
+  #signup-button,
+  #login-button,
+  .signup-container-button,
+  .back-to-login {
+    width: 100%; 
+    margin: 10px auto; 
+
+  }
 }

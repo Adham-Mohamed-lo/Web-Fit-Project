@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="Admin-Style.css">
-    
     <link rel="stylesheet" href="../Navigation/Navigation-Style.css" />
 
 </head>
@@ -23,20 +22,30 @@
       <a href="../Plans/Plans-Index.html">Join Us</a>
       <a href="../Login/Login-Index.html">Login</a>
     </nav>
-    <div class="container">
-        <h1>Admin Panel</h1>
+  </div>
+  <div class="actions-container">
+    <!-- Container for Product Buttons -->
+    <div class="container" id="Products_container">
+        <h2>Product Actions</h2>
         <ul class="admin-menu">
             <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
             <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
             <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
             <li><a href="../Shop/Shop-Index.html">View Products</a></li> 
-            <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
-            <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
-            <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
-            <li><a href="../Services/coaches-page.html">View Coaches</a></li> 
 
         </ul>
     </div>
+    <!-- Container for Coach Buttons -->
+    <div class="container" id="Coaches_container">
+        <h2>Coach Actions</h2>
+        <ul class="admin-menu">
+            <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
+            <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
+            <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
+            <li><a href="../Services/Coaches Page/Coaches-Page-Index.html">View Coaches</a></li>
+        </ul>
+    </div>
+</div>
 
   
     <div class="action-container hidden" id="addProductsContainer">
@@ -166,7 +175,6 @@
             <div id="editCoachSuccessMessage" class="success-message"></div>
         </form>
     </div>
-    
     
     
     <script src="Admin-JavaScript.js"></script>
