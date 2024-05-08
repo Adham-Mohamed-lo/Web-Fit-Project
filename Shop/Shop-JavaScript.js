@@ -2,22 +2,18 @@ let cart = [];
 
 async function fetchProducts() {
   const productsData = [
-    { id: 1, name: "Product 1", price: 19.99, image: "../Images/1.jpg" },
-    { id: 2, name: "Product 2", price: 29.99, image: "../Images/2.jpg" },
-    { id: 3, name: "Product 3", price: 39.99, image: "../Images/4.avif" },
-    { id: 4, name: "Product 4", price: 69.99, image: "../Images/6.webp" },
-    { id: 5, name: "Product 5", price: 49.99, image: "../Images/8.webp" },
-    { id: 6, name: "Product 6", price: 121.99, image: "../Images/1.jpg" },
-    { id: 7, name: "Product 7", price: 29.99, image: "../Images/2.jpg" },
-    { id: 8, name: "Product 8", price: 49.99, image: "../Images/4.avif" },
-    { id: 9, name: "Product 9", price: 69.99, image: "../Images/6.webp" },
-    { id: 10, name: "Product 10", price: 89.99, image: "../Images/8.webp" },
-    { id: 11, name: "Product 11", price: 184.99, image: "../Images/1.jpg" },
-    { id: 12, name: "Product 12", price: 29.99, image: "../Images/2.jpg" },
-    { id: 13, name: "Product 13", price: 89.99, image: "../Images/4.avif" },
-    { id: 14, name: "Product 14", price: 39.99, image: "../Images/6.webp" },
-    { id: 15, name: "Product 15", price: 85.99, image: "../Images/8.webp" },
+    { id: 1, name: "Whey Protein Powder", price: 49.99, image: "../Images/Protein powder.jpg" },
+    { id: 2, name: "Creatine Monohydrate", price: 29.99, image: "../Images/Creatine.jpg" },
+    { id: 3, name: "BCAA (Branched-Chain Amino Acids)", price: 39.99, image: "../Images/BCA.jpg" },
+    { id: 4, name: "Pre-Workout Supplement", price: 69.99, image: "../Images/pre workout.jpg" },
+    { id: 5, name: "Gym Gloves", price: 49.99, image: "../Images/gym gloves.jpg" },
+    { id: 6, name: "Multivitamin", price: 121.99, image: "../Images/1.jpg" },
+    { id: 7, name: "Gym tools", price: 29.99, image: "../Images/2.jpg" },
+    { id: 8, name: "Glutamine Supplement", price: 49.99, image: "../Images/4.avif" },
+    { id: 9, name: "BCAA", price: 69.99, image: "../Images/6.webp" },
+
   ];
+
 
   return productsData;
 }

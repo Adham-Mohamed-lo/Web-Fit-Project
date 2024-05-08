@@ -54,4 +54,16 @@
     text-align: justify;
   }
   
- 
+  .repeat-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 100px;
+    color: rgb(14, 170, 92);
+  }
+  
+  .repeat-icon p {
+    margin: 0;
+    padding: 0;
+  }
