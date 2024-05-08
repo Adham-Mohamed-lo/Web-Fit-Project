@@ -74,8 +74,8 @@
 
 @media only screen and (max-width: 800px) {
   .card-container {
-    padding: 0 8px; /* Adjust padding for mobile */
-    gap: 10px; /* Reduce gap for mobile */
+    padding: 0 8px; 
+    gap: 10px;
     flex-wrap: wrap;
 
   }
@@ -85,20 +85,35 @@
   }
 
   .card-image {
-    height: 300px; /* Adjust card image height for mobile */
+    height: 300px;
   }
 
   #about_team {
-    font-size: 16px; /* Adjust font size for mobile */
+    font-size: 16px;
   }
 
   #header {
-    font-size: 30px; /* Adjust header font size for mobile */
+    font-size: 30px; 
   }
 
   .contact-button {
-    font-size: 20px; /* Adjust button font size for mobile */
-    width: 70%; /* Full width button on mobile */
-    height: 40px; /* Adjust button height for mobile */
+    font-size: 20px; 
+    width: 70%;
+    height: 40px;
   }
+}
+
+footer {
+  position: static;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333; 
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
 }

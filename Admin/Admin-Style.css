@@ -63,8 +63,8 @@ h1 {
 .product-image {
     display: block;
     margin: 0 auto;
-    width: 300px; /* Increased width */
-    height: auto; /* Maintain aspect ratio */
+    width: 300px;
+    height: auto; 
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -96,8 +96,8 @@ h1 {
     font-weight: bold;
 }
 .action-container .form-group input {
-    width: calc(100% - 22px); /* Adjusted width */
-    padding: 10px; /* Adjusted padding */
+    width: calc(100% - 22px); 
+    padding: 10px; 
     border-radius: 5px;
     border: 1px solid #ccc;
 }
@@ -137,3 +137,19 @@ h1 {
     font-size: 14px;
     margin-top: 5px;
 }
+
+footer {
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333; 
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
