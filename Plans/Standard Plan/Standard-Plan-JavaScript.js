@@ -1,7 +1,7 @@
 function goToWorkoutPage() {
-    window.location.href = "front-workoutpage.html";
+    window.location.href = "../Workouts/Front-Workout-Page-Index.html";
 }
 
 function goToMealPlanPage() {
-    window.location.href = "meal.html";
+    window.location.href = "../Meals/Meal-Index.html";
 }

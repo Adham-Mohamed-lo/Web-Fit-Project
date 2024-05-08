@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const legsCard = document.getElementById("legs");
 
     pushCard.addEventListener("click", function() {
-        window.location.href = "push.html";
+        window.location.href = "Push Workouts/Push-Workout-Index.html";
     });
 
     pullCard.addEventListener("click", function() {
-        window.location.href = "pull.html";
+        window.location.href = "Pull Workouts/Pull-Workout-Index.html";
     });
 
     legsCard.addEventListener("click", function() {
-        window.location.href = "legs.html";
+        window.location.href = "Legs Workouts/Legs-Workout-Index.html";
     });
 });

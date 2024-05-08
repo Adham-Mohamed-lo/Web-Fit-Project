@@ -1,56 +1,74 @@
-
-
-.choose-plan {
-    text-align: center;
-    margin-top: 50px;
+.title {
+  display: flex;
+  justify-content: center;
+  color: rgb(14, 170, 92);
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  padding: 10px;
+  padding-top: 40px;
 }
-
-.choose-plan h2 {
-    font-size: 24px; 
-    color: rgb(132, 253, 136); 
-}
-
 
 .plans-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  padding: 0 16px;
+  color: black;
 }
-
 
 .plan {
-    width: 30%;
-    background-color: rgb(42, 20, 98); 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  max-width: 100%;
+  margin: 8px;
+  padding: 20px;
+  background-color: white;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  width: 30%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
-
+.plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
 .plan h2 {
-    color: #fff;
+  margin-top: 0;
+  font-size: 24px;
+  color: rgb(14, 170, 92);
 }
 
 .plan ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .plan ul li {
-    margin-bottom: 10px;
-    color: #fff;
+  margin-bottom: 10px;
+  color: #666;
 }
 
 .plan button {
-    background-color: rgb(132, 253, 136); 
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(14, 170, 92);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  border: none;
 }
 
 .plan button:hover {
-    background-color: rgb(104, 201, 107); 
+  background-color: rgb(20, 92, 56);
+}
+@media screen and (max-width: 800px) {
+  .plans-container {
+    padding: 0 8px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .plan {
+    width: 100%;
+  }
 }

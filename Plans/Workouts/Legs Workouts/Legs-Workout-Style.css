@@ -1,37 +1,11 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
-h1 {
-    margin: 0;
-}
-
-nav {
-    background-color: #444;
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav a {
-    margin: 0 10px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #ffcc00;
+.title{
+    display: flex;
+    justify-content: center;
+    color: rgb(14, 170, 92);
+    font-size: 2.2em;
+    font-weight: 800;
+    padding: 10px;
+    padding-top: 30px;
 }
 
 .workouts {
@@ -47,9 +21,9 @@ nav a:hover {
     margin: 20px;
     width: 300px;
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease;
-    overflow: hidden; /* Hide overflow to prevent animation overflow */
+    overflow: hidden; 
 }
 
 .card:hover {
@@ -60,8 +34,9 @@ nav a:hover {
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    transition: transform 0.5s ease; /* Add transition for smoother hover effect */
+    transition: transform 0.5s ease; 
 }
+
 
 .workout-details {
     padding: 20px;
@@ -69,7 +44,7 @@ nav a:hover {
 
 .workout-details h2 {
     margin-top: 0;
-    color: #333;
+    color: rgb(14, 170, 92);
 }
 
 .workout-details p {

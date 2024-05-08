@@ -1,67 +1,57 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-}
-
-.container {
+.title {
+    display: flex;
+    justify-content: center;
+    color: rgb(14, 170, 92);
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    padding: 10px;
+    padding-top: 40px;
+  }
+  
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-
-.card {
-    width: 300px;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: 0 20px;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-}
-
-.card-header {
-    background-color: rgb(12, 6, 51);
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-}
-
-.card-body {
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
-}
-
-.card-body p {
+    
+  }
+  
+  .card {
+    background-color: rgb(255, 255, 255);
+    width: 21.25em;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 20px;
+    height: 150px; 
+    margin: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: left; 
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .card h2 {
+    color: rgb(14, 170, 92);
+    margin-bottom: 10px;
+    text-align: center; 
+  }
+  
+  .card p {
+    color: black;
     font-size: 16px;
-    line-height: 1.6;
-}
-nav {
-    background-color: rgb(42, 42, 42);
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    padding: 0 20px;
-}
-
-nav a:hover {
-    color: rgb(132, 253, 136);
-}
-header {
-    background-color: rgb(12, 6, 51);
-    padding: 10px 0;
-    text-align: center;
-}
-h1{
-    color: white;
-}
+    line-height: 1.5;
+    text-align: justify;
+  }
+  
+ 
