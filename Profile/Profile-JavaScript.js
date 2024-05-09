@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Adress: "New York, USA",
       Gender: "Male",
       Age: "19",
-      Subscribtion_Status: "freee"
+      Subscribtion_Status: "premium"
     };
   
    
@@ -22,4 +22,27 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('Age').innerText ="Age: "+ userData.Age;
     document.getElementById('Subscribtion_Status').innerText ="Subscribtion Status: "+ userData.Subscribtion_Status;
   }
+  document.addEventListener("DOMContentLoaded", function() {
+    
+    const workoutsButton = document.getElementById("workoutsButton");
+    const mealsButton = document.getElementById("mealsButton");
+    const subscriptionButton = document.getElementById("subscriptionButton");
+
+   
+    workoutsButton.addEventListener("click", function() {
+        
+        window.location.href = "../Plans/Workouts/Front-Workout-Page-Index.html";
+    });
+
+    mealsButton.addEventListener("click", function() {
+        
+        window.location.href = "../Plans/Meals/Meal-Index.html";
+    });
+
+    subscriptionButton.addEventListener("click", function() {
+      
+        window.location.href = "../Plans/Plans-Index.html";
+    });
+});
+
   

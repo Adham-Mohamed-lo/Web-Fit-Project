@@ -1,17 +1,14 @@
 .actions-container {
     display: flex;
-
-    padding: 30px;
-    margin: 30px;
+    padding: 30px; 
+    margin: 8%; 
     position: relative;
-    color:rgb(14, 170, 92);;
-
+    color: rgb(14, 170, 92);
 }
-
 #Products_container,
 #Coaches_container {
     width: 500px;
-    height: 350px;
+    height: 400px;
     background-color: #efefef;
 }
 
@@ -21,7 +18,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     position: relative;
 }

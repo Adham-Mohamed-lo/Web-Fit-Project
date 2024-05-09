@@ -1,72 +1,60 @@
 
 .profile-heading {
-  text-align: center;
-  color: rgb(14, 170, 92); 
-  text-decoration: underline;
-}
-.card-container {
   display: flex;
-  gap: 16px;
-  padding: 0 16px;
-  color: black;
+  justify-content: center;
+  color: rgb(14, 170, 92);
+  font-size: 2.2em;
+  font-weight: 800;
+  margin-bottom: 15px;
+  padding: 30px;
 }
+
 
 .card {
-  flex: 2; 
-  
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 8px;
   padding: 16px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-  overflow: hidden;
-
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-}
-
-.side-menu {
-  flex: 1; 
   background-color: #f0f0f0; 
-  padding: 16px;
   border-radius: 10px;
-  align-items: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  height: 480px;
 }
+
 
 .button-group {
   display: flex;
-  flex-direction: column;
+  justify-content: center; 
   align-items: center;
+  margin: 20px auto; /
 }
-#menu_label{
-  text-align:  center;
+
+
+#menu_label {
+  text-align: center;
+  margin: 20px;
 }
+
+
 .button-group button {
-  font-size: 24px;
-  width: 80%;
-  align-items: center;
-  padding: 15px;
+  font-size: 16px;
+  width: 200px;
+  padding: 10px;
   border: none;
   border-radius: 20px;
   background-color: rgb(14, 170, 92);
   color: rgb(255, 255, 255);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   margin: 10px;
 }
 
 .button-group button:hover {
-  border: solid  0.5px; 
   background-color: rgb(255, 255, 255);
   color: rgba(14, 170, 92, 0.8); 
-  transform: scale(1.05);
+  transform: scale(1.01);
+  border: solid  0.5px; 
 }
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
+
 
 @media only screen and (max-width: 800px) {
   .card-container {
@@ -74,23 +62,25 @@
     gap: 10px;
   }
   .profile-heading {
-    text-align: center;
-    color: rgb(14, 170, 92); 
-    text-decoration: underline;
+    font-size: 24px;
   }
   #header {
     font-size: 30px; 
   }
-
 }
+
+
 .container {
   padding: 0 16px;
   color: black;
+  font-size: 22px; 
+  background-color: #f0f0f0; 
 }
 
 #header {
   font-size: 50px;
 }
+
 
 .card-image {
   width: 100px; 
@@ -98,5 +88,3 @@
   object-fit: cover;
   border-radius: 50%; 
 }
-
-
