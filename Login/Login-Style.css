@@ -1,7 +1,7 @@
 #login-container,
 #signup-container {
   background-color: rgb(255, 255, 255);
-  width: 450px;
+  width: 600px;
   padding: 20px;
   border-radius: 8px;
   position: fixed;
@@ -68,16 +68,21 @@ button[type="button"],
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin: 30px 10px;
+  
 }
-
 button[type="submit"]:hover,
 button[type="button"]:hover,
 input[type="submit"]:hover,
 #signup-button:hover,
 #login-button:hover,
+.signup-container-button:hover,
 .back-to-login:hover {
-  background-color: rgb(20, 92, 56);
+  border: solid  0.5px; 
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8); 
+  transform: scale(1.05);
 }
+
 
 @media screen and (max-width: 800px) {
   #login-container,

@@ -12,17 +12,20 @@
 #book-now-btn {
     display: inline-block;
     margin-top: 20px;
-    background-color: rgb(14, 170, 92);
-    color: white;
+    padding: 15px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 20px;
+    background-color: rgb(14, 170, 92);
+    color: rgb(255, 255, 255);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 #book-now-btn:hover {
-    background-color: rgb(20, 92, 56);
+    border: solid  0.5px; 
+    background-color: rgb(255, 255, 255);
+    color: rgba(14, 170, 92, 0.8); 
+    transform: scale(1.05);
 }
 
 h1 {

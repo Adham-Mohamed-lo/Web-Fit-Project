@@ -119,19 +119,25 @@ textarea.input {
 .mesgbtn {
   position: relative;
   top: 3px;
-  background-color:rgb(14, 170, 92);
-  outline: none;
-  border: none;
-  border-radius: 30px;
   height: 45px;
   width: 30%;
   font-size: 16px;
-  color: white;
-  cursor: pointer;
   font-weight: 300;
+  padding: 15px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(14, 170, 92);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  
 }
 .mesgbtn:hover{
-  background-color: rgb(20, 92, 56);
+  border: solid  0.5px; 
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8); 
+  transform: scale(1.05);
 
 }
 
