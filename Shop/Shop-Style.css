@@ -81,16 +81,22 @@ button:hover {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: #0eaa5c;
-  padding: 10px;
-  border-radius: 50%;
   z-index: 1000;
+  padding: 15px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(14, 170, 92);
+  color: rgb(255, 255, 255);
   cursor: pointer;
   transition: background-color 0.3s ease;
+
 }
 
 .cart-info:hover {
-  background-color: #145c38;
+  border: solid  0.5px; 
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8); 
+  transform: scale(1.05);
 }
 
 .cart-count {

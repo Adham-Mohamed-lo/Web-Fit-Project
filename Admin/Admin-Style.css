@@ -164,3 +164,36 @@ h1 {
     font-size: 14px;
     margin-top: 5px;
 }
+
+
+@media (max-width: 800px) {
+    .actions-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #Products_container,
+    #Coaches_container {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    .container {
+        width: 90%;
+        margin: 10px auto;
+        padding: 20px;
+    }
+
+    .action-container {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 20px;
+    }
+}

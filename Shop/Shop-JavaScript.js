@@ -10,7 +10,14 @@ async function fetchProducts() {
     { id: 6, name: "Multivitamin", price: 121.99, image: "../Images/1.jpg" },
     { id: 7, name: "Gym tools", price: 29.99, image: "../Images/2.jpg" },
     { id: 8, name: "Glutamine Supplement", price: 49.99, image: "../Images/4.avif" },
-    { id: 9, name: "BCAA", price: 69.99, image: "../Images/6.webp" },
+    { id: 9, name: "Bench", price: 4499.99, image: "../Images/bench.webp" },
+    { id: 10, name: "10 KG Dubmbells", price: 499.99, image: "../Images/dumbells.jpg" },
+    { id: 11, name: "Excercising Matt", price: 399.99, image: "../Images/gym mat.avif" },
+    { id: 12, name: "Training Shorts", price: 499.99, image: "../Images/gym shorts.jpg" },
+    { id: 13, name: "Flask 1000L", price: 599.99, image: "../Images/gym_bottle_big.webp" },
+    { id: 14, name: "Flask 600L", price: 399.99, image: "../Images/Gym_bottle2.jpg" },
+    { id: 15, name: "Flask 300L", price: 149.99, image: "../Images/Gym_bottle3.png" },
+    { id: 16, name: "Training T-shirt ", price: 349.99, image: "../Images/training tshirts.jpg" },
 
   ];
 
