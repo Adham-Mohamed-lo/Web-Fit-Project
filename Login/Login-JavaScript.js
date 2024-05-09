@@ -70,7 +70,8 @@ function signUp() {
   alert("Signup successful!");
 }
 
-let isLoggedIn = false;
+var isLoggedIn = false;
+var isAdmin = false;
 
 function login() {
   const username = document.getElementById("username").value;
@@ -86,7 +87,13 @@ function login() {
       break;
     }
   }
-
+  if (username === "admin" && password === "123") {
+    alert("Admin login successful!");
+    isLoggedIn = true; 
+    sessionStorage.setItem("isLoggedIn", "true"); 
+    sessionStorage.setItem("isAdmin", "true"); 
+    return;
+  }
   if (!foundUser) {
     alert("Username not found. Please sign up.");
     return;
@@ -96,18 +103,13 @@ function login() {
     alert("Login successful!");
     isLoggedIn = true; 
     sessionStorage.setItem("isLoggedIn", "true"); 
-    console.log("isLoggedIn set to true  " + isLoggedIn);
-    
+
   } else {
     alert("Incorrect password.");
     isLoggedIn = false; 
     sessionStorage.setItem("isLoggedIn", "false"); 
-    console.log("isLoggedIn set to false  " + isLoggedIn);
   }
 }
 
 
-function logout() {
-  sessionStorage.removeItem('isLoggedIn'); 
-}
 
