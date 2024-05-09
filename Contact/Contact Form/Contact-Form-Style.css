@@ -141,3 +141,67 @@ textarea.input {
 
 }
 
+@media (max-width: 800px) {
+  .container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .item {
+    height: auto;
+    max-width: 100%;
+   
+  }
+
+  .contactimage {
+    height: 250px;
+    width: 80%;
+    border-radius: 80px;
+    padding: 20px;
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  .text1 {
+    font-size: 24px;
+    padding: 10px;
+  }
+
+  .text3 {
+    font-size: 20px;
+    margin: 10px;
+    padding-bottom: 20px;
+  }
+
+  form {
+    padding: 0 20px;
+  }
+
+  .inputbox {
+    height: 50%;
+    margin: 20px 0;
+  }
+
+  .input {
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .inputbox label {
+    font-size: 14px;
+    padding-left: 5px;
+    padding-top: 15px;
+  }
+
+  .mesgbtn {
+    height: 40px;
+    width: 50%;
+    font-size: 14px;
+    padding: 10px;
+    display: flex;
+    margin-top: 40px;
+    justify-content: center; 
+  align-items: center;
+ }
+}
