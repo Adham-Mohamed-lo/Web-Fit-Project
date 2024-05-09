@@ -212,7 +212,7 @@ function checkout() {
   if (cart.length === 0) {
     alert("Your cart is empty. Add products to your cart first.");
   } else {
-    alert("Redirecting to checkout page...");
+    alert("Thanks for purchasing");
     cart = []; 
     updateCartUI();
     displayCart();
