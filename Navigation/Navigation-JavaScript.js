@@ -26,7 +26,7 @@ function checkPageAndUpdateLink() {
       profileLink.href = basePath + 'Profile/Profile-Index.html';
     }
 
-  
+
     var currentPage = currentPath.split('/').pop(); 
     if (currentPage === 'Admin-Index.html' || currentPage === 'Profile-Index.html') {
       profileLink.textContent = 'Logout';
