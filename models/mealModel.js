@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const mealSchema = new mongoose.Schema({
   mealnumber: {
-    type: int,
+    type: Number,
     required: true,
     unique: true,
   },

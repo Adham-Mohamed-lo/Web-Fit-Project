@@ -7,11 +7,11 @@ const productSchema = new mongoose.Schema({
     unique: true,
   },
   price: {
-    type: double,
+    type: Number,
     required: true,
   },
   id: {
-    type: int,
+    type: Number,
     required: true,
   },
   // Add more fields as needed

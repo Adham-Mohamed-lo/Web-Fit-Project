@@ -9,17 +9,17 @@ const visaSchema = new mongoose.Schema({
     unique: true,
   },
   frontcardnumber: {
-    type: int,
+    type: Number,
     required: true,
     unique: true,
   },
   cvv: {
-    type: int,
+    type: Number,
     required: true,
     unique: true,
-  
+  },
   expiredate: {
-    type: int,
+    type: Number,
     required: true,
     
   },
@@ -27,6 +27,6 @@ const visaSchema = new mongoose.Schema({
   // Add more fields as needed
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("payment", visaSchema);
 
 module.exports = User;

@@ -12,12 +12,12 @@ const adminSchema = new mongoose.Schema({
     unique: true,
   },
   adminpassword: {
-    type: int,
+    type: Number,
     required: true,
     unique: true,
   },
   adminphone: {
-    type: int,
+    type: Number,
     required: true,
     unique: true,
   },
