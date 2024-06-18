@@ -1,5 +1,6 @@
 // user.js
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -13,12 +14,11 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   userpassword: {
-    type: int,
+    type: String,  // Storing as string
     required: true,
-    unique: true,
   },
   userphone: {
-    type: int,
+    type: String,  // Storing as string
     required: true,
     unique: true,
   },
@@ -29,6 +29,15 @@ const userSchema = new mongoose.Schema({
   },
   // Add more fields as needed
 });
+
+// Pre-save hook to hash password before saving
+userSchema.pre('save', async function(next) {
+  if (this.isModified('userpassword')) {
+    this.userpassword = await bcrypt.hash(this.userpassword, 10);
+  }
+  next();
+});
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
