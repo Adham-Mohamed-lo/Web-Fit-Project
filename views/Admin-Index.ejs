@@ -62,23 +62,25 @@
         <div class="action-container hidden" id="addCoachesContainer">
             <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
             <h1>Add Coach</h1>
-            <form action='/auth/addcoaches' method="post" id="addCoachForm" >
-              <div class="form-group">
-                <label for="coachname">Coach Name:</label>
-                <input type="text" id="coachname" name="coachname" required>
-              </div>
-              <div class="form-group">
-                <label for="coachdescription">Coach Description:</label>
-                <input type="text" id="coachdescription" name="coachdescription" required>
-              </div>
-              <div class="form-group">
-                <label for="coachimage">Coach Image:</label>
-                <input type="text" id="coachimage" name="coachimage" required>
-              </div>
-              <button type="submit" class="btn-action">Add Coach</button>
-              <div id="coachSuccessMessage" class="success-message"></div>
+            <form action="/auth/addcoaches" method="post" id="addCoachForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="coachname">Coach Name:</label>
+                    <input type="text" id="coachname" name="coachname" required>
+                </div>
+                <div class="form-group">
+                    <label for="coachdescription">Coach Description:</label>
+                    <input type="text" id="coachdescription" name="coachdescription" required>
+                </div>
+                <div class="form-group">
+                    <label for="coachimage">Coach Image:</label>
+                    <input type="file" id="coachimage" name="coachimage" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn-action">Add Coach</button>
+                <div id="coachSuccessMessage" class="success-message"></div>
             </form>
-          </div>
+        </div>
+        
+        
        
         <div class="action-container hidden" id="removeCoachesContainer">
             <button class="exit-button" onclick="toggleVisibility('removeCoachesContainer')">X</button>

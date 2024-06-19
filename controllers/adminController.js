@@ -1,44 +1,74 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-const Coach = require("../models/coachesModel.js");
+const app = express();
 const meal = require("../models/mealModel.js");
+const path = require("path");
+const Coach = require("../models/coachesModel.js");
+const fileUpload = require('express-fileupload');
 
-const addCoashes = async (req, res) => {
+// Use express-fileupload middleware
+app.use(fileUpload());
 
-    const { coachname, coachdescription, coachimage } = req.body;
-    const newCoach = new Coach({
-        coachname,
-        coachdescription,
-        coachimage
-    });
+const addCoashes = (req, res) => {
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+    }
 
-    newCoach.save()
-        .then(() => {
-            res.redirect("/auth/Admin");
-        })
-        .catch((err) => {
+    const { coachname, coachdescription } = req.body;
+    const coachimage = req.files.coachimage;
+
+    // Determine the upload path based on coachname (assuming unique)
+    const uploadPath = path.join(__dirname, `../public/images/${coachname}.png`);
+
+    // Move the uploaded file to the designated directory
+    coachimage.mv(uploadPath, function (err) {
+        if (err) {
             console.error(err);
-            res.status(500).send("Error saving coach");
+            return res.status(500).send(err);
+        }
+
+        // Create a new Coach object with data from the request
+        const newCoach = new Coach({
+            coachname,
+            coachdescription,
+            coachimage: `/images/${coachname}.png`  // Save the relative path to the image
         });
+
+        // Save the new Coach object to MongoDB
+        newCoach.save()
+            .then(() => {
+                res.redirect("/auth/Admin");
+            })
+            .catch((err) => {
+                console.error(err);
+                res.status(500).send("Error saving coach");
+            });
+    });
+};
+
+module.exports = {
+    addCoashes
 };
 
 
 
-const postaddmeal = async (req, res) =>  {
-    const { 
-         mealname,
+
+
+
+const postaddmeal = async (req, res) => {
+    const {
+        mealname,
         mealdescription,
     } = req.body;
-    
+
     try {
-        
+
         const existingUser = await meal.findOne({ $or: [{ mealname }, { mealdescription }] });
         if (existingUser) {
             return res.redirect("");
-            
+
         }
 
-        
+
         const newMeal = new Meal({
             mealname,
             mealdescription
@@ -49,7 +79,7 @@ const postaddmeal = async (req, res) =>  {
         res.redirect("/meal");
     } catch (err) {
         console.error(err);
-        
+
         res.status(500).json({ error: "Failed to register meal" });
     }
 
@@ -70,7 +100,7 @@ const deleteMeal = async (MealId, res) => {
 
 const updateMeal = async (MealId, updateData, res) => {
     try {
-       
+
 
         // Update user in the database
         const updatedMeal = await Meal.findByIdAndUpdate(MealId, updateData, { new: true, runValidators: true });
@@ -87,6 +117,5 @@ const updateMeal = async (MealId, updateData, res) => {
 
 
 module.exports = {
-    addCoashes,postaddmeal,deleteMeal,updateMeal
-  };
-  
+    addCoashes, postaddmeal, deleteMeal, updateMeal
+};
