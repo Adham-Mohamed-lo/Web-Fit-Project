@@ -6,28 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="/css/Login-Style.css">
-
 </head>
 
 <body>
   <%- include('partials/Navigation-Index') %>
-    <div class="parent-container">
-      <div class="form-container" id="login-container">
-        <h2>Login Form</h2>
-        <form id="login-form" action="/auth/login" method="post">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password">
-          <input type="submit" id="login-button" value="Login">
-          <input type="button" id="signup-button" onclick="window.location.href='/auth/signup';" value="Signup">
-        </form>
-      </div>
+  <div class="parent-container">
+    <div class="form-container" id="login-container">
+      <h2>Login Form</h2>
+      <form id="login-form" action="/auth/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        
+        <input type="submit" id="login-button" value="Login">
+        <input type="button" id="signup-button" onclick="window.location.href='/auth/signup';" value="Signup">
+        
+        <a href="/auth/forgot-password" id="forgot-password">Forgot Password?</a>
+      </form>
     </div>
+  </div>
 
-
-    <script src="/js/Login-JavaScript.js"></script>
-
+  <script src="/js/Login-JavaScript.js"></script>
 </body>
 
 </html>

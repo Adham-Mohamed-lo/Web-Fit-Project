@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="/css/Login-Style.css">
+</head>
+<body>
+  <%- include('partials/Navigation-Index') %>
+  <div class="parent-container">
+    <div class="form-container" id="reset-password-container">
+      <h2>Reset Password</h2>
+      <form id="reset-password-form" action="/auth/reset-password" method="post">
+        <input type="hidden" name="token" value="<%= token %>">
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" id="reset-password-button" value="Reset Password">
+      </form>
+    </div>
+  </div>
+  <script src="/js/Login-JavaScript.js"></script>
+</body>
+</html>
