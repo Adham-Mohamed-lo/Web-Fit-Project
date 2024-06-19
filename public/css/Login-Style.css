@@ -111,3 +111,15 @@ input[type="submit"]:hover,
 
   }
 }
+
+#forgot-password {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: rgba(14, 170, 92, 0.8); 
+  text-decoration: none;
+}
+
+#forgot-password:hover {
+  text-decoration: underline;
+}
