@@ -25,8 +25,6 @@ const loginProcess = async (req, res) => {
     req.session.isLoggedIn = true;
     req.session.isAdmin = user.role
 
-    console.log(req.session.isLoggedIn, req.session.isAdmin)
-
     res.render("index", {
       currentPage: "home",
       user: req.session.user === undefined ? "" : req.session.user,
@@ -37,8 +35,6 @@ const loginProcess = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 
-
-  console.log(req.session.user)
 };
 
 
