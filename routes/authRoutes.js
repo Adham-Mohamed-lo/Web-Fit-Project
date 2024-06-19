@@ -1,21 +1,17 @@
 const express = require("express");
 const loginController = require("../controllers/loginController");
 const userController = require("../controllers/userController");
+<<<<<<< HEAD
 const adminController2 = require("../controllers/adminController2");
 
+=======
+const adminController = require("../controllers/adminController");
+>>>>>>> b5171f8d7b61150bf9ea2ef235cee36c5b0ae1b3
 const { sign } = require("crypto");
 const { deleteMany } = require("../models/userModel");
 const app = express();
 
 
-app.get("/login", (req, res) => {
-  res.render("Login-Index", {
-    currentPage: 'login',
-    user: req.session.user === undefined ? '' : req.session.user,
-    isLoggedIn: req.session.isLoggedIn,
-    isAdmin: req.session.isAdmin,
-  });
-});
 
 app.get("/signup", (req, res) => {
   res.render("SignUp-Index", {
@@ -23,8 +19,6 @@ app.get("/signup", (req, res) => {
     user: req.session.user === undefined ? '' : req.session.user,
   });
 });
-
-
 
 app.post("/signup", userController.postSignup);
 
@@ -39,6 +33,15 @@ app.delete("/delete/:id", async (req, res) => {
   await deleteUser(userId, res);
 });
 
+
+app.get("/login", (req, res) => {
+  res.render("Login-Index", {
+    currentPage: 'login',
+    user: req.session.user === undefined ? '' : req.session.user,
+    isLoggedIn: req.session.isLoggedIn,
+    isAdmin: req.session.isAdmin,
+  });
+});
 
 app.post("/login", loginController.loginProcess);
 
@@ -57,6 +60,8 @@ app.get('/payment', (req, res) => {
 });
 
 app.get('/logout', loginController.logout);
+
+app.post("/addcoaches", adminController.addCoashes);
 
 
 
