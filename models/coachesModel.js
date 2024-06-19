@@ -1,17 +1,21 @@
 const mongoose = require("mongoose");
 
-const coachesSchema = new mongoose.Schema({
+const coachSchema = new mongoose.Schema({
   coachname: {
     type: String,
-    required: true,
+    required: [true, "please enter coach name"],
     unique: true,
   },
   coachdescription: {
     type: String,
-    required: true,
+    required: [true, "please enter coach description"],
+  },
+  coachimage: {
+    type: String,
+    required: [true, "please enter coach image"],
     unique: true,
   },
-  // Add more fields as needed
 });
 
-const User = mongoose.model("coach", coachesSchema);
+const Coach = mongoose.model("Coach", coachSchema);
+module.exports = Coach;
