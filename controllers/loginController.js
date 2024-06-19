@@ -1,90 +1,65 @@
-// loginController.js
-const User = require("../models/userModel.js"); // Assuming you have a User model defined
+const User = require("../models/userModel.js");
 const bcrypt = require("bcrypt");
 
 const loginProcess = async (req, res) => {
   try {
-    // Retrieve username and password from req.body
     const { username, password } = req.body;
-
-    // Search for the user in the database
     const user = await User.findOne({ username });
 
-    // Check if the user exists
     if (!user) {
-      return res.render("login", {
-        currentPage: "login",
-        user: req.session.user === undefined ? "" : req.session.user,
-        error: "User does not exist.",
+      return res.render("Login-Index", {
+        currentPage: 'login',
+        user: req.session.user === undefined ? '' : req.session.user,
       });
     }
 
-    // Check if the password is correct
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.userpassword);
     if (!isMatch) {
-      return res.render("login", {
-        currentPage: "login",
-        user: req.session.user === undefined ? "" : req.session.user,
-        error: "Invalid username or password.",
+      return res.render("Login-Index", {
+        currentPage: 'login',
+        user: req.session.user === undefined ? '' : req.session.user,
       });
     }
 
-    // Store user data in the session
     req.session.user = user;
+    req.session.isLoggedIn = true;
+    req.session.isAdmin = user.role
+
+    console.log(req.session.isLoggedIn, req.session.isAdmin)
 
     res.render("index", {
       currentPage: "home",
       user: req.session.user === undefined ? "" : req.session.user,
     });
+
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
+
+
+  console.log(req.session.user)
 };
 
-module.exports = {
-  loginProcess,
+const profilePage = (req, res) => {
+  res.render("Profile-Index", {
+    currentPage: req.session.user.role === 'admin' ? 'admin' : 'profile',
+    user: req.session.user || '',
+  });
 };
 
 
-
-const registrationProcess = async (req, res) => {
+const logout = (req, res) => {
   try {
-    const { username, password, confirmPassword } = req.body;
-
-    if (password !== confirmPassword) {
-      return res.render("signup", {
-        currentPage: "signup",
-        error: "Passwords do not match.",
-        user: null,
-      });
-    }
-
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.render("signup", {
-        currentPage: "signup",
-        error: "Username already exists.",
-        user: null,
-      });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({
-      username,
-      password: hashedPassword,
-      // Handle image upload if necessary
-    });
-
-    await newUser.save();
-    req.session.user = newUser;
-    res.redirect("/");
+    req.session.destroy(); // Destroy the session
+    res.redirect('/'); // Redirect to the homepage or login page
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 };
 
+
 module.exports = {
-  registrationProcess,
+  loginProcess,logout,profilePage
 };

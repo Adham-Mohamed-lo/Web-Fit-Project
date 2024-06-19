@@ -14,6 +14,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  img:{
+    type: String,
+    required: true, 
+  }
   // Add more fields as needed
 });
 

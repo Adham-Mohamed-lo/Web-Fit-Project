@@ -1,4 +1,3 @@
-// user.js
 const mongoose = require("mongoose");
 
 const visaSchema = new mongoose.Schema({

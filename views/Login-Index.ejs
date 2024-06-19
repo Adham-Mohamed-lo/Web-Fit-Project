@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,64 +8,26 @@
   <link rel="stylesheet" href="/css/Login-Style.css">
 
 </head>
+
 <body>
   <%- include('partials/Navigation-Index') %>
-  <div class="parent-container">
-  <div class="form-container" id="login-container">
-    <h2>Login Form</h2>
-    <form id="login-form" >
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password">
-      <input type="submit"  id= "login-button" onclick="login()" value="Login">
-      <input type="button" id="signup-button" onclick="toggleSignupForm()" value="Signup">
-    </form>
-  </div>
-
-  <div class="form-container" id="signup-container" style="display: none">
-    <h2>Signup</h2>
-    <form id="signup-form" >
-      <div class="row">
-        <div class="left-column">
-          <label for="signup-fullname">Full Name:</label>
-          <input type="text" id="signup-fullname" name="signup-fullname" required><br />
-
-          <label for="signup-username">Username:</label>
-          <input type="text" id="signup-username" name="signup-username" required><br />
-
-          <label for="signup-password">Password:</label>
-          <input type="password" id="signup-password" name="signup-password" required><br />
-        </div>
-        <div class="right-column">
-          <label for="signup-email">Email:</label>
-          <input type="email" id="signup-email" name="signup-email" required><br />
-
-          <label for="signup-age">Age:</label>
-          <input type="number" id="signup-age" name="signup-age" required><br />
-
-          <label for="signup-gender">Gender:</label>
-          <select id="signup-gender" name="signup-gender" required>
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select><br />
-        </div>
+    <div class="parent-container">
+      <div class="form-container" id="login-container">
+        <h2>Login Form</h2>
+        <form id="login-form" action="/auth/login" method="post">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password">
+          <input type="submit" id="login-button" value="Login">
+          <input type="button" id="signup-button" onclick="window.location.href='/auth/signup';" value="Signup">
+        </form>
       </div>
-      <div class="row">
-        <div class="left-column">
-          <label for="confirm-password">Confirm Password:</label>
-          <input type="password" id="confirm-password" name="confirm-password" required><br />
-        </div>
-      </div>
-      <button class="signup-container-button" onclick="signUp()">Signup</button>
-      <button class="back-to-login" onclick="toggleSignupForm()">Back to Login</button>
-    </form>
-  </div>
-</div>
+    </div>
 
-  <script src="/js/Login-JavaScript.js"></script>
+
+    <script src="/js/Login-JavaScript.js"></script>
 
 </body>
+
 </html>

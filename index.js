@@ -5,8 +5,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const { connectToMongoDB } = require("./config/mongo.js");
+const { connectToMongoDB } = require("./config/mongoDB.js");
 const { setupRoutes } = require("./routes/routes.js");
+
 
 const app = express();
 const port = process.env.PORT;
@@ -15,14 +16,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 
 // Body parser middleware
-app.use(bodyParser.urlencoded({ extended: true })); // check !!! video
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
+app.use(express.json()); 
+
+
 
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS in production
+      maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
+    },
   })
 );
 

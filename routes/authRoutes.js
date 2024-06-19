@@ -1,5 +1,6 @@
 const express = require("express");
 const loginController = require("../controllers/loginController");
+const userController = require("../controllers/userController");
 const { sign } = require("crypto");
 const app = express();
 
@@ -8,27 +9,35 @@ app.get("/login", (req, res) => {
   res.render("Login-Index", {
     currentPage: 'login',
     user: req.session.user === undefined ? '' : req.session.user,
+    isLoggedIn: req.session.isLoggedIn,
+    isAdmin: req.session.isAdmin,
+  });
+});
+
+app.get("/signup", (req, res) => {
+  res.render("SignUp-Index", {
+    currentPage: 'signup',
+    user: req.session.user === undefined ? '' : req.session.user,
   });
 });
 
 
-//check !!
-app.post("/login", (req, res) => {
-  loginController.loginProcess(req, res);
-  loginController.registrationProcess(req, res);
+
+app.post("/signup", userController.postSignup);
+
+app.put("/update/:id", async (req, res) => {
+  const userId = req.params.id;
+  const updateData = req.body;
+  await updateUser(userId, updateData, res);
 });
 
-// // Add a middleware to check if the user is logged in
-// app.use((req, res, next) => {
-//   if (req.session.user !== undefined) {
-//     next();
-//   } else {
-//     res.render("404", {
-//       user: req.session.user === undefined ? "" : req.session.user,
-//       currentPage: "404",
-//     });
-//   }
-// });
+app.delete("/delete/:id", async (req, res) => {
+  const userId = req.params.id;
+  await deleteUser(userId, res);
+});
+
+
+app.post("/login", loginController.loginProcess);
 
 app.get('/admin', (req, res) => {
   res.render('Admin-Index', {
@@ -44,16 +53,20 @@ app.get('/payment', (req, res) => {
   });
 });
 
+app.get('/logout', loginController.logout);
 
-// Add the logout route
-app.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.redirect("/");
-    }
-    res.clearCookie("connect.sid");
-    res.redirect("/auth/login");
-  });
-});
+
+// // Add a middleware to check if the user is logged in
+// app.use((req, res, next) => {
+//   if (req.session.user !== undefined) {
+//     next();
+//   } else {
+//     res.render("404", {
+//       user: req.session.user === undefined ? "" : req.session.user,
+//       currentPage: "404",
+//     });
+//   }
+// });
+
 
 module.exports = app;

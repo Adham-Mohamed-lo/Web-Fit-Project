@@ -17,11 +17,22 @@
       <a href="/shop">Shop</a>
       <a href="/contact">Contact</a>
       <a href="/plans">Join Us</a>
-      <a id="login-link" href="/auth/login">Login</a>
+      <% if (user && user.username) { %>
+        <% if (currentPage === 'profile' || currentPage === 'admin') { %>
+          <a id="login-link" href="/auth/logout">Logout</a>
+        <% } else { %>
+          <% if (user.role === 'admin') { %>
+            <a id="login-link" href="/auth/admin">My Profile</a>
+          <% } else { %>
+            <a id="login-link" href="/user/profile">My Profile</a>
+          <% } %>
+        <% } %>
+      <% } else { %>
+        <a id="login-link" href="/auth/login">Login</a>
+      <% } %>
     </nav>
   </div>
 
-    <script src="/js/Navigation-JavaScript.js"></script> 
-    
+  <script src="/js/Navigation-JavaScript.js"></script> 
 </body>
 </html>
