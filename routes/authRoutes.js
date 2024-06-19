@@ -1,12 +1,12 @@
 const express = require("express");
 const loginController = require("../controllers/loginController");
 const userController = require("../controllers/userController");
-<<<<<<< HEAD
+ 
 const adminController2 = require("../controllers/adminController2");
 
-=======
+
 const adminController = require("../controllers/adminController");
->>>>>>> b5171f8d7b61150bf9ea2ef235cee36c5b0ae1b3
+
 const { sign } = require("crypto");
 const { deleteMany } = require("../models/userModel");
 const app = express();
