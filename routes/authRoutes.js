@@ -1,14 +1,8 @@
 const express = require("express");
 const loginController = require("../controllers/loginController");
 const userController = require("../controllers/userController");
- 
-const adminController2 = require("../controllers/adminController2");
-
-
 const adminController = require("../controllers/adminController");
-
 const { sign } = require("crypto");
-const { deleteMany } = require("../models/userModel");
 const app = express();
 
 
@@ -64,8 +58,7 @@ app.get('/logout', loginController.logout);
 app.post("/addcoaches", adminController.addCoashes);
 
 
-
-app.post("/meal", adminController2.postaddmeal);
+app.post("/meal", adminController.postaddmeal);
 
 app.put("/update/:id", async (req, res) => {
   const MealId = req.params.id;
@@ -76,6 +69,7 @@ app.delete("/delete/:id", async (req, res) => {
   const MealId = req.params.id;
   await deleteMeal(MealId, res);
 });
+
 
 // // Add a middleware to check if the user is logged in
 // app.use((req, res, next) => {
