@@ -41,12 +41,6 @@ const loginProcess = async (req, res) => {
   console.log(req.session.user)
 };
 
-const profilePage = (req, res) => {
-  res.render("Profile-Index", {
-    currentPage: req.session.user.role === 'admin' ? 'admin' : 'profile',
-    user: req.session.user || '',
-  });
-};
 
 
 const logout = (req, res) => {
@@ -61,5 +55,5 @@ const logout = (req, res) => {
 
 
 module.exports = {
-  loginProcess,logout,profilePage
+  loginProcess,logout
 };
