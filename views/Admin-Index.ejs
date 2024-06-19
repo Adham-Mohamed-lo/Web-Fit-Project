@@ -10,35 +10,31 @@
 
 <body>
     <%- include('partials/Navigation-Index') %>
-
+<div>
         <div class="actions-container">
             <!-- Container for Product Buttons -->
             <div class="container" id="Products_container">
-                <h2>Product Actions</h2>
+                <h2>Admin Actions</h2>
                 <ul class="admin-menu">
                     <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
                     <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
                     <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
                     <li><a href="/shop">View Products</a></li>
-
-                </ul>
-            </div>
-            <!-- Container for Coach Buttons -->
-            <div class="container" id="Coaches_container">
-                <h2>Coach Actions</h2>
-                <ul class="admin-menu">
                     <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
                     <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
                     <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
                     <li><a href="/coaches">View Coaches</a></li>
                 </ul>
             </div>
+        
+           
         </div>
 
 
         <div class="action-container hidden" id="addProductsContainer">
             <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
-            <h1>Add Products</h1>
+            
+            <h1>Add Products</h1>   
             <form id="addProductForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="productName">Product Name:</label>
@@ -56,6 +52,10 @@
                 </div>
                 <button type="button" class="btn-action" onclick="validateForm()">Add Product</button>
                 <div id="successMessage" class="success-message"></div>
+
+
+
+                
             </form>
         </div>
 
@@ -163,6 +163,26 @@
         </div>
 
 
+        <div class="actions-container">
+            <!-- Container for Product Buttons -->
+            <div class="container" id="Products_container2">
+                <h2>Admin Actions</h2>
+                <ul class="admin-menu">
+                    <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
+                    <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
+                    <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
+                    <li><a href="/shop">View Products</a></li>
+
+                </ul>
+               
+                <ul class="admin-menu">
+                    <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
+                    <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
+                    <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
+                    <li><a href="/coaches">View Coaches</a></li>
+                </ul>
+            </div>
+    </div>
         <script src="/js/Admin-JavaScript.js"></script>
 
 </body>

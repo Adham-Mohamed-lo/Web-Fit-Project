@@ -1,7 +1,4 @@
-function toggleVisibility(id) {
-    const container = document.getElementById(id);
-    container.classList.toggle('hidden');
-}
+
 
 function validateForm() {
     const productNameInput = document.getElementById('productName');
@@ -222,4 +219,19 @@ function validateEditProductForm() {
     }
 
     return isValid;
+}
+function toggleVisibility(id) {
+    // Get all containers
+    const containers = document.querySelectorAll('.action-container');
+    
+    // Hide all containers
+    containers.forEach(container => {
+        if (container.id !== id) {
+            container.classList.add('hidden');
+        }
+    });
+
+    // Toggle visibility of the selected container
+    const selectedContainer = document.getElementById(id);
+    selectedContainer.classList.toggle('hidden');
 }

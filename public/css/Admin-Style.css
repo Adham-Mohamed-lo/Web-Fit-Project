@@ -4,12 +4,33 @@
     margin: 8%; 
     position: relative;
     color: rgb(14, 170, 92);
+
+    
 }
-#Products_container,
-#Coaches_container {
-    width: 500px;
-    height: 400px;
+#Products_container {
+    width: 100px;
+    height: 100vh; 
     background-color: #efefef;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
+    padding: 20px;
+    margin-top: 50px;
+}
+
+#Products_container2 {
+    width: 100px;
+    height: 100vh;
+    background-color: #efefef;
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); 
+    padding: 20px;
+    margin-top: 50px;
 }
 
 .container {
@@ -43,15 +64,18 @@ h1 {
 .admin-menu a {
     display: block;
     text-decoration: none;
+    width: 80%;
+    height: 60%;
     text-align: center;
-    padding: 15px;
+    padding: 5px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: rgb(14, 170, 92);
   color: rgb(255, 255, 255);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 30px 10px;
+  margin: 10px 3px;
+  font-size: 17px;
 }
 
 .admin-menu a:hover {
@@ -76,15 +100,17 @@ h1 {
 
 .action-container {
     position: absolute;
-    top: 50%;
+    
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 999;
-    width: 25%;
-    background-color: #fff;
+    width: 1170px;
+    background-color: #efefef;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 6px;
+    margin-top: 19px;
+    height: 650px;
 }
 
 .action-container.hidden {
@@ -115,7 +141,7 @@ h1 {
 }
 
 .action-container .btn-action {
-    width: 100%;
+    width: 25%;
     padding: 15px;
     border: none;
     border-radius: 20px;
