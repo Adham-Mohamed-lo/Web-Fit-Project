@@ -58,6 +58,19 @@ app.get('/logout', loginController.logout);
 app.post("/addcoaches", adminController.addCoashes);
 
 
+app.post("/meal", adminController.postaddmeal);
+
+app.put("/update/:id", async (req, res) => {
+  const MealId = req.params.id;
+  const updateData = req.body;
+  await updateMeal(MealId, updateData, res);
+});
+app.delete("/delete/:id", async (req, res) => {
+  const MealId = req.params.id;
+  await deleteMeal(MealId, res);
+});
+
+
 // // Add a middleware to check if the user is logged in
 // app.use((req, res, next) => {
 //   if (req.session.user !== undefined) {
