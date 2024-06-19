@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const mealSchema = new mongoose.Schema({
-  mealnumber: {
-    type: Number,
+  mealname: {
+    type: String,
     required: true,
     unique: true,
   },
   mealdescription: {
-    type: string,
+    type: String,
     required: true,
     unique: true,
   },

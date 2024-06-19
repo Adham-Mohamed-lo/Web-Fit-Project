@@ -163,7 +163,74 @@
         </div>
 
 
-        <script src="/js/Admin-JavaScript.js"></script>
+
+
+
+
+        <div class="action-container hidden" id="addMealContainer">
+            <button class="exit-button" onclick="toggleVisibility('addMealContainer')">X</button>
+            <h1>Add Meal</h1>
+            <form action='' method="post" id="addMealForm" >
+              <div class="form-group">
+                <label for="mealname">Meal Name:</label>
+                <input type="text" id="mealname" name="mealname" required>
+              </div>
+              <div class="form-group">
+                <label for="mealdescription">Meal Description:</label>
+                <input type="text" id="Mealdescription" name="Mealdescription" required>
+              </div>
+             
+              <button type="submit" class="btn-action">Add Meal</button>
+              <div id="MealSuccessMessage" class="success-message"></div>
+            </form>
+          </div>
+
+          <div class="action-container hidden" id="removeMealContainer">
+            <button class="exit-button" onclick="toggleVisibility('removeMealContainer')">X</button>
+            <h1>Remove Meal</h1>
+            <form id="removeMealForm">
+                <div class="form-group">
+                    <label for="removeMealName">Meal Name:</label>
+                    <input type="text" id="removeMealName" name="removeMealName" required>
+                    <div id="removeMealNameError" class="error-message"></div>
+                </div>
+                <button type="button" class="btn-action" onclick="validateremoveMealForm()">Remove Meal</button>
+                <div id="removeMealSuccessMessage" class="success-message"></div>
+            </form>
+        </div>
+       
+        <div class="action-container hidden" id="editMealContainer">
+            <button class="exit-button" onclick="toggleVisibility('editMealContainer')">X</button>
+            <h1>Edit Meal</h1>
+            <form id="editMealForm">
+                <div class="form-group">
+                    <label for="editMealName">Meal Name:</label>
+                    <input type="text" id="editMealName" name="editMealName" required>
+                    <div id="editMealNameError" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="editMealdescription">Meal description:</label>
+                    <input type="text" id="editMealdescription" name="editMealdescription" required>
+                    <div id="editMealdescriptionError" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="newMealName">New Name:</label>
+                    <input type="text" id="newMealName" name="newMealName" required>
+                    <div id="newMealNameError" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="newMealdescription">Meal description:</label>
+                    <input type="text" id="newMealdescription" name="newMealdescription" required>
+                    <div id="newMealdescriptionError" class="error-message"></div>
+                </div>
+               
+                <button type="button" class="btn-action" onclick="validateEditCoachForm()">Edit Meal</button>
+                <div id="editMealSuccessMessage" class="success-message"></div>
+            </form>
+        </div>
+
+
+          <script src="/js/Admin-JavaScript.js"></script>
 
 </body>
 
