@@ -11,10 +11,10 @@ const Product = require("../models/prodectshopModel.js");
 
 const coachstorage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/images/coaches'); 
+        cb(null, 'public/images/coaches');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname); 
+        cb(null, file.originalname);
     }
 });
 const coachupload = multer({ storage: coachstorage });
@@ -42,7 +42,7 @@ const productStorage = multer.diskStorage({
 const productUpload = multer({ storage: productStorage });
 
 
-  
+
 const addProduct = (req, res) => {
     productUpload.single('productImage')(req, res, (err) => {
         if (err instanceof multer.MulterError) {
@@ -170,7 +170,7 @@ const addCoach = (req, res) => {
         const newCoach = new Coach({
             coachname,
             coachdescription,
-            coachimage: `/images/coaches/${coachimage.filename}` 
+            coachimage: `/images/coaches/${coachimage.filename}`
         });
 
         newCoach.save()
@@ -182,6 +182,43 @@ const addCoach = (req, res) => {
                 res.status(500).send("Error saving coach");
             });
     });
+};
+const removeCoach = (req, res) => {
+    const { removeCoachName } = req.body;
+
+    console.log(`Attempting to remove coach: ${removeCoachName}`);
+
+    Coach.findOneAndDelete({ coachname: removeCoachName })
+        .then((deletedCoach) => {
+            if (!deletedCoach) {
+                console.log(`Coach not found: ${removeCoachName}`);
+                return res.status(404).send('Coach not found.');
+            }
+
+            const imagePath = path.join(__dirname, 'public', deletedCoach.coachimage);
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error(`Error deleting coach image: ${err}`);
+                    return res.status(500).send('Error deleting coach image.');
+                }
+                console.log(`Coach removed successfully: ${removeCoachName}`);
+                res.redirect("/auth/Admin");
+            });
+        })
+        .catch((err) => {
+            console.error("Error deleting coach:", err);
+            res.status(500).send("Error deleting coach");
+        });
+};
+const getCoaches = (req, res) => {
+    Coach.find()
+        .then(coaches => {
+            res.render('coaches', { coaches });
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error retrieving coaches");
+        });
 };
 
 
@@ -248,5 +285,5 @@ const updateMeal = async (MealId, updateData, res) => {
 
 
 module.exports = {
-    getAllProducts,addCoach, postaddmeal, deleteMeal, updateMeal,addProduct,deleteProduct,editProduct,
+    getAllProducts, addCoach, postaddmeal, deleteMeal, updateMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach,
 };

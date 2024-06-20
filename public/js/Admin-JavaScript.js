@@ -154,6 +154,7 @@ function validateremoveCoachForm() {
     if (isValid) {
         coachNameInput.value = '';
         document.getElementById('removeCoachSuccessMessage').textContent = 'Coach Removed';
+        document.getElementById('removeCoachForm').submit();
     }
 
     return isValid;
