@@ -1,5 +1,21 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const Product = require("../models/prodectshopModel"); 
+
+
+
+
+app.get('/api/products', async (req, res) => {
+  try {
+    const products = await Product.find(); 
+    res.json(products);
+  } catch (err) {
+    // Handle errors
+    console.error('Error fetching products:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 app.use((req, res, next) => {
   res.locals.notification = req.query.notification || '';
@@ -122,12 +138,20 @@ app.get('/schedule-3', (req, res) => {
   });
 });
 
-app.get('/shop', (req, res) => {
-  res.render('Shop-Index', {
-    currentPage: 'shop',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
+app.get('/shop', async (req, res) => {
+  try {
+    const products = await Product.find(); // Fetch all products from the database
+    res.render('Shop-Index', {
+      currentPage: 'shop',
+      user: req.session.user || '', // Using req.session.user if available, or an empty string if not
+      products: products, // Passing the products to your shop view
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching products');
+  }
 });
+
 
 
 

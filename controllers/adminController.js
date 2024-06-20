@@ -20,6 +20,16 @@ const coachstorage = multer.diskStorage({
 const coachupload = multer({ storage: coachstorage });
 
 
+const getAllProducts = (req, res) => {
+    Product.find()
+        .then((products) => {
+            res.render('shop', { products });
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error fetching products');
+        });
+};
 
 const productStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -31,6 +41,8 @@ const productStorage = multer.diskStorage({
 });
 const productUpload = multer({ storage: productStorage });
 
+
+  
 const addProduct = (req, res) => {
     productUpload.single('productImage')(req, res, (err) => {
         if (err instanceof multer.MulterError) {
@@ -236,5 +248,5 @@ const updateMeal = async (MealId, updateData, res) => {
 
 
 module.exports = {
-    addCoach, postaddmeal, deleteMeal, updateMeal,addProduct,deleteProduct,editProduct,
+    getAllProducts,addCoach, postaddmeal, deleteMeal, updateMeal,addProduct,deleteProduct,editProduct,
 };

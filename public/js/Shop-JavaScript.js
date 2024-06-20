@@ -1,76 +1,36 @@
+
 let cart = [];
+let products = []; 
+
 
 async function fetchProducts() {
-  const productsData = [
-    { id: 1, name: "Whey Protein Powder", price: 49.99, image: "../images/Protein powder.jpg" },
-    { id: 2, name: "Creatine Monohydrate", price: 29.99, image: "../images/Creatine.jpg" },
-    { id: 3, name: "BCAA (Branched-Chain Amino Acids)", price: 39.99, image: "../images/BCA.jpg" },
-    { id: 4, name: "Pre-Workout Supplement", price: 69.99, image: "../images/pre workout.jpg" },
-    { id: 5, name: "Gym Gloves", price: 49.99, image: "../images/gym gloves.jpg" },
-    { id: 6, name: "Multivitamin", price: 121.99, image: "../images/1.jpg" },
-    { id: 7, name: "Gym tools", price: 29.99, image: "../images/2.jpg" },
-    { id: 8, name: "Glutamine Supplement", price: 49.99, image: "../images/4.avif" },
-    { id: 9, name: "Bench", price: 4499.99, image: "../images/bench.webp" },
-    { id: 10, name: "10 KG Dubmbells", price: 499.99, image: "../images/dumbells.jpg" },
-    { id: 11, name: "Excercising Matt", price: 399.99, image: "../images/gym mat.avif" },
-    { id: 12, name: "Training Shorts", price: 499.99, image: "../images/gym shorts.jpg" },
-    { id: 13, name: "Flask 1000L", price: 599.99, image: "../images/gym_bottle_big.webp" },
-    { id: 14, name: "Flask 600L", price: 399.99, image: "../images/Gym_bottle2.jpg" },
-    { id: 15, name: "Flask 300L", price: 149.99, image: "../images/Gym_bottle3.png" },
-    { id: 16, name: "Training T-shirt ", price: 349.99, image: "../images/training tshirts.jpg" },
-
-  ];
-
-
-  return productsData;
-}
-
-async function generateProductCards() {
-  const productContainer = document.querySelector(".product-list");
-  const products = await fetchProducts();
-
-  products.forEach((product) => {
-    const cardExists = productContainer.querySelector(
-      `[data-id="${product.id}"]`
-    );
-    if (!cardExists) {
-      const card = document.createElement("div");
-      card.classList.add("product-card");
-      card.dataset.id = product.id;
-
-      const image = document.createElement("img");
-      image.src = product.image;
-      image.alt = product.name;
-
-      const name = document.createElement("h3");
-      name.textContent = product.name;
-
-      const price = document.createElement("p");
-      price.textContent = `$${product.price}`;
-
-      const addToCartBtn = document.createElement("button");
-      addToCartBtn.textContent = "Add to Cart";
-
-      addToCartBtn.addEventListener("click", () => {
-        addToCart(product);
-      });
-
-      card.appendChild(image);
-      card.appendChild(name);
-      card.appendChild(price);
-      card.appendChild(addToCartBtn);
-
-      productContainer.appendChild(card);
+  try {
+    const response = await fetch('/api/products');
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
     }
-  });
-}
-function updateCartUI() {
-  const cartCount = document.querySelector(".cart-count");
-  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
-  cartCount.textContent = totalQuantity.toString();
+    products = await response.json();
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function addToCart(product) {
+fetchProducts();
+
+function addToCart(productId) {
+  if (!products || products.length === 0) {
+    console.error('Products data is empty or undefined.');
+    return;
+  }
+
+  productId = Number(productId);
+  const product = products.find((product) => product.id === productId);
+
+  if (!product || !product.id) {
+    console.error("Product not found or missing 'id' property.");
+    return;
+  }
+
   const existingItem = cart.find((item) => item.id === product.id);
   if (existingItem) {
     existingItem.quantity++;
@@ -81,18 +41,13 @@ function addToCart(product) {
   displayCart();
 }
 
-function removeFromCart(item) {
-  const itemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
-  if (itemIndex !== -1) {
-    if (cart[itemIndex].quantity > 1) {
-      cart[itemIndex].quantity--;
-    } else {
-      cart.splice(itemIndex, 1);
-    }
-    updateCartUI();
-    displayCart();
-  }
-}
+const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
+addToCartBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const productId = btn.dataset.productId;
+    addToCart(productId);
+  });
+});
 
 function displayCart() {
   const cartContainer = document.querySelector(".cart-items");
@@ -108,17 +63,19 @@ function displayCart() {
       const cartItem = document.createElement("div");
       cartItem.classList.add("cart-item");
 
-      const productImage = document.createElement("img");
-      productImage.src = item.image;
-      productImage.alt = item.name;
-      productImage.classList.add("cart-item-img");
-      cartItem.appendChild(productImage);
+      if (item.img) {
+        const productImage = document.createElement("img");
+        productImage.src = item.img;
+        productImage.alt = item.productname;
+        productImage.classList.add("cart-item-img");
+        cartItem.appendChild(productImage);
+      }
 
       const itemDetails = document.createElement("div");
       itemDetails.classList.add("cart-item-info");
 
       const itemNamePrice = document.createElement("span");
-      itemNamePrice.textContent = `${item.name} - $${item.price}`;
+      itemNamePrice.textContent = `${item.productname} - $${item.price}`;
       itemNamePrice.classList.add("cart-item-name-price");
       itemDetails.appendChild(itemNamePrice);
 
@@ -133,7 +90,7 @@ function displayCart() {
       const PlusBtn = document.createElement("button");
       PlusBtn.textContent = "+";
       PlusBtn.addEventListener("click", () => {
-        addToCart(item);
+        addToCart(item.id);
       });
       itemButtons.appendChild(PlusBtn);
 
@@ -162,26 +119,52 @@ function displayCart() {
   cartTotalElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
 }
 
+
+
+
+
+
+
+
+function removeFromCart(item) {
+  const itemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+  if (itemIndex !== -1) {
+    if (cart[itemIndex].quantity > 1) {
+      cart[itemIndex].quantity--;
+    } else {
+      cart.splice(itemIndex, 1);
+    }
+    updateCartUI();
+    displayCart();
+  } else {
+    console.error('Item not found in the cart:', item);
+  }
+}
+
 function removeAllFromCart(item) {
   cart = cart.filter((cartItem) => cartItem.id !== item.id);
   updateCartUI();
   displayCart();
 }
 
-generateProductCards();
+
+
+function updateCartUI() {
+  const cartCount = document.querySelector(".cart-count");
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+  cartCount.textContent = totalQuantity.toString();
+}
 
 function checkout() {
   if (cart.length === 0) {
     alert("Your cart is empty. Add products to your cart first.");
   } else {
-    alert("Redirecting to checkout page...");
+    alert("Thanks for purchasing");
     cart = [];
     updateCartUI();
     displayCart();
   }
 }
-
-generateProductCards();
 
 document.addEventListener("DOMContentLoaded", function () {
   const cartBtn = document.querySelector(".cart-info");
@@ -204,19 +187,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "";
   });
 
+ 
+
   const checkoutBtnCart = document.querySelector("#checkout-btn-cart");
   checkoutBtnCart.addEventListener("click", checkout);
 });
-
-function checkout() {
-  if (cart.length === 0) {
-    alert("Your cart is empty. Add products to your cart first.");
-  } else {
-    alert("Thanks for purchasing");
-    cart = []; 
-    updateCartUI();
-    displayCart();
-  }
-}
-
-generateProductCards();
