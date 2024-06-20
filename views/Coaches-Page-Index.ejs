@@ -2,77 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Coaches</title>
-  <link rel="stylesheet" href="/css/Coaches-Page-Style.css" />
-
+  <link rel="stylesheet" href="/css/Coaches-Page-Style.css">
 </head>
 
 <body>
-  <%- include('partials/Navigation-Index') %>
+  <% include partials/Navigation-Index %>
 
-  <div class="about-section">
-    <h1>OUR COACHES</h1>
-
-  </div>
-
-  <div class="row">
-    <div class="column">
-      <div class="card">
-        <img src=https://ifbb-academy.com/wp-content/uploads/2020/05/master.jpg alt="Trevor" style="width: 100%" />
-        <div class="container">
-          <h2>Trevor Kirkman</h2>
-          <p class="title">Gym Coach</p>
-          <p>
-            "the pain you feel today will be the strength you feel tomorrow."
-          </p>
-          <p>
-            <a href="/schedule-1" class="contact-button">View Schedule</a>
-          </p>
-        </div>
-      </div>
+    <div class="about-section">
+      <h1>OUR COACHES</h1>
     </div>
 
-    <div class="column">
-      <div class="card">
-        <img src=https://t3.ftcdn.net/jpg/05/62/09/28/360_F_562092860_mWJBNRqTg4rarfoJaSdkaLlfy1dkrP33.jpg alt="Alex"
-          style="width: 100%" />
-        <div class="container">
-          <h2>Alex Morgan</h2>
-          <p class="title">Yoga Instructor</p>
-          <p>
-            "Your body is capable of much more than you think. Just keep pushing."
-          </p>
-
-          <p>
-            <a href="/schedule-2" class="contact-button">View Schedule</a>
-          </p>
+    <div class="row">
+      <% coaches.forEach(coach=> { %>
+        <div class="column">
+          <div class="card">
+            <img src="<%= coach.image %>" alt="<%= coach.name %>" style="width: 100%">
+            <div class="container">
+              <h2>
+                <%= coach.name %>
+              </h2>
+              <p class="title">
+                <%= coach.title %>
+              </p>
+              <p>
+                <%= coach.quote %>
+              </p>
+              <p><a href="<%= coach.scheduleLink %>" class="contact-button">View Schedule</a></p>
+            </div>
+          </div>
         </div>
-      </div>
+        <% }); %>
     </div>
 
-    <div class="column">
-      <div class="card">
-        <img src=https://personaltrainersdubai.com/wp-content/uploads/2023/09/PTD-Fitness-Coach-Danyl-768x768.jpeg
-          alt="John" style="width: 100%" />
-        <div class="container">
-          <h2>John Doe</h2>
-          <p class="title">Zumba Teacher</p>
-          <p>
-            "you don't have to be great to start, but you have to start to be great."
-          </p>
-
-          <p>
-            <a href="/schedule-3" class="contact-button">View Schedule</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="/js/Coaches-Page-JavaScript.js"></script>
-
+    <script src="/js/Coaches-Page-JavaScript.js"></script>
 </body>
 
 </html>
