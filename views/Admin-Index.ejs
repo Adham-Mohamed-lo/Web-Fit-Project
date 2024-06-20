@@ -10,249 +10,274 @@
 
 <body>
     <%- include('partials/Navigation-Index') %>
-<div>
-        <div class="actions-container">
-            <!-- Container for Product Buttons -->
-            <div class="container" id="Products_container">
-                <h2>Admin Actions</h2>
-                <ul class="admin-menu">
-                    <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
-                    <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
-                    <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
-                    <li><a href="/shop">View Products</a></li>
-                    <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
-                    <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
-                    <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
-                    <li><a href="/coaches">View Coaches</a></li>
-                </ul>
+        <div>
+            <div class="actions-container">
+                <!-- Container for Product Buttons -->
+                <div class="container" id="Products_container">
+                    <h2>Admin Actions</h2>
+                    <ul class="admin-menu">
+                        <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
+                        <li><a href="/shop">View Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
+                        <li><a href="/coaches">View Coaches</a></li>
+                    </ul>
+                </div>
+
+
             </div>
-        
-           
-        </div>
 
 
-        <div class="action-container hidden" id="addProductsContainer">
-            <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
+            <div class="action-container hidden" id="addProductsContainer">
+                <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
+                <h1>Add Products</h1>
+                <form action="/auth/addProduct" method="post" id="addProductForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" name="productName" required>
+                        <div id="productNameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Product Price:</label>
+                        <input type="number" id="productPrice" name="productPrice" required>
+                        <div id="productPriceError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productId">Product ID:</label>
+                        <input type="number" id="productId" name="productId" required>
+                        <div id="productIdError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Product Image:</label>
+                        <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn-action">Add Product</button>
+                    <div id="successMessage" class="success-message"></div>
+                </form>
+            </div>
             
-            <h1>Add Products</h1>   
-            <form id="addProductForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="productName">Product Name:</label>
-                    <input type="text" id="productName" name="productName" required>
-                    <div id="productNameError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="productPrice">Product Price:</label>
-                    <input type="number" id="productPrice" name="productPrice" required>
-                    <div id="productPriceError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="productImage">Product Image:</label>
-                    <input type="file" id="productImage" name="productImage" accept="image/*" required>
-                </div>
-                <button type="button" class="btn-action" onclick="validateForm()">Add Product</button>
-                <div id="successMessage" class="success-message"></div>
-
-
-
-                
-            </form>
+            
+            <div class="action-container hidden" id="removeProductsContainer">
+    <button class="exit-button" onclick="toggleVisibility('removeProductsContainer')">X</button>
+    <h1>Remove Products</h1>
+    <form action="/auth/removeProduct" method="post" id="removeProductForm">
+        <div class="form-group">
+            <label for="removeProductName">Product Name:</label>
+            <input type="text" id="removeProductName" name="removeProductName" required>
+            <div id="removeProductNameError" class="error-message"></div>
         </div>
-
-        <div class="action-container hidden" id="addCoachesContainer">
-            <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
-            <h1>Add Coach</h1>
-            <form action="/auth/addcoaches" method="post" id="addCoachForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="coachname">Coach Name:</label>
-                    <input type="text" id="coachname" name="coachname" required>
-                </div>
-                <div class="form-group">
-                    <label for="coachdescription">Coach Description:</label>
-                    <input type="text" id="coachdescription" name="coachdescription" required>
-                </div>
-                <div class="form-group">
-                    <label for="coachimage">Coach Image:</label>
-                    <input type="file" id="coachimage" name="coachimage" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn-action">Add Coach</button>
-                <div id="coachSuccessMessage" class="success-message"></div>
-            </form>
+        <div class="form-group">
+            <label for="removeProductId">Product ID:</label>
+            <input type="number" id="removeProductId" name="removeProductId" required>
+            <div id="removeProductIdError" class="error-message"></div>
         </div>
-        
-        
-       
-        <div class="action-container hidden" id="removeCoachesContainer">
-            <button class="exit-button" onclick="toggleVisibility('removeCoachesContainer')">X</button>
-            <h1>Remove Coaches</h1>
-            <form id="removeCoachForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="removeCoachName">Coach Name:</label>
-                    <input type="text" id="removeCoachName" name="removeCoachName" required>
-                    <div id="removeCoachNameError" class="error-message"></div>
-                </div>
-                <button type="button" class="btn-action" onclick="validateremoveCoachForm()">Remove Coach</button>
-                <div id="removeCoachSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-
-        <div class="action-container hidden" id="removeProductsContainer">
-            <button class="exit-button" onclick="toggleVisibility('removeProductsContainer')">X</button>
-            <h1>Remove Products</h1>
-            <form id="removeProductForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="removeProductName">Product Name:</label>
-                    <input type="text" id="removeProductName" name="removeProductName" required>
-                    <div id="removeProductNameError" class="error-message"></div>
-                </div>
-                <button type="button" class="btn-action" onclick="validateremoveProductForm()">Remove Product</button>
-                <div id="removeProductSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-        <div class="action-container hidden" id="editProductsContainer">
-            <button class="exit-button" onclick="toggleVisibility('editProductsContainer')">X</button>
-            <h1>Edit Products</h1>
-            <form id="editProductForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="editProductName">Product Name:</label>
-                    <input type="text" id="editProductName" name="editProductName" required>
-                    <div id="editProductNameError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="newProductName">New Name:</label>
-                    <input type="text" id="newProductName" name="newProductName" required>
-                    <div id="newProductNameError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="productImage">Product Image:</label>
-                    <input type="file" id="productImage" name="productImage" accept="image/*" required>
-                </div>
-                <button type="button" class="btn-action" onclick="validateEditProductForm()">Edit Product</button>
-                <div id="editProductSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-        <div class="action-container hidden" id="editCoachesContainer">
-            <button class="exit-button" onclick="toggleVisibility('editCoachesContainer')">X</button>
-            <h1>Edit Coaches</h1>
-            <form id="editCoachForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="editCoachName">Coach Name:</label>
-                    <input type="text" id="editCoachName" name="editCoachName" required>
-                    <div id="editCoachNameError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="editCoachSpecialty">Coach Specialty:</label>
-                    <input type="text" id="editCoachSpecialty" name="editCoachSpecialty" required>
-                    <div id="editCoachSpecialtyError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="newCoachName">New Name:</label>
-                    <input type="text" id="newCoachName" name="newCoachName" required>
-                    <div id="newCoachNameError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="newCoachSpecialty">New Specialty:</label>
-                    <input type="text" id="newCoachSpecialty" name="newCoachSpecialty" required>
-                    <div id="newCoachSpecialtyError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="productImage">Coach Image:</label>
-                    <input type="file" id="productImage" name="productImage" accept="image/*" required>
-                </div>
-                <button type="button" class="btn-action" onclick="validateEditCoachForm()">Edit Coach</button>
-                <div id="editCoachSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-
-
-
-
-
-
-        <div class="action-container hidden" id="addMealContainer">
-            <button class="exit-button" onclick="toggleVisibility('addMealContainer')">X</button>
-            <h1>Add Meal</h1>
-            <form action='' method="post" id="addMealForm" >
-              <div class="form-group">
-                <label for="mealname">Meal Name:</label>
-                <input type="text" id="mealname" name="mealname" required>
-              </div>
-              <div class="form-group">
-                <label for="mealdescription">Meal Description:</label>
-                <input type="text" id="Mealdescription" name="Mealdescription" required>
-              </div>
-             
-              <button type="submit" class="btn-action">Add Meal</button>
-              <div id="MealSuccessMessage" class="success-message"></div>
-            </form>
-          </div>
-
-          <div class="action-container hidden" id="removeMealContainer">
-            <button class="exit-button" onclick="toggleVisibility('removeMealContainer')">X</button>
-            <h1>Remove Meal</h1>
-            <form id="removeMealForm">
-                <div class="form-group">
-                    <label for="removeMealName">Meal Name:</label>
-                    <input type="text" id="removeMealName" name="removeMealName" required>
-                    <div id="removeMealNameError" class="error-message"></div>
-                </div>
-                <button type="button" class="btn-action" onclick="validateremoveMealForm()">Remove Meal</button>
-                <div id="removeMealSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-       
-        <div class="action-container hidden" id="editMealContainer">
-            <button class="exit-button" onclick="toggleVisibility('editMealContainer')">X</button>
-            <h1>Edit Meal</h1>
-            <form id="editMealForm">
-                <div class="form-group">
-                    <label for="editMealName">Meal Name:</label>
-                    <input type="text" id="editMealName" name="editMealName" required>
-                    <div id="editMealNameError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="editMealdescription">Meal description:</label>
-                    <input type="text" id="editMealdescription" name="editMealdescription" required>
-                    <div id="editMealdescriptionError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="newMealName">New Name:</label>
-                    <input type="text" id="newMealName" name="newMealName" required>
-                    <div id="newMealNameError" class="error-message"></div>
-                </div>
-                <div class="form-group">
-                    <label for="newMealdescription">Meal description:</label>
-                    <input type="text" id="newMealdescription" name="newMealdescription" required>
-                    <div id="newMealdescriptionError" class="error-message"></div>
-                </div>
-               
-                <button type="button" class="btn-action" onclick="validateEditCoachForm()">Edit Meal</button>
-                <div id="editMealSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-
-
-        <div class="actions-container">
-            <!-- Container for Product Buttons -->
-            <div class="container" id="Products_container2">
-                <h2>Admin Actions</h2>
-                <ul class="admin-menu">
-                    <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
-                    <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
-                    <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
-                    <li><a href="/shop">View Products</a></li>
-
-                </ul>
-               
-                <ul class="admin-menu">
-                    <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
-                    <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
-                    <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
-                    <li><a href="/coaches">View Coaches</a></li>
-                </ul>
+        <button type="submit" class="btn-action">Remove Product</button>
+        <div id="removeProductSuccessMessage" class="success-message"></div>
+    </form>
             </div>
-    </div>
-        <script src="/js/Admin-JavaScript.js"></script>
+            
+            <div class="action-container hidden" id="editProductsContainer">
+                <button class="exit-button" onclick="toggleVisibility('editProductsContainer')">X</button>
+                <h1>Edit Products</h1>
+                <form action="/auth/editProduct" method="post" id="editProductForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="editProductName">Product Name:</label>
+                        <input type="text" id="editProductName" name="editProductName" required>
+                        <div id="editProductNameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProductName">New Name:</label>
+                        <input type="text" id="newProductName" name="newProductName" required>
+                        <div id="newProductNameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productId">Product ID:</label>
+                        <input type="number" id="productId" name="productId" required>
+                        <div id="productIdError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Product Price:</label>
+                        <input type="number" id="productPrice" name="productPrice" required>
+                        <div id="productPriceError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Product Image:</label>
+                        <input type="file" id="productImage" name="productImage" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn-action">Edit Product</button>
+                    <div id="editProductSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+            
+
+
+
+
+
+
+
+            <div class="action-container hidden" id="addCoachesContainer">
+                <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
+                <h1>Add Coach</h1>
+                <form action="/auth/addcoaches" method="post" id="addCoachForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="coachname">Coach Name:</label>
+                        <input type="text" id="coachname" name="coachname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="coachdescription">Coach Description:</label>
+                        <input type="text" id="coachdescription" name="coachdescription" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="coachimage">Coach Image:</label>
+                        <input type="file" id="coachimage" name="coachimage" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn-action">Add Coach</button>
+                    <div id="coachSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+            <div class="action-container hidden" id="removeCoachesContainer">
+                <button class="exit-button" onclick="toggleVisibility('removeCoachesContainer')">X</button>
+                <h1>Remove Coaches</h1>
+                <form id="removeCoachForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="removeCoachName">Coach Name:</label>
+                        <input type="text" id="removeCoachName" name="removeCoachName" required>
+                        <div id="removeCoachNameError" class="error-message"></div>
+                    </div>
+                    <button type="button" class="btn-action" onclick="validateremoveCoachForm()">Remove Coach</button>
+                    <div id="removeCoachSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+            <div class="action-container hidden" id="editCoachesContainer">
+                <button class="exit-button" onclick="toggleVisibility('editCoachesContainer')">X</button>
+                <h1>Edit Coaches</h1>
+                <form id="editCoachForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="editCoachName">Coach Name:</label>
+                        <input type="text" id="editCoachName" name="editCoachName" required>
+                        <div id="editCoachNameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCoachSpecialty">Coach Specialty:</label>
+                        <input type="text" id="editCoachSpecialty" name="editCoachSpecialty" required>
+                        <div id="editCoachSpecialtyError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newCoachName">New Name:</label>
+                        <input type="text" id="newCoachName" name="newCoachName" required>
+                        <div id="newCoachNameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newCoachSpecialty">New Specialty:</label>
+                        <input type="text" id="newCoachSpecialty" name="newCoachSpecialty" required>
+                        <div id="newCoachSpecialtyError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Coach Image:</label>
+                        <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                    </div>
+                    <button type="button" class="btn-action" onclick="validateEditCoachForm()">Edit Coach</button>
+                    <div id="editCoachSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="action-container hidden" id="addMealContainer">
+                <button class="exit-button" onclick="toggleVisibility('addMealContainer')">X</button>
+                <h1>Add Meal</h1>
+                <form action='' method="post" id="addMealForm">
+                    <div class="form-group">
+                        <label for="mealname">Meal Name:</label>
+                        <input type="text" id="mealname" name="mealname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mealdescription">Meal Description:</label>
+                        <input type="text" id="Mealdescription" name="Mealdescription" required>
+                    </div>
+
+                    <button type="submit" class="btn-action">Add Meal</button>
+                    <div id="MealSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+            <div class="action-container hidden" id="removeMealContainer">
+                <button class="exit-button" onclick="toggleVisibility('removeMealContainer')">X</button>
+                <h1>Remove Meal</h1>
+                <form id="removeMealForm">
+                    <div class="form-group">
+                        <label for="removeMealName">Meal Name:</label>
+                        <input type="text" id="removeMealName" name="removeMealName" required>
+                        <div id="removeMealNameError" class="error-message"></div>
+                    </div>
+                    <button type="button" class="btn-action" onclick="validateremoveMealForm()">Remove Meal</button>
+                    <div id="removeMealSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+            <div class="action-container hidden" id="editMealContainer">
+                <button class="exit-button" onclick="toggleVisibility('editMealContainer')">X</button>
+                <h1>Edit Meal</h1>
+                <form id="editMealForm">
+                    <div class="form-group">
+                        <label for="editMealName">Meal Name:</label>
+                        <input type="text" id="editMealName" name="editMealName" required>
+                        <div id="editMealNameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMealdescription">Meal description:</label>
+                        <input type="text" id="editMealdescription" name="editMealdescription" required>
+                        <div id="editMealdescriptionError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newMealName">New Name:</label>
+                        <input type="text" id="newMealName" name="newMealName" required>
+                        <div id="newMealNameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newMealdescription">Meal description:</label>
+                        <input type="text" id="newMealdescription" name="newMealdescription" required>
+                        <div id="newMealdescriptionError" class="error-message"></div>
+                    </div>
+
+                    <button type="button" class="btn-action" onclick="validateEditCoachForm()">Edit Meal</button>
+                    <div id="editMealSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+
+            <div class="actions-container">
+                <!-- Container for Product Buttons -->
+                <div class="container" id="Products_container2">
+                    <h2>Admin Actions</h2>
+                    <ul class="admin-menu">
+                        <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
+                        <li><a href="/shop">View Products</a></li>
+
+                    </ul>
+
+                    <ul class="admin-menu">
+                        <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
+                        <li><a href="/coaches">View Coaches</a></li>
+                    </ul>
+                </div>
+            </div>
+            <script src="/js/Admin-JavaScript.js"></script>
 
 </body>
 

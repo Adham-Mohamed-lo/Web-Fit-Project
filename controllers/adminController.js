@@ -2,38 +2,165 @@ const express = require("express");
 const app = express();
 const meal = require("../models/mealModel.js");
 const path = require("path");
+const fs = require('fs');
+const multer = require('multer');
 const Coach = require("../models/coachesModel.js");
-const fileUpload = require('express-fileupload');
+const Product = require("../models/prodectshopModel.js");
 
-// Use express-fileupload middleware
-app.use(fileUpload());
 
-const addCoashes = (req, res) => {
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
+
+const coachstorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/coaches'); 
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname); 
     }
+});
+const coachupload = multer({ storage: coachstorage });
 
-    const { coachname, coachdescription } = req.body;
-    const coachimage = req.files.coachimage;
 
-    // Determine the upload path based on coachname (assuming unique)
-    const uploadPath = path.join(__dirname, `../public/images/${coachname}.png`);
 
-    // Move the uploaded file to the designated directory
-    coachimage.mv(uploadPath, function (err) {
-        if (err) {
-            console.error(err);
-            return res.status(500).send(err);
+const productStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/products');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const productUpload = multer({ storage: productStorage });
+
+const addProduct = (req, res) => {
+    productUpload.single('productImage')(req, res, (err) => {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).send('Error uploading image.');
+        } else if (err) {
+            return res.status(500).send('Unknown error occurred.');
         }
 
-        // Create a new Coach object with data from the request
+        const { productName, productPrice, productId } = req.body;
+        const productImage = req.file;
+
+        if (!productImage) {
+            return res.status(400).send('No image uploaded.');
+        }
+
+        const newProduct = new Product({
+            productname: productName,
+            price: productPrice,
+            id: productId,
+            img: `/images/products/${productImage.filename}`
+        });
+
+        newProduct.save()
+            .then(() => {
+                res.redirect("/auth/Admin");
+            })
+            .catch((err) => {
+                console.error("Error saving product:", err);
+                res.status(500).send("Error saving product");
+            });
+    });
+};
+
+const deleteProduct = (req, res) => {
+    const { removeProductName, removeProductId } = req.body;
+
+    Product.findOneAndDelete({ productname: removeProductName, id: removeProductId })
+        .then((deletedProduct) => {
+            if (!deletedProduct) {
+                return res.status(404).send('Product not found.');
+            }
+
+            const imagePath = path.join(__dirname, '..', 'public', deletedProduct.img);
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Error deleting product image.');
+                }
+                res.redirect("/auth/Admin");
+            });
+        })
+        .catch((err) => {
+            console.error("Error deleting product:", err);
+            res.status(500).send("Error deleting product");
+        });
+};
+
+const editProduct = (req, res) => {
+    productUpload.single('productImage')(req, res, (err) => {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).send('Error uploading image.');
+        } else if (err) {
+            return res.status(500).send('Unknown error occurred.');
+        }
+
+        const { editProductName, newProductName, productId, productPrice } = req.body;
+        const productImage = req.file;
+
+        Product.findOne({ productname: editProductName })
+            .then((existingProduct) => {
+                if (!existingProduct) {
+                    return res.status(404).send('Product not found.');
+                }
+
+                if (productImage) {
+                    const oldImagePath = path.join(__dirname, '..', 'public', existingProduct.img);
+                    fs.unlink(oldImagePath, (err) => {
+                        if (err) {
+                            console.error(err);
+                            return res.status(500).send('Error deleting old product image.');
+                        }
+                    });
+                    existingProduct.img = `/images/products/${productImage.filename}`;
+                }
+
+                existingProduct.productname = newProductName;
+                existingProduct.price = productPrice;
+                existingProduct.id = productId;
+
+                return existingProduct.save();
+            })
+            .then(() => {
+                res.redirect("/auth/Admin");
+            })
+            .catch((err) => {
+                console.error("Error updating product:", err);
+                res.status(500).send("Error updating product");
+            });
+    });
+};
+
+
+
+
+
+
+
+
+
+const addCoach = (req, res) => {
+    coachupload.single('coachimage')(req, res, (err) => {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).send('Error uploading image.');
+        } else if (err) {
+            return res.status(500).send('Unknown error occurred.');
+        }
+
+        const { coachname, coachdescription } = req.body;
+        const coachimage = req.file;
+
+        if (!coachimage) {
+            return res.status(400).send('No image uploaded.');
+        }
+
         const newCoach = new Coach({
             coachname,
             coachdescription,
-            coachimage: `/images/${coachname}.png`  // Save the relative path to the image
+            coachimage: `/images/coaches/${coachimage.filename}` 
         });
 
-        // Save the new Coach object to MongoDB
         newCoach.save()
             .then(() => {
                 res.redirect("/auth/Admin");
@@ -45,14 +172,6 @@ const addCoashes = (req, res) => {
     });
 };
 
-module.exports = {
-    addCoashes
-};
-
-
-
-
-
 
 const postaddmeal = async (req, res) => {
     const {
@@ -61,11 +180,13 @@ const postaddmeal = async (req, res) => {
     } = req.body;
 
     try {
+
         const existingUser = await meal.findOne({ $or: [{ mealname }, { mealdescription }] });
         if (existingUser) {
-            return res.redirect("/");//
+            return res.redirect("");
 
         }
+
 
         const newMeal = new Meal({
             mealname,
@@ -115,5 +236,5 @@ const updateMeal = async (MealId, updateData, res) => {
 
 
 module.exports = {
-    addCoashes, postaddmeal, deleteMeal, updateMeal
+    addCoach, postaddmeal, deleteMeal, updateMeal,addProduct,deleteProduct,editProduct,
 };

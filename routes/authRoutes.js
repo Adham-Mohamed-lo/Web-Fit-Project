@@ -60,7 +60,11 @@ app.get('/payment', (req, res) => {
 
 app.get('/logout', loginController.logout);
 
-app.post("/addcoaches", adminController.addCoashes);
+app.post("/addcoaches", adminController.addCoach);
+
+app.post("/addProduct", adminController.addProduct);
+app.post("/removeProduct", adminController.deleteProduct);
+app.post("/editProduct", adminController.editProduct);
 
 
 app.post("/meal", adminController.postaddmeal);

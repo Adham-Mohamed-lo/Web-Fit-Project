@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 
+app.use((req, res, next) => {
+  res.locals.notification = req.query.notification || '';
+  next();
+});
+
 app.get("/", (req, res) => {
   const notification = req.query.notification || '';
   res.render("index", {

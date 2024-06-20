@@ -20,8 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json()); 
 
-
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -33,12 +31,6 @@ app.use(
     },
   })
 );
-app.use((req, res, next) => {
-  res.locals.notification = req.query.notification || '';
-  next();
-});
-
-
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
