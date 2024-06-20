@@ -47,10 +47,15 @@ app.get('/admin', (req, res) => {
 });
 
 app.get('/payment', (req, res) => {
-  res.render('Payment-Index', {
-    currentPage: 'payment',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
+  if (req.session.user !== undefined) {
+    res.render('Payment-Index', {
+      currentPage: 'payment',
+      user: req.session.user === undefined ? '' : req.session.user,
+    });
+  }  else {
+  const notification = 'Please log in to access this page.';
+  res.redirect(`/auth/login?notification=${notification}`);
+}
 });
 
 app.get('/logout', loginController.logout);

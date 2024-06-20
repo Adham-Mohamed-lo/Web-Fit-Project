@@ -2,12 +2,13 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
+  const notification = req.query.notification || '';
   res.render("index", {
     currentPage: "home",
     user: req.session.user === undefined ? "" : req.session.user,
+    notification: notification 
   });
 });
-
 
 app.get('/about', (req, res) => {
   res.render('About-Index', {
@@ -52,24 +53,47 @@ app.get('/membership', (req, res) => {
 });
 
 app.get('/plans', (req, res) => {
-  res.render('Plans-Index', {
+  res.render('Plans-Index', { 
     currentPage: 'plans',
-    user: req.session.user === undefined ? '' : req.session.user,
+    user: req.session.user === undefined ? '' : req.session.user
   });
 });
 
+app.get('/free-plan', (req, res) => {
+  if (req.session.user !== undefined) {
+    res.render('Free-Plan-Index', {
+      currentPage: 'free-plan',
+      user: req.session.user === undefined ? '' : req.session.user
+    });
+  } else {
+    const notification = 'Please log in to access this page.';
+    res.redirect(`/auth/login?notification=${notification}`);
+  }
+});
+
 app.get('/premium-plan', (req, res) => {
+  if (req.session.user !== undefined) {
   res.render('Premium-Plan-Index', {
     currentPage: 'premium-plan',
     user: req.session.user === undefined ? '' : req.session.user,
   });
+} else {
+  const notification = 'Please log in to access this page.';
+  res.redirect(`/auth/login?notification=${notification}`);
+}
 });
 
 app.get('/standard-plan', (req, res) => {
+  if (req.session.user !== undefined) {
+   
   res.render('Standard-Plan-Index', {
     currentPage: 'standard-plan',
     user: req.session.user === undefined ? '' : req.session.user,
   });
+} else {
+  const notification = 'Please log in to access this page.';
+  res.redirect(`/auth/login?notification=${notification}`);
+}
 });
 
 app.get('/schedule-1', (req, res) => {

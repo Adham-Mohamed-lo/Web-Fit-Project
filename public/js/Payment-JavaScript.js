@@ -37,10 +37,9 @@ document.querySelector('.cvv-input').oninput = () =>{
     if (cardNumber.length !== 16 || isNaN(cardNumber)) {
         errors.push("Invalid card number!");
     }
-    if (!/^[a-zA-Z]+$/.test(cardHolder)) {
+    if (!cardHolder || !/^[a-zA-Z\s]+$/.test(cardHolder)) {
         errors.push("Invalid card holder name!");
-    }
-    
+    } 
     if (cardHolder.trim() === "") {
         errors.push("Card holder name cannot be empty!");
     }

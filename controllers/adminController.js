@@ -61,13 +61,11 @@ const postaddmeal = async (req, res) => {
     } = req.body;
 
     try {
-
         const existingUser = await meal.findOne({ $or: [{ mealname }, { mealdescription }] });
         if (existingUser) {
-            return res.redirect("");
+            return res.redirect("/");//
 
         }
-
 
         const newMeal = new Meal({
             mealname,

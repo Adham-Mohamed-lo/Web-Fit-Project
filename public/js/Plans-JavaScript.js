@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var subscribedPlan = null; // Variable to store the subscribed plan
+  var subscribedPlan = null; 
 
   function openPaymentPage(plan, button) {
       var pageURL;
       switch(plan) {
           case 'free':
-              pageURL = "/user/free-plan";
+              pageURL = "/free-plan";
               break;
           case 'standard':
               pageURL = "/auth/payment";
@@ -14,12 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
               pageURL = "/coaches";
               break;
           default:
-              // Do something if plan is not recognized
               break;
       }
       window.open(pageURL, "_self");
       button.textContent = "View Your Plan";
-      subscribedPlan = plan; // Update the subscribed plan variable
+      subscribedPlan = plan;
   }
 
   function checkPage() {
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
           var targetPage;
           switch (subscribedPlan) {
               case 'free':
-                  targetPage = "/user/free-plan";
+                  targetPage = "/free-plan";
                   break;
               case 'standard':
                   targetPage = "/auth/payment";
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
       openPaymentPage(plan, this);
   }
 
-  // Add click event listeners to the buttons
   document.getElementById("subscribebtn1").addEventListener("click", clickHandler);
   document.getElementById("subscribebtn2").addEventListener("click", clickHandler);
   document.getElementById("subscribebtn3").addEventListener("click", clickHandler);

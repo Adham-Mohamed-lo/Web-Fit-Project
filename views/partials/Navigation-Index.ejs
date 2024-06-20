@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation</title>
-    <link rel="stylesheet" href="/css/Navigation-Style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation</title>
+  <link rel="stylesheet" href="/css/Navigation-Style.css">
 </head>
+
 <body>
   <div class="header-nav-container">
     <header>
@@ -18,21 +20,30 @@
       <a href="/contact">Contact</a>
       <a href="/plans">Join Us</a>
       <% if (user && user.username) { %>
-        <% if (currentPage === 'profile' || currentPage === 'admin') { %>
+        <% if (currentPage==='profile' || currentPage==='admin' ) { %>
           <a id="login-link" href="/auth/logout">Logout</a>
-        <% } else { %>
-          <% if (user.role === 'admin') { %>
-            <a id="login-link" href="/auth/admin">My Profile</a>
           <% } else { %>
-            <a id="login-link" href="/user/profile">My Profile</a>
-          <% } %>
-        <% } %>
-      <% } else { %>
-        <a id="login-link" href="/auth/login">Login</a>
-      <% } %>
+            <% if (user.role==='admin' ) { %>
+              <a id="login-link" href="/auth/admin">My Profile</a>
+              <% } else { %>
+                <a id="login-link" href="/user/profile">My Profile</a>
+                <% } %>
+                  <% } %>
+                    <% } else { %>
+                      <a id="login-link" href="/auth/login">Login</a>
+                      <% } %>
     </nav>
   </div>
 
-  <script src="/js/Navigation-JavaScript.js"></script> 
+  <% if (notification) { %>
+    <div id="notification-bar" class="notification-bar">
+      <div class="notification-content">
+        <%= notification %>
+      </div>
+    </div>
+    <% } %>
+
+      <script src="/js/Navigation-JavaScript.js"></script>
 </body>
+
 </html>

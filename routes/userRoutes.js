@@ -6,11 +6,12 @@ const app = express();
 app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah 
   if (req.session.user !== undefined) {
     next();
-  } else {
-    res.render("404", {
-      user: req.session.user === undefined ? "" : req.session.user,
-      currentPage: "404",
-    });
+   } else {
+  //res.status(401).json({ error: 'You must log in first.' });
+  //   res.render("404", {
+  //     user: req.session.user === undefined ? "" : req.session.user,
+  //     currentPage: "404",
+  //   });
   }
 });
 
@@ -21,21 +22,12 @@ app.get('/profile', (req, res) => {
   });
 });
 
-
-app.get('/free-plan', (req, res) => {
-  res.render('Free-plan-Index', {
-    currentPage: 'free-plan',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
-});
-
 app.get('/free-workout', (req, res) => {
   res.render('Free-Workout-Page-Index', {
     currentPage: 'free-workout',
     user: req.session.user === undefined ? '' : req.session.user,
   });
 });
-
 
 app.get('/front-workout', (req, res) => {
   res.render('Front-Workout-Page-Index', {
@@ -71,7 +63,5 @@ app.get('/push-workout', (req, res) => {
     user: req.session.user === undefined ? '' : req.session.user,
   });
 });
-
-
 
 module.exports = app;
