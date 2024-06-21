@@ -37,8 +37,8 @@
 }
 
 #stats_Container.middle {
-    width: 1250px; /* Increase the width when in the middle */
-    height: 700px; /* Increase the height when in the middle */
+    width: 1250px; 
+    height: 700px; 
     left: 50%;
     transform: translateX(-50%);
     margin-left: 120px;
@@ -47,8 +47,8 @@
 #stats_Container.right {
     left: auto;
     right: 0;
-    width: 180px; /* Maintain original width */
-    height: 610px; /* Maintain original height */
+    width: 180px; 
+    height: 610px; 
     transform: translateX(0);
 }
 
@@ -209,7 +209,52 @@ h1 {
     height: 30px;
     cursor: pointer;
 }
-
 .exit-button:hover {
+    color: rgba(14, 170, 92, 0.8);
+}
+
+.error-message {
+    color: rgba(4, 161, 4, 0.8);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.success-message {
+    color: rgba(4, 161, 4, 0.8);
+    font-size: 14px;
+    margin-top: 5px;
     background-color: darkred;
+}
+
+
+@media (max-width: 800px) {
+    .actions-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #Products_container,
+    #Coaches_container {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    .container {
+        width: 90%;
+        margin: 10px auto;
+        padding: 20px;
+    }
+
+    .action-container {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 20px;
+    }
 }
