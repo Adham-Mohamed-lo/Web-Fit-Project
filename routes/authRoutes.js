@@ -62,6 +62,7 @@ app.get('/logout', loginController.logout);
 
 app.post("/addcoaches", adminController.addCoach);
 app.post("/removecoach",adminController.removeCoach)
+app.post("/editcoaches",adminController.editCoach)
 app.get("/getcoaches", adminController.getCoaches);
 
 
@@ -76,6 +77,8 @@ app.post("/addmeal", adminController.addmeal);
 app.post("/removemeal", adminController.deleteMeal);
 app.post("/editmeal", adminController.editMeal);
 
+
+app.post("/addexcercise",adminController.addExercise);
 
 // // Add a middleware to check if the user is logged in
 // app.use((req, res, next) => {

@@ -6,6 +6,7 @@ const multer = require('multer');
 const Coach = require("../models/coachesModel.js");
 const Product = require("../models/prodectshopModel.js");
 const Meal = require("../models/mealModel.js");
+const Exercise = require("../models/excerciseModel.js");
 
 
 
@@ -221,6 +222,50 @@ const removeCoach = (req, res) => {
         });
 };
 
+const editCoach = (req, res) => {
+    coachUpload.single('coachImage')(req, res, (err) => {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).send('Error uploading image.');
+        } else if (err) {
+            return res.status(500).send('Unknown error occurred.');
+        }
+
+        const { editCoachName, newCoachName, coachDescription } = req.body;
+        const coachImage = req.file;
+
+        Coach.findOne({ coachname: editCoachName })
+            .then((existingCoach) => {
+                if (!existingCoach) {
+                    return res.status(404).send('Coach not found.');
+                }
+
+                if (coachImage) {
+                    const oldImagePath = path.join(__dirname, '..', 'public', existingCoach.coachimage);
+                    fs.unlink(oldImagePath, (err) => {
+                        if (err) {
+                            console.error(err);
+                            return res.status(500).send('Error deleting old coach image.');
+                        }
+                    });
+                    existingCoach.coachimage = '/images/coaches/${coachImage.filename}';
+                }
+
+                existingCoach.coachname = newCoachName;
+                existingCoach.description = coachDescription;
+
+
+                return existingCoach.save();
+            })
+            .then(() => {
+                res.redirect("/auth/Admin");
+            })
+            .catch((err) => {
+                console.error("Error updating coach:", err);
+                res.status(500).send("Error updating coach");
+            });
+    });
+};
+
 
 
 
@@ -243,62 +288,88 @@ const getCoaches = (req, res) => {
 
 
 const addmeal = async (req, res) => {
-   
 
-        const { mealname, Mealdescription } = req.body;
-        
 
-        
+    const { mealname, Mealdescription } = req.body;
 
-        const newMeal = new Meal ({
-            mealname: mealname,
-            mealdescription: Mealdescription,
-           
+
+
+
+    const newMeal = new Meal({
+        mealname: mealname,
+        mealdescription: Mealdescription,
+
+    });
+
+    newMeal.save()
+        .then(() => {
+            res.redirect("/auth/Admin");
+        })
+        .catch((err) => {
+            console.error("Error saving meal:", err);
+            res.status(500).send("Error saving meal");
         });
+};
 
-        newMeal.save()
-            .then(() => {
-                res.redirect("/auth/Admin");
-            })
-            .catch((err) => {
-                console.error("Error saving meal:", err);
-                res.status(500).send("Error saving meal");
-            });
-    };
+const deleteMeal = async (req, res) => {
+    const { removeMealName } = req.body;
 
-    const deleteMeal = async (req, res) => {
-        const { removeMealName } = req.body;
-    
-        try {
-            const deletedMeal = await Meal.findOneAndDelete({ mealname: removeMealName });
-            if (!deletedMeal) {
-                return res.status(404).send('Meal not found.');
-            }
-            res.status(200).send('Meal successfully deleted.');
-        } catch (err) {
-            console.error("Error deleting meal:", err);
-            res.status(500).send("Error deleting meal");
+    try {
+        const deletedMeal = await Meal.findOneAndDelete({ mealname: removeMealName });
+        if (!deletedMeal) {
+            return res.status(404).send('Meal not found.');
         }
-    };
-    const editMeal = async (req, res) => {
-        const { editMealName, newMealName, newMealdescription } = req.body;
-    
-        try {
-            const existingMeal = await Meal.findOne({ mealname: editMealName });
-            if (!existingMeal) {
-                return res.status(404).send('Meal not found.');
-            }
-    
-            existingMeal.mealname = newMealName;
-            existingMeal.mealdescription = newMealdescription;
-    
-            await existingMeal.save();
-            res.status(200).json({ message: 'Meal successfully updated.' });
-        } catch (err) {
-            console.error("Error updating meal:", err);
-            res.status(500).json({ error: "Error updating meal" });
+        res.status(200).send('Meal successfully deleted.');
+    } catch (err) {
+        console.error("Error deleting meal:", err);
+        res.status(500).send("Error deleting meal");
+    }
+};
+const editMeal = async (req, res) => {
+    const { editMealName, newMealName, newMealdescription } = req.body;
+
+    try {
+        const existingMeal = await Meal.findOne({ mealname: editMealName });
+        if (!existingMeal) {
+            return res.status(404).send('Meal not found.');
         }
-    };
+
+        existingMeal.mealname = newMealName;
+        existingMeal.mealdescription = newMealdescription;
+
+        await existingMeal.save();
+        res.status(200).json({ message: 'Meal successfully updated.' });
+    } catch (err) {
+        console.error("Error updating meal:", err);
+        res.status(500).json({ error: "Error updating meal" });
+    }
+};
+
+const addExercise = (req, res) => {
+    const { Exercisename, Exercisedescription, Exerciseimage } = req.body;
+
+    if (!Exercisename || !Exercisedescription || !Exerciseimage) {
+        return res.status(400).send('All fields are required.');
+    }
+
+    const newExercise = new Exercise({
+        exercisename: Exercisename,
+        exercisedescription: Exercisedescription,
+        exerciseimage: Exerciseimage // Assuming Exerciseimage is a URL string
+    });
+
+    newExercise.save()
+        .then(() => {
+            res.redirect("/auth/Admin"); // Redirect to admin page after successful save
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error saving exercise.");
+        });
+};
+
+
+
 module.exports = {
-    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach,
+    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach, addExercise, editCoach,
 };
