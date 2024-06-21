@@ -14,4 +14,5 @@ const mealSchema = new mongoose.Schema({
   // Add more fields as needed
 });
 
-const User = mongoose.model("meal", mealSchema);
+const Meal = mongoose.model("Meal", mealSchema);
+module.exports = Meal;

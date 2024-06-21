@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
-const meal = require("../models/mealModel.js");
 const path = require("path");
 const fs = require('fs');
 const multer = require('multer');
 const Coach = require("../models/coachesModel.js");
 const Product = require("../models/prodectshopModel.js");
+const Meal = require("../models/mealModel.js");
 
 
 
@@ -238,68 +238,67 @@ const getCoaches = (req, res) => {
 };
 
 
-const postaddmeal = async (req, res) => {
-    const {
-        mealname,
-        mealdescription,
-    } = req.body;
-
-    try {
-
-        const existingUser = await meal.findOne({ $or: [{ mealname }, { mealdescription }] });
-        if (existingUser) {
-            return res.redirect("");
-
-        }
 
 
-        const newMeal = new Meal({
-            mealname,
-            mealdescription
+
+
+const addmeal = async (req, res) => {
+   
+
+        const { mealname, Mealdescription } = req.body;
+        
+
+        
+
+        const newMeal = new Meal ({
+            mealname: mealname,
+            mealdescription: Mealdescription,
+           
         });
 
-        await newMeal.save();
+        newMeal.save()
+            .then(() => {
+                res.redirect("/auth/Admin");
+            })
+            .catch((err) => {
+                console.error("Error saving meal:", err);
+                res.status(500).send("Error saving meal");
+            });
+    };
 
-        res.redirect("/meal");
-    } catch (err) {
-        console.error(err);
-
-        res.status(500).json({ error: "Failed to register meal" });
-    }
-
-};
-const deleteMeal = async (MealId, res) => {
-    try {
-        const deletedMeal = await User.findByIdAndDelete(MealId);
-
-        if (!deletedMeal) {
-            return res.status(404).json({ error: "meal not found" });
+    const deleteMeal = async (req, res) => {
+        const { removeMealName } = req.body;
+    
+        try {
+            const deletedMeal = await Meal.findOneAndDelete({ mealname: removeMealName });
+            if (!deletedMeal) {
+                return res.status(404).send('Meal not found.');
+            }
+            res.status(200).send('Meal successfully deleted.');
+        } catch (err) {
+            console.error("Error deleting meal:", err);
+            res.status(500).send("Error deleting meal");
         }
-
-        res.status(200).json({ message: "meal deleted successfully" });
-    } catch (err) {
-        res.status(500).json({ error: "Failed to delete meal" });
-    }
-};
-
-const updateMeal = async (MealId, updateData, res) => {
-    try {
-
-
-        // Update user in the database
-        const updatedMeal = await Meal.findByIdAndUpdate(MealId, updateData, { new: true, runValidators: true });
-
-        if (!updatedMeal) {
-            return res.status(404).json({ error: "meal not found" });
+    };
+    const editMeal = async (req, res) => {
+        const { editMealName, newMealName, newMealdescription } = req.body;
+    
+        try {
+            const existingMeal = await Meal.findOne({ mealname: editMealName });
+            if (!existingMeal) {
+                return res.status(404).send('Meal not found.');
+            }
+    
+            existingMeal.mealname = newMealName;
+            existingMeal.mealdescription = newMealdescription;
+    
+            await existingMeal.save();
+            res.status(200).json({ message: 'Meal successfully updated.' });
+        } catch (err) {
+            console.error("Error updating meal:", err);
+            res.status(500).json({ error: "Error updating meal" });
         }
-
-        res.status(200).json({ message: "meal updated successfully", meal: updatedMeal });
-    } catch (err) {
-        res.status(500).json({ error: "Failed to update meal" });
-    }
-};
-
-
+    };
 module.exports = {
-    getAllProducts, addCoach, postaddmeal, deleteMeal, updateMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach,
+    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach,
 };

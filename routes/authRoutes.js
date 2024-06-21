@@ -3,7 +3,7 @@ const loginController = require("../controllers/loginController");
 const userController = require("../controllers/userController");
 const adminController = require("../controllers/adminController");
 const { sign } = require("crypto");
-const app = express();
+const app = express.Router();
 
 
 
@@ -71,18 +71,10 @@ app.post("/addProduct", adminController.addProduct);
 app.post("/removeProduct", adminController.deleteProduct);
 app.post("/editProduct", adminController.editProduct);
 
-
-app.post("/meal", adminController.postaddmeal);
-
-app.put("/update/:id", async (req, res) => {
-  const MealId = req.params.id;
-  const updateData = req.body;
-  await updateMeal(MealId, updateData, res);
-});
-app.delete("/delete/:id", async (req, res) => {
-  const MealId = req.params.id;
-  await deleteMeal(MealId, res);
-});
+// meal routes functions
+app.post("/addmeal", adminController.addmeal);
+app.post("/removemeal", adminController.deleteMeal);
+app.post("/editmeal", adminController.editMeal);
 
 
 // // Add a middleware to check if the user is logged in
