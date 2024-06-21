@@ -17,7 +17,7 @@
                     <h2>Admin's Panel</h2>
                     <ul class="admin-menu">
                         <li><a href="#" onclick="toggleVisibility('')">Admin Profile</a></li>
-                        <li><a href="#" onclick="toggleVisibility('')">View Users</a></li>
+                        <li><a href="#" onclick="toggleVisibility('UsersContainer')">View Users</a></li>
                         <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
                         <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
                         <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
@@ -37,18 +37,18 @@
                         
                     </ul>
                 </div>
-
-
             </div>
 
 
-            <div class="action-container hidden" id="addProductsContainer">
-                <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
+            <!--  veiew users Buttons -->
+            <div class="action-container hidden" id="UsersContainer">
+                <button class="exit-button" onclick="toggleVisibility('UsersContainer')">X</button>
                 <h1>WebFit Users</h1>
-                <form action="/auth/addProduct" method="post" id="addProductForm" enctype="multipart/form-data">
-                    
+               
+         
             </div>
 
+            <!--  Product Buttons -->
             <div class="action-container hidden" id="addProductsContainer">
                 <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
                 <h1>Add Products</h1>
@@ -135,7 +135,7 @@
 
 
 
-
+<!--  coches Buttons -->
 
             <div class="action-container hidden" id="addCoachesContainer">
                 <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
@@ -167,7 +167,7 @@
                         <input type="text" id="removeCoachName" name="removeCoachName" required>
                         <div id="removeCoachNameError" class="error-message"></div>
                     </div>
-                    <button type="submit" class="btn-action">Remove Coach</button>
+                    <button type="submit" class="btn-action" onclick="validateremoveCoachForm()">Remove Coach</button>
                     <div id="removeCoachSuccessMessage" class="success-message"></div>
                 </form>
             </div>
@@ -213,6 +213,7 @@
 
 
 
+            <!--  Meals Buttons -->
             <div class="action-container hidden" id="addMealContainer">
                 <button class="exit-button" onclick="toggleVisibility('addMealContainer')">X</button>
                 <h1>Add Meal</h1>
@@ -279,6 +280,7 @@
 
             
 
+            <!--  Schedules Buttons -->
             <div class="action-container hidden" id="addSchedulesContainer">
                 <button class="exit-button" onclick="toggleVisibility('addSchedulesContainer')">X</button>
                 <h1>Add Schedules</h1>

@@ -1,5 +1,4 @@
-
-
+// Product Form Validation
 function validateForm() {
     const productNameInput = document.getElementById('productName');
     const productPriceInput = document.getElementById('productPrice');
@@ -35,6 +34,7 @@ function validateForm() {
     return isValid;
 }
 
+// Coach Form Validation
 function validateCoachForm() {
     const coachNameInput = document.getElementById('coachName');
     const coachSpecialtyInput = document.getElementById('coachSpecialty');
@@ -70,6 +70,7 @@ function validateCoachForm() {
     return isValid;
 }
 
+// Edit Coach Form Validation
 function validateEditCoachForm() {
     const editCoachNameInput = document.getElementById('editCoachName');
     const editCoachSpecialtyInput = document.getElementById('editCoachSpecialty');
@@ -136,6 +137,7 @@ function validateEditCoachForm() {
     return isValid;
 }
 
+// Remove Coach Form Validation
 function validateremoveCoachForm() {
     const coachNameInput = document.getElementById('removeCoachName');
     const coachName = coachNameInput.value.trim();
@@ -152,14 +154,34 @@ function validateremoveCoachForm() {
     }
 
     if (isValid) {
-        coachNameInput.value = '';
-        document.getElementById('removeCoachSuccessMessage').textContent = 'Coach Removed';
-        document.getElementById('removeCoachForm').submit();
+        // Send the form data to the server using fetch
+        fetch('/auth/removecoach', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ removeCoachName: coachName }) 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Server response:', data); 
+            document.getElementById('removeCoachSuccessMessage').textContent = 'Coach Removed'; 
+            coachNameInput.value = ''; 
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
     }
 
     return isValid;
 }
 
+// Remove Product Form Validation
 function validateremoveProductForm() {
     const productNameInput = document.getElementById('removeProductName');
     const productName = productNameInput.value.trim();
@@ -183,6 +205,7 @@ function validateremoveProductForm() {
     return isValid;
 }
 
+// Edit Product Form Validation
 function validateEditProductForm() {
     const editProductNameInput = document.getElementById('editProductName');
     const newProductNameInput = document.getElementById('newProductName');
@@ -221,18 +244,41 @@ function validateEditProductForm() {
 
     return isValid;
 }
-function toggleVisibility(id) {
-    // Get all containers
-    const containers = document.querySelectorAll('.action-container');
-    
-    // Hide all containers
-    containers.forEach(container => {
-        if (container.id !== id) {
+
+// Toggle visibility of containers
+let isStatsContainerRight = false;
+let isStatsContainerMiddle = false;
+
+function toggleVisibility(containerId) {
+    // Hide all other containers
+    document.querySelectorAll('.action-container').forEach(container => {
+        if (container.id !== containerId) {
             container.classList.add('hidden');
         }
     });
 
     // Toggle visibility of the selected container
-    const selectedContainer = document.getElementById(id);
-    selectedContainer.classList.toggle('hidden');
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.classList.toggle('hidden');
+    }
+
+    toggleStatsContainer();
+}
+
+function toggleStatsContainer() {
+    const statsContainer = document.getElementById('stats_Container');
+
+    if (isStatsContainerMiddle) {
+        statsContainer.classList.remove('middle');
+        isStatsContainerMiddle = false;
+        isStatsContainerRight = false;
+    } else if (isStatsContainerRight) {
+        statsContainer.classList.remove('right');
+        statsContainer.classList.add('middle');
+        isStatsContainerMiddle = true;
+    } else {
+        statsContainer.classList.add('right');
+        isStatsContainerRight = true;
+    }
 }
