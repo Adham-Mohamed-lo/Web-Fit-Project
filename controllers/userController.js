@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express.Router();
 const bcrypt = require("bcrypt");
-const User = require("../models/userModel.js");
+const Product = require('../models/prodectshopModel');
+const User = require('../models/userModel');
+const mongoose = require('mongoose');
+
+
 
 const displayAllUsers = async (req, res) => {
     try {
@@ -102,9 +106,83 @@ const deleteUser = async (userId, res) => {
     }
 };
 
-module.exports = {
-    displayAllUsers, updateUser, postSignup, deleteUser
+
+
+const updateCart = async (req, res) => {
+    const userId = req.session.user._id;
+    const { productId, quantity } = req.body;
+
+    try {
+        // Find the user by ID
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        // Check if the product exists
+        const product = await Product.findOne({ id: productId });
+        if (!product) {
+            return res.status(404).send('Product not found');
+        }
+
+        // Check if the product is already in the cart
+        const cartItemIndex = user.cart.findIndex(item => item.productId === productId);
+
+        if (cartItemIndex > -1) {
+            // If product is already in cart, update the quantity
+            if (quantity > 0) {
+                user.cart[cartItemIndex].quantity = quantity;
+            } else {
+                // Remove item from cart if quantity is 0
+                user.cart.splice(cartItemIndex, 1);
+            }
+        } else if (quantity > 0) {
+            // If product is not in cart and quantity is more than 0, add new cart item
+            user.cart.push({ productId, quantity });
+        }
+
+        // Save the user with updated cart
+        await user.save();
+
+        res.status(200).send('Cart updated successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
 };
+const getCart = async (req, res) => {
+    const userId = req.session.user._id;
+
+    try {   
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        const cartWithDetails = await Promise.all(user.cart.map(async (item) => {
+            const product = await Product.findOne({ id: item.productId });
+            return {
+                product,
+                quantity: item.quantity
+            };
+        }));
+
+        res.status(200).json(cartWithDetails);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+};
+
+
+
+
+module.exports = {
+    displayAllUsers, updateUser, postSignup, deleteUser, updateCart, getCart,
+};
+
+
 
 
 

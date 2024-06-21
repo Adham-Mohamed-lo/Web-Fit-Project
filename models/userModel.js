@@ -1,6 +1,21 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+// Define the schema for the user cart items
+const cartItemSchema = new mongoose.Schema({
+  productId: {
+    type: String, // Assuming product IDs are MongoDB ObjectIDs
+    ref: 'Product', // Reference to the Product model
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
+});
+
+// Define the main user schema with the cart field
 const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
@@ -59,8 +74,8 @@ const userSchema = new mongoose.Schema({
     enum: ['Free Plan', 'Standard Plan', 'Premium Plan'],
     default: 'Free Plan', 
     required: true,
-  }
-  // Add more fields as needed
+  },
+  cart: [cartItemSchema], // Embed the cart items as a subdocument array
 });
 
 // Pre-save hook to hash password before saving
@@ -75,7 +90,6 @@ userSchema.pre('save', async function(next) {
   }
   next();
 });
-
 
 const User = mongoose.model("User", userSchema);
 

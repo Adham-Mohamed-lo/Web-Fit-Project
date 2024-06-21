@@ -25,6 +25,6 @@ const productSchema = new mongoose.Schema({
   // Add more fields as needed
 });
 
-const User = mongoose.model("product", productSchema);
+const Product  = mongoose.model('Product', productSchema);
 
-module.exports = User;
+module.exports = Product;

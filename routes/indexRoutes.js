@@ -1,9 +1,9 @@
 const express = require("express");
-const app = express();
+const app = express.Router();
 const mongoose = require("mongoose");
 const Product = require("../models/prodectshopModel");
 const coaches = require("../models/coachesModel")
-
+const userController = require("../controllers/userController");
 
 
 app.get('/api/products', async (req, res) => {
@@ -150,11 +150,11 @@ app.get('/schedule-3', (req, res) => {
 
 app.get('/shop', async (req, res) => {
   try {
-    const products = await Product.find(); // Fetch all products from the database
+    const products = await Product.find(); 
     res.render('Shop-Index', {
       currentPage: 'shop',
-      user: req.session.user || '', // Using req.session.user if available, or an empty string if not
-      products: products, // Passing the products to your shop view
+      user: req.session.user || '', 
+      products: products, 
     });
   } catch (err) {
     console.error(err);

@@ -1,13 +1,17 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-const app = express();
-const User = require('../models/userModel'); // Adjust the path as necessary
+const app = express.Router();
+const User = require('../models/userModel');
+const Product = require('../models/prodectshopModel'); 
+const mongoose = require('mongoose');
 
 // Add a middleware to check if the user is logged in
 app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah 
   if (req.session.user !== undefined) {
     next();
    } else {
+    const notification = 'Please log in to access this page.';
+      res.redirect(`/auth/login?notification=${notification}`);
   //res.status(401).json({ error: 'You must log in first.' });
   //   res.render("404", {
   //     user: req.session.user === undefined ? "" : req.session.user,
@@ -15,6 +19,13 @@ app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah
   //   });
   }
 });
+
+
+
+app.post('/api/cart', userController.updateCart);
+app.get('/api/cart', userController.getCart);
+
+
 
 app.get('/profile', async (req, res) => {
   try {

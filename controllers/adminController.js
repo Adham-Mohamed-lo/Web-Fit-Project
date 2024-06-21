@@ -183,33 +183,49 @@ const addCoach = (req, res) => {
             });
     });
 };
+
+
 const removeCoach = (req, res) => {
+    console.log(req.body)
     const { removeCoachName } = req.body;
+    console.log(removeCoachName)
 
-    console.log(`Attempting to remove coach: ${removeCoachName}`);
-
-    Coach.findOneAndDelete({ coachname: removeCoachName })
-        .then((deletedCoach) => {
-            if (!deletedCoach) {
-                console.log(`Coach not found: ${removeCoachName}`);
+    if (!removeCoachName) {
+        return res.status(400).send('Coach name is required.');
+    }
+    Coach.findOne({ coachname: removeCoachName })
+        .then((coach) => {
+            if (!coach) {
                 return res.status(404).send('Coach not found.');
             }
 
-            const imagePath = path.join(__dirname, 'public', deletedCoach.coachimage);
-            fs.unlink(imagePath, (err) => {
-                if (err) {
-                    console.error(`Error deleting coach image: ${err}`);
-                    return res.status(500).send('Error deleting coach image.');
-                }
-                console.log(`Coach removed successfully: ${removeCoachName}`);
-                res.redirect("/auth/Admin");
-            });
+            // Coach found, now delete them
+            Coach.findOneAndDelete({ coachname: removeCoachName })
+                .then((deletedCoach) => {
+                    // Optionally, delete the coach's image from the filesystem
+                    if (deletedCoach.coachimage) {
+                        const imagePath = path.join(__dirname, '..', 'public', deletedCoach.coachimage);
+                        fs.unlinkSync(imagePath);
+                    }
+
+                    res.status(200).send('Coach removed successfully.');
+                })
+                .catch((err) => {
+                    console.error(err);
+                    res.status(500).send('Error removing coach.');
+                });
         })
         .catch((err) => {
-            console.error("Error deleting coach:", err);
-            res.status(500).send("Error deleting coach");
+            console.error(err);
+            res.status(500).send('Error removing coach.');
         });
 };
+
+
+
+
+
+
 const getCoaches = (req, res) => {
     Coach.find()
         .then(coaches => {
