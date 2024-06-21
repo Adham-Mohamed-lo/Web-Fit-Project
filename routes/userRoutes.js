@@ -1,6 +1,7 @@
 const express = require("express");
 const userController = require("../controllers/userController");
 const app = express();
+const User = require('../models/userModel'); // Adjust the path as necessary
 
 // Add a middleware to check if the user is logged in
 app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah 
@@ -15,12 +16,32 @@ app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah
   }
 });
 
-app.get('/profile', (req, res) => {
-  res.render('Profile-Index', {
-    currentPage: 'profile',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
+app.get('/profile', async (req, res) => {
+  try {
+
+    const user = req.session.user;
+
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    if (req.headers.accept && req.headers.accept.indexOf('application/json') !== -1) {
+
+      return res.json(user);
+    } else {
+
+      return res.render('Profile-Index', {
+        currentPage: 'profile',
+        user: user,
+      });
+    }
+  } catch (err) {
+    console.error('Error fetching user:', err);
+    res.status(500).send('Server error');
+  }
 });
+
 
 app.get('/free-workout', (req, res) => {
   res.render('Free-Workout-Page-Index', {

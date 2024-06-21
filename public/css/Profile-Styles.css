@@ -1,90 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333; /* Default font color */
+  margin: 0;
+  padding: 0;
+}
 
 .profile-heading {
   display: flex;
   justify-content: center;
-  color: rgb(14, 170, 92);
-  font-size: 2.2em;
+  color: #0eaa5c; /* Green font color */
+  font-size: 3em; /* Larger font size */
   font-weight: 800;
-  margin-bottom: 15px;
-  padding: 30px;
+  margin-bottom: 30px; /* Increased margin */
+  padding: 40px 0; /* Increased padding */
 }
 
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px; /* Increased padding */
+}
 
 .card {
-  margin: 8px;
-  padding: 16px;
-  background-color: #f0f0f0; 
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  margin: 20px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
-  height: 480px;
+  width: 100%;
+  max-width: 800px; /* Increased max-width for larger card */
+  text-align: center;
+  color: #0eaa5c; /* Green font color */
 }
 
+.card:hover {
+  transform: translateY(-8px); /* Larger hover effect */
+}
+
+.card-image {
+  width: 150px; /* Larger profile picture */
+  height: 150px; /* Larger profile picture */
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 30px; /* Increased margin */
+}
+
+.card div {
+  text-align: left;
+  margin-bottom: 20px; /* Increased margin */
+}
+
+.card p {
+  margin: 15px 0; /* Increased margin */
+  font-size: 1.8em; /* Larger font size */
+  color: #0eaa5c; /* Green font color */
+}
 
 .button-group {
   display: flex;
-  justify-content: center; 
-  align-items: center;
-  margin: 20px auto; /
+  justify-content: space-around;
+  margin-top: 30px; /* Increased margin */
 }
-
-
-#menu_label {
-  text-align: center;
-  margin: 20px;
-}
-
 
 .button-group button {
-  font-size: 16px;
-  width: 200px;
-  padding: 10px;
+  font-size: 2em; /* Larger font size */
+  padding: 15px 30px; /* Increased padding */
   border: none;
-  border-radius: 20px;
-  background-color: rgb(14, 170, 92);
-  color: rgb(255, 255, 255);
+  border-radius: 30px; /* Rounded corners */
+  background-color: #0eaa5c; /* Green background color */
+  color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  margin: 10px;
 }
 
 .button-group button:hover {
-  background-color: rgb(255, 255, 255);
-  color: rgba(14, 170, 92, 0.8); 
-  transform: scale(1.01);
-  border: solid  0.5px; 
+  background-color: #fff;
+  color: #0eaa5c;
+  transform: scale(1.1); /* Slightly larger hover effect */
+  border: 2px solid #0eaa5c; /* Thicker border on hover */
 }
-
 
 @media only screen and (max-width: 800px) {
-  .card-container {
-    flex-direction: column; 
-    gap: 10px;
-  }
   .profile-heading {
-    font-size: 24px;
+    font-size: 2.5em; /* Adjusted font size for smaller screens */
   }
-  #header {
-    font-size: 30px; 
+  .card {
+    width: 90%;
+    max-width: 100%; /* Full width on smaller screens */
   }
-}
-
-
-.container {
-  padding: 0 16px;
-  color: black;
-  font-size: 22px; 
-  background-color: #f0f0f0; 
-}
-
-#header {
-  font-size: 50px;
-}
-
-
-.card-image {
-  width: 100px; 
-  height: 100px; 
-  object-fit: cover;
-  border-radius: 50%; 
+  .button-group {
+    flex-direction: column;
+  }
+  .button-group button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
