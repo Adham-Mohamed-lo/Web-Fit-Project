@@ -17,25 +17,29 @@
                     <h2>Admin's Panel</h2>
                     <ul class="admin-menu">
                         <li><a href="#" onclick="toggleVisibility('')">Admin Profile</a></li>
-                        <li><a href="#" onclick="toggleVisibility('UsersContainer')">View Users</a></li>
-                        <li><a href="#" onclick="toggleVisibility('addProductsContainer')">Add Products</a></li>
-                        <li><a href="#" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a></li>
-                        <li><a href="#" onclick="toggleVisibility('editProductsContainer')">Edit Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('UsersContainer')" data-container-id="UsersContainer">View Users</a></li>
+                        <li><a href="#" onclick="toggleVisibility('addProductsContainer')" data-container-id="addProductsContainer">Add Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeProductsContainer')" data-container-id="removeProductsContainer">Remove Products</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editProductsContainer')" data-container-id="editProductsContainer">Edit Products</a></li>
                         <li><a href="/shop">View Products</a></li>
-                        <li><a href="#" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a></li>
-                        <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a></li>
-                        <li><a href="#" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a></li>
+                        <li><a href="#" onclick="toggleVisibility('addCoachesContainer')" data-container-id="addCoachesContainer">Add Coaches</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeCoachesContainer')" data-container-id="removeCoachesContainer">Remove Coaches</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editCoachesContainer')" data-container-id="editCoachesContainer">Edit Coaches</a></li>
                         <li><a href="/coaches">View Coaches</a></li>
-                        <li><a href="#" onclick="toggleVisibility('addSchedulesContainer')">Add Schedule</a></li>
-                        <li><a href="#" onclick="toggleVisibility('removeSchedulesContainer')">Remove Schedules</a></li>
-                        <li><a href="#" onclick="toggleVisibility('editSchedulesContainer')">Edit Schedules</a></li>
+                        <li><a href="#" onclick="toggleVisibility('addSchedulesContainer')" data-container-id="addSchedulesContainer">Add Schedule</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeSchedulesContainer')" data-container-id="removeSchedulesContainer">Remove Schedules</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editSchedulesContainer')" data-container-id="editSchedulesContainer">Edit Schedules</a></li>
                         <li><a href="/coaches">View Schedules</a></li>
-                        <li><a href="#" onclick="toggleVisibility('addMealContainer')">Add Meals</a></li>
-                        <li><a href="#" onclick="toggleVisibility('removeMealContainer')">Remove Meals</a></li>
-                        <li><a href="#" onclick="toggleVisibility('editMealContainer')">Edit Meals</a></li>
+                        <li><a href="#" onclick="toggleVisibility('addMealContainer')" data-container-id="addMealContainer">Add Meals</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeMealContainer')" data-container-id="removeMealContainer">Remove Meals</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editMealContainer')" data-container-id="editMealContainer">Edit Meals</a></li>
                         <li><a href="/coaches">View Meals</a></li>
-                        
+                        <li><a href="#" onclick="toggleVisibility('addExerciseContainer')" data-container-id="addExerciseContainer">Add Exercise</a></li>
+                        <li><a href="#" onclick="toggleVisibility('removeExerciseContainer')" data-container-id="removeExerciseContainer">Remove Exercise</a></li>
+                        <li><a href="#" onclick="toggleVisibility('editExerciseContainer')" data-container-id="editExerciseContainer">Edit Exercise</a></li>
+                        <li><a href="/coaches">View Exercise</a></li>
                     </ul>
+                    
                 </div>
             </div>
 
@@ -305,14 +309,14 @@
 
             <div class="action-container hidden" id="removeSchedulesContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeSchedulesContainer')">X</button>
-                <h1>Remove Coaches</h1>
+                <h1>Remove Schedules</h1>
                 <form id="removeSchedulesForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="removeSchedulesName">Schedules Name:</label>
-                        <input type="text" id="removeCoachName" name="removeSchedulesName" required>
+                        <input type="text" id="removeSchedulesName" name="removeSchedulesName" required>
                         <div id="removeSchedulesNameError" class="error-message"></div>
                     </div>
-                    <button type="button" class="btn-action" onclick="validateremoveCoachForm()">Remove Schedules</button>
+                    <button type="button" class="btn-action" onclick="validateremoveScheduleshForm()">Remove Schedules</button>
                     <div id="removeSchedulesSuccessMessage" class="success-message"></div>
                 </form>
             </div>
@@ -320,7 +324,7 @@
             <div class="action-container hidden" id="editSchedulesContainer">
                 <button class="exit-button" onclick="toggleVisibility('editSchedulesContainer')">X</button>
                 <h1>Edit Schedules</h1>
-                <form id="editCoachForm" enctype="multipart/form-data">
+                <form id="editSchedulesForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="editSchedulesName">Schedules Name:</label>
                         <input type="text" id="editSchedulesName" name="editSchedulesName" required>
@@ -330,7 +334,7 @@
                     <div class="form-group">
                         <label for="newSchedulesName">New Name:</label>
                         <input type="text" id="newSchedulesName" name="newSchedulesName" required>
-                        <div id="newCoachNameError" class="error-message"></div>
+                        <div id="newSchedulesNameError" class="error-message"></div>
                     </div>
                    
                     <div class="form-group">
@@ -344,11 +348,75 @@
 
 
 
+             
+
+            <!--  Exercise Buttons -->
+            <div class="action-container hidden" id="addExerciseContainer">
+                <button class="exit-button" onclick="toggleVisibility('addExerciseContainer')">X</button>
+                <h1>Add Exercise</h1>
+                <form action="/auth/addExercise" method="post" id="addExerciseForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="Exercisename">Exercise Name:</label>
+                        <input type="text" id="Exercisename" name="Exercisename" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Exercisedescription">Exercise Description:</label>
+                        <input type="text" id="Exercisedescription" name="Exercisedescription" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Exerciseimage">Exercise Image:</label>
+                        <input type="file" id="Exerciseimage" name="Exerciseimage" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn-action">Add Exercise</button>
+                    <div id="ExerciseSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+            <div class="action-container hidden" id="removeExerciseContainer">
+                <button class="exit-button" onclick="toggleVisibility('removeExerciseContainer')">X</button>
+                <h1>Remove Exercise</h1>
+                <form id="removeExerciseForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="removeExerciseName">Exercise Name:</label>
+                        <input type="text" id="removeExerciseName" name="removeExerciseName" required>
+                        <div id="removeExerciseNameError" class="error-message"></div>
+                    </div>
+                    <button type="button" class="btn-action" onclick="validateremoveExerciseForm()">Remove Exercise</button>
+                    <div id="removeExerciseSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+            <div class="action-container hidden" id="editExerciseContainer">
+                <button class="exit-button" onclick="toggleVisibility('editExerciseContainer')">X</button>
+                <h1>Edit Exercise</h1>
+                <form id="editExerciseForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="editExerciseName">Exercise Name:</label>
+                        <input type="text" id="editExerciseName" name="editExerciseName" required>
+                        <div id="editExerciseNameError" class="error-message"></div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="newExerciseName">New Name:</label>
+                        <input type="text" id="newExerciseName" name="newExerciseName" required>
+                        <div id="newExerciseNameError" class="error-message"></div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="ExerciseImage">Exercise Image:</label>
+                        <input type="file" id="ExerciseImage" name="ExerciseImage" accept="image/*" required>
+                    </div>
+                    <button type="button" class="btn-action" onclick="validateEditExerciseForm()">Edit Exercise</button>
+                    <div id="editExerciseSuccessMessage" class="success-message"></div>
+                </form>
+            </div>
+
+
             
 
             <div class="actions-container">
                 <!-- Container for Product Buttons -->
-                <div class="container" id="stats_Container">
+                <div class="container2" id="stats_Container">
                     <h2>Stats</h2>
                   
                     

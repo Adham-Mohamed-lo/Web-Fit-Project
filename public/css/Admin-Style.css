@@ -6,8 +6,8 @@
     color: rgb(14, 170, 92);
 }
 #admin_Panel {
-    width: 180px;
-    height: 610px; 
+    width: 12%;
+    height:82.5%; 
     background-color: #efefef;
     position: fixed;
     top: 0;
@@ -20,8 +20,8 @@
 }
 
 #stats_Container {
-    width: 180px;
-    height: 610px; 
+    width: 81%; 
+    height: 82.5%; 
     background-color: #efefef;
     position: fixed;
     top: 0;
@@ -33,12 +33,13 @@
     padding: 20px;
     margin-top: 77px;
     margin-bottom: 20px;
+    margin-left: 120px;
     transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
 #stats_Container.middle {
-    width: 1250px; 
-    height: 700px; 
+    width: 81%; 
+    height: 82.5%; 
     left: 50%;
     transform: translateX(-50%);
     margin-left: 120px;
@@ -53,6 +54,17 @@
 }
 
 .container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+}
+
+.container2 {
     width: 80%;
     margin: 20px auto;
     background-color: #fff;
@@ -131,15 +143,15 @@ h1 {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1020px;
+    width: 67%;
     background-color: #efefef;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 1px;
     margin-right: 60px;
-    margin-top: 45px;
-    height: 625px;
+    margin-top: 35px;
+    height:82.5%;
 }
 
 .action-container.hidden {
