@@ -200,3 +200,18 @@ app.listen(port, () => {
 
 
 
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const forgotPasswordLink = document.getElementById("forgot-password");
+  const loginContainer = document.getElementById("login-container");
+  const resetPasswordContainer = document.getElementById("reset-password-container");
+
+  if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener("click", function(event) {
+      event.preventDefault();
+      loginContainer.style.display = "none";
+      resetPasswordContainer.style.display = "block";
+    });
+  }
+});
