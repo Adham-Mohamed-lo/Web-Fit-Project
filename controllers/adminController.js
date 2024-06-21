@@ -223,7 +223,7 @@ const removeCoach = (req, res) => {
 };
 
 const editCoach = (req, res) => {
-    coachUpload.single('coachImage')(req, res, (err) => {
+    coachupload.single('coachImage')(req, res, (err) => {  // Updated here
         if (err instanceof multer.MulterError) {
             return res.status(500).send('Error uploading image.');
         } else if (err) {
@@ -247,12 +247,11 @@ const editCoach = (req, res) => {
                             return res.status(500).send('Error deleting old coach image.');
                         }
                     });
-                    existingCoach.coachimage = '/images/coaches/${coachImage.filename}';
+                    existingCoach.coachimage = `/images/coaches/${coachImage.filename}`;
                 }
 
                 existingCoach.coachname = newCoachName;
                 existingCoach.description = coachDescription;
-
 
                 return existingCoach.save();
             })
@@ -265,7 +264,6 @@ const editCoach = (req, res) => {
             });
     });
 };
-
 
 
 
@@ -367,6 +365,7 @@ const addExercise = (req, res) => {
             res.status(500).send("Error saving exercise.");
         });
 };
+
 
 
 

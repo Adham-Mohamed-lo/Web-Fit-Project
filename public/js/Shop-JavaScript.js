@@ -1,4 +1,9 @@
-const notyf = new Notyf();
+const notyf = new Notyf({
+  position: {
+    x: 'right', // 'left' or 'right' or 'center'
+    y: 'top', // 'top' or 'bottom'
+  },
+});
 let cart = [];
 let products = [];
 let isCartFetched = false;
@@ -87,10 +92,13 @@ function addToCart(productId) {
   if (existingItem) {
     existingItem.quantity++;
     updateCart(existingItem.product.id, existingItem.quantity);
+    notyf.success("added successfully");
   } else {
     cart.push({ product, quantity: 1 });
     updateCart(product.id, 1);
+    notyf.success("added successfully");
   }
+  
   updateCartUI();
   displayCart();
 }

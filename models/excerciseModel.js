@@ -12,7 +12,7 @@ const exerciseSchema = new mongoose.Schema({
   },
   exerciseimage: {
     type: String,
-    required: [true, 'Please enter exercise image'],
+    required: [true, 'Please enter exercise image URL'],
   },
 });
 
