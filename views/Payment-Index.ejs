@@ -7,16 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment</title>
     <link rel="stylesheet" href="/css/Payment-Style.css">
- 
 </head>
 
 <body>
     <%- include('partials/Navigation-Index') %>
 
     <div class="container">
-
         <div class="card-container">
-
             <div class="front">
                 <div class="image">
                     <img src="/images/chip.png" alt="">
@@ -37,7 +34,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="back">
                 <div class="stripe"></div>
                 <div class="box">
@@ -46,22 +42,34 @@
                     <img src="/images/visa.png" alt="">
                 </div>
             </div>
-
         </div>
 
-        <form action="/premium-plan" onsubmit="return validateCreditCard()">
+        <form action="/auth/add-card" method="POST" onsubmit="return validateCreditCard()">
+            <% if (cards.length > 0) { %>
+                <div class="inputBox">
+                    <span>Select an existing card</span>
+                    <select name="selectedCard" class="card-select-input">
+                        <option value="" selected disabled>Select a card</option>
+                        <% cards.forEach(card => { %>
+                            <option value="<%= card._id %>"><%= card.maskedNumber %> (expires: <%= card.expiredate %>)</option>
+                        <% }) %>
+                    </select>
+                </div>
+            <% } %>
+
             <div class="inputBox">
                 <span>card number</span>
-                <input type="text" maxlength="16" class="card-number-input">
+                <input type="text" name="frontcardnumber" maxlength="16" class="card-number-input" oninput="updateLast4Digits()">
+                <input type="hidden" name="last4digits" class="last4digits-input">
             </div>
             <div class="inputBox">
                 <span>card holder</span>
-                <input type="text" class="card-holder-input">
+                <input type="text" name="cardholdername" class="card-holder-input">
             </div>
             <div class="flexbox">
                 <div class="inputBox">
                     <span>expiration mm</span>
-                    <select name="" id="" class="month-input">
+                    <select name="expiremonth" class="month-input">
                         <option value="month" selected disabled>month</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -79,7 +87,7 @@
                 </div>
                 <div class="inputBox">
                     <span>expiration yy</span>
-                    <select name="" id="" class="year-input">
+                    <select name="expireyear" class="year-input">
                         <option value="year" selected disabled>year</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
@@ -95,15 +103,14 @@
                 </div>
                 <div class="inputBox">
                     <span>cvv</span>
-                    <input type="text" maxlength="4" class="cvv-input">
+                    <input type="text" name="cvv" maxlength="4" class="cvv-input">
                 </div>
             </div>
-            <input type="submit" value="Pay" class="pay-btn" formaction="/premium-plan">
+            <input type="submit" value="Pay" class="pay-btn">
         </form>
     </div>
 
     <script src="/js/Payment-JavaScript.js"></script>
-
 </body>
 
 </html>

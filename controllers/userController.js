@@ -175,11 +175,77 @@ const getCart = async (req, res) => {
     }
 };
 
-
+async function addCardToUser(userId, cardDetails) {
+    const { selectedCard, cardholdername, frontcardnumber, last4digits, cvv, expiremonth, expireyear } = cardDetails;
+    const errors = [];
+  
+    if (!selectedCard) {
+      if (!cardholdername || !frontcardnumber || !last4digits || !cvv || !expiremonth || !expireyear) {
+        errors.push("All fields are required!");
+      } else {
+        if (!/^\d{16}$/.test(frontcardnumber)) {
+          errors.push("Invalid card number!");
+        }
+        if (!/^[a-zA-Z\s]+$/.test(cardholdername) || cardholdername.trim() === "") {
+          errors.push("Invalid card holder name!");
+        }
+        if (expiremonth === "month") {
+          errors.push("Please select expiration month!");
+        }
+        if (expireyear === "year") {
+          errors.push("Please select expiration year!");
+        }
+        if (!/^\d{3,4}$/.test(cvv)) {
+          errors.push("Invalid CVV!");
+        }
+      }
+  
+      if (errors.length > 0) {
+        throw new Error(errors.join("\n"));
+      }
+  
+      const salt = await bcrypt.genSalt(10);
+      const encryptedCardNumber = await bcrypt.hash(frontcardnumber, salt);
+      const encryptedCVV = await bcrypt.hash(cvv, salt);
+  
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error('User not found');
+      }
+  
+      if (!user.visa) {
+        user.visa = []; 
+      }
+  
+      const newVisa = {
+        cardholdername,
+        frontcardnumber: encryptedCardNumber,
+        cvv: encryptedCVV,
+        expiredate: `${expiremonth}/${expireyear}`,
+        last4digits: last4digits 
+      };
+  
+  
+  
+      user.visa.push(newVisa);
+  
+      await user.save();
+    } else {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error('User not found');
+      }
+      
+      const card = user.visa.id(selectedCard);
+      if (!card) {
+        throw new Error('Selected card not found');
+      }
+    }
+  }
 
 
 module.exports = {
-    displayAllUsers, updateUser, postSignup, deleteUser, updateCart, getCart,
+    displayAllUsers, updateUser, postSignup, deleteUser, updateCart, getCart,addCardToUser,
 };
 
 

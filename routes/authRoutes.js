@@ -4,6 +4,7 @@ const userController = require("../controllers/userController");
 const adminController = require("../controllers/adminController");
 const { sign } = require("crypto");
 const app = express.Router();
+const User = require('../models/userModel');
 
 // app.use((req, res, next) => {
 //   if (req.session.user !== undefined) {
@@ -61,17 +62,43 @@ app.get("/admin", (req, res) => {
   }
 });
 
-app.get("/payment", (req, res) => {
+app.get("/payment", async(req, res) => {
   if (req.session.user !== undefined) {
-    res.render("Payment-Index", {
-      currentPage: "payment",
-      user: req.session.user === undefined ? "" : req.session.user,
-    });
+    try {
+      const user = await User.findById(req.session.user._id).select('visa');
+      const maskedCards = user.visa.map(card => {
+        return {
+          _id: card._id,
+          maskedNumber: `**** **** **** ${card.last4digits}`, // Use the stored last 4 digits
+          expiredate: card.expiredate
+        };
+      });
+
+      res.render("Payment-Index", {
+        currentPage: "payment",
+        user: req.session.user,
+        cards: maskedCards, // Pass the masked cards to the view
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    }
   } else {
     const notification = "Please log in to access this page.";
     res.redirect(`/auth/login?notification=${notification}`);
   }
 });
+
+app.post("/add-card", async (req, res) => {
+  try {
+    await userController.addCardToUser(req.session.user._id, req.body);
+    res.redirect("/premium-plan"); 
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err.message); 
+  }
+});
+
 
 app.get("/logout", loginController.logout);
 

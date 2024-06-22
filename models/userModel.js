@@ -2,8 +2,42 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const mongoosePaginate = require('mongoose-paginate-v2');
 
+const visaSchema = new mongoose.Schema({
+  cardholdername: {
+    type: String,
+    required: true,
+  },
+  frontcardnumber: {
+    type: String,
+    required: true,
+  },
+  cvv: {
+    type: String,
+    required: true,
+  },
+  expiredate: {
+    type: String,
+    required: true,
+  },
+  last4digits: {
+    type: String,
+    required: true,
+  },
+});
 
-//mongoosePaginate = require('mongoose-paginate-v2') lesa l 7war dah fy l routes !!
+visaSchema.pre('save', async function(next) {
+  if (this.isModified('frontcardnumber') || this.isModified('cvv')) {
+    try {
+      const salt = await bcrypt.genSalt(10);
+      this.frontcardnumber = await bcrypt.hash(this.frontcardnumber, salt);
+      this.cvv = await bcrypt.hash(this.cvv, salt);
+    } catch (err) {
+      return next(err);
+    }
+  }
+  next();
+});
+
 const cartItemSchema = new mongoose.Schema({
   productId: {
     type: String,
@@ -77,6 +111,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   cart: [cartItemSchema],
+  visa: [visaSchema], 
 });
 
 userSchema.plugin(mongoosePaginate);
@@ -84,8 +119,8 @@ userSchema.plugin(mongoosePaginate);
 userSchema.pre('save', async function(next) {
   if (this.isModified('userpassword')) {
     try {
-      const pas = await bcrypt.genSalt(10);
-      this.userpassword = await bcrypt.hash(this.userpassword, pas);
+      const salt = await bcrypt.genSalt(10);
+      this.userpassword = await bcrypt.hash(this.userpassword, salt);
     } catch (err) {
       return next(err);
     }
