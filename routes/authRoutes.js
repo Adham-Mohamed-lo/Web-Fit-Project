@@ -79,7 +79,9 @@ app.post("/removemeal", adminController.deleteMeal);
 app.post("/editmeal", adminController.editMeal);
 
 
-app.post("/addexcercise",adminController.addExercise);
+app.post("/addexercise",adminController.addExercise);
+app.post("/removeexercise",adminController.removeExercise);
+app.post("/editexercise", adminController.editExercise);
 
 // // Add a middleware to check if the user is logged in
 // app.use((req, res, next) => {

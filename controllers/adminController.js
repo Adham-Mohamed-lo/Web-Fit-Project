@@ -366,9 +366,58 @@ const addExercise = (req, res) => {
         });
 };
 
+const removeExercise = (req, res) => {
+    const { removeExerciseName } = req.body;
+    
 
+    if (!removeExerciseName) {
+        return res.status(400).send('Exercise Name is required.');
+    }
+
+    Exercise.findOneAndDelete({ exercisename: removeExerciseName })
+        .then((exercise) => {
+            if (!exercise) {
+                return res.status(404).send('Exercise not found.');
+            }
+            res.status(200).send('Exercise removed successfully.');
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error removing exercise.');
+        });
+};
+
+
+const editExercise = (req, res) => {
+   
+    const { editExerciseName, newExerciseName, exercisedescription, exerciseimage } = req.body;
+
+    if (!editExerciseName || !newExerciseName || !exercisedescription || !exerciseimage) {
+        return res.status(400).send('All fields are required.');
+    }
+
+    Exercise.findOneAndUpdate(
+        { exercisename: editExerciseName },
+        {
+            exercisename: newExerciseName,
+            exercisedescription: exercisedescription,
+            exerciseimage: exerciseimage
+        },
+        { new: true }
+    )
+    .then((exercise) => {
+        if (!exercise) {
+            return res.status(404).send('Exercise not found.');
+        }
+        res.status(200).send('Exercise updated successfully.');
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error updating exercise.');
+    });
+};
 
 
 module.exports = {
-    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach, addExercise, editCoach,
+    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach, addExercise, editCoach,removeExercise,editExercise
 };

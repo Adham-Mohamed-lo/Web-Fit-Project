@@ -392,7 +392,7 @@
             <div class="action-container hidden" id="addExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('addExerciseContainer')">X</button>
                 <h1>Add Exercise</h1>
-                <form action="/auth/addexcercise" method="post" id="addExerciseForm">
+                <form action="/auth/addexercise" method="post" id="addExerciseForm">
                     <div class="form-group">
                         <label for="Exercisename">Exercise Name:</label>
                         <input type="text" id="Exercisename" name="Exercisename" required>
@@ -410,46 +410,56 @@
                 </form>
             </div>
             
-
             <div class="action-container hidden" id="removeExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeExerciseContainer')">X</button>
                 <h1>Remove Exercise</h1>
-                <form id="removeExerciseForm" enctype="multipart/form-data">
+                <form action="/auth/removeexercise" method="post" id="removeExerciseForm" >
                     <div class="form-group">
                         <label for="removeExerciseName">Exercise Name:</label>
                         <input type="text" id="removeExerciseName" name="removeExerciseName" required>
                         <div id="removeExerciseNameError" class="error-message"></div>
                     </div>
-                    <button type="button" class="btn-action" onclick="validateremoveExerciseForm()">Remove
-                        Exercise</button>
+                    <button type="submit" class="btn-action">Remove Exercise</button>
                     <div id="removeExerciseSuccessMessage" class="success-message"></div>
                 </form>
             </div>
-
+            
+        
+            
+            
             <div class="action-container hidden" id="editExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('editExerciseContainer')">X</button>
                 <h1>Edit Exercise</h1>
-                <form id="editExerciseForm" enctype="multipart/form-data">
+                <form action="/auth/editexercise" method="post" id="editExerciseForm">
                     <div class="form-group">
-                        <label for="editExerciseName">Exercise Name:</label>
+                        <label for="editExerciseName">Current Exercise Name:</label>
                         <input type="text" id="editExerciseName" name="editExerciseName" required>
                         <div id="editExerciseNameError" class="error-message"></div>
                     </div>
-
+            
                     <div class="form-group">
                         <label for="newExerciseName">New Name:</label>
                         <input type="text" id="newExerciseName" name="newExerciseName" required>
                         <div id="newExerciseNameError" class="error-message"></div>
                     </div>
-
+            
                     <div class="form-group">
-                        <label for="ExerciseImage">Exercise Image:</label>
-                        <input type="file" id="ExerciseImage" name="ExerciseImage" accept="image/*" required>
+                        <label for="exercisedescription">Exercise Description:</label>
+                        <input type="text" id="exercisedescription" name="exercisedescription" required>
                     </div>
-                    <button type="button" class="btn-action" onclick="validateEditExerciseForm()">Edit Exercise</button>
+            
+                    <div class="form-group">
+                        <label for="exerciseimage">Exercise Image URL:</label>
+                        <input type="text" id="exerciseimage" name="exerciseimage" required>
+                    </div>
+                    <button type="submit" class="btn-action">Edit Exercise</button>
                     <div id="editExerciseSuccessMessage" class="success-message"></div>
                 </form>
             </div>
+            
+            
+            
+           
 
 
 
