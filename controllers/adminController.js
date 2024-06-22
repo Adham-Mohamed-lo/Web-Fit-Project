@@ -337,7 +337,6 @@ const deleteMeal = async (req, res) => {
 
 const editMeal = async (req, res) => {
     const { editMealName, newMealName, newMealdescription, newIngredients } = req.body;
-console.log( req.body)
     try {
         const existingMeal = await Meal.findOne({ mealname: editMealName });
         if (!existingMeal) {

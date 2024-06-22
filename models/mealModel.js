@@ -26,6 +26,7 @@ const mealSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true, 
+    unique: false,
   },
   ingredients: [ingredientSchema]
 });
