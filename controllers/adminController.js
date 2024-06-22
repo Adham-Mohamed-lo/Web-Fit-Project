@@ -7,7 +7,7 @@ const Coach = require("../models/coachesModel.js");
 const Product = require("../models/prodectshopModel.js");
 const Meal = require("../models/mealModel.js");
 const Exercise = require("../models/excerciseModel.js");
-
+const User = require("../models/userModel.js");
 
 
 const coachstorage = multer.diskStorage({
@@ -434,7 +434,35 @@ const editExercise = (req, res) => {
     });
 };
 
+const getAllUsers = (req, res) => {
+    User.find()
+        .then((users) => {
+            res.render('viewuser', { users });
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error fetching users');
+        });
+};
+const getDashboardData = async (req, res) => {
+    try {
+        const userCount = await User.countDocuments();
+        const mealCount = await Meal.countDocuments();
+        const coachCount = await Coach.countDocuments();
+        const mostPurchasedProduct = await Product.find().sort({ purchases: -1 }).limit(1);
+
+        res.render('dashboard', {
+            userCount,
+            mealCount,
+            coachCount,
+            mostPurchasedProduct: mostPurchasedProduct[0]
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching dashboard data');
+    }
+};
 
 module.exports = {
-    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach, addExercise, editCoach,removeExercise,editExercise
-};
+    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach, addExercise, editCoach,removeExercise,editExercise,getAllUsers,getDashboardData
+}; 

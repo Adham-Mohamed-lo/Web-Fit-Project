@@ -122,5 +122,6 @@ app.post("/removeexercise", adminController.removeExercise);
 app.post("/editexercise", adminController.editExercise);
 
 // Add a middleware to check if the user is logged in
-
+app.get('/dashboard', adminController.getDashboardData);
+app.get('/users', adminController.getAllUsers);
 module.exports = app;

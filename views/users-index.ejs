@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> users </title>
+  <link rel="stylesheet" href="/public/css/user-indec.css">
+</head>
+
+<body>
+  <%- include('partials/Navigation-Index') %>
+  <h2 class="title">All the Users</h2>
+
+  <div id="userContainer" class="container">
+    <% if (users.length > 0) { %>
+      <% users.forEach(user => { %>
+        <div class="card">
+          <div class="card-content">
+            <h2><%= User.username %></h2>
+            <p><%= User.useremail %></p>
+            <h2><%= User.age %></h2>
+            <p><%= User.address %></p>
+            <p><%= User.Subscription %></p>
+            
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No users available.</p>
+    <% } %>
+  </div>
+
+  <script src="/public/js/user-index.js"></script>
+</body>
+
+</html>
