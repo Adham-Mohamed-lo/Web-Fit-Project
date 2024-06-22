@@ -6,20 +6,24 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "please enter product name"],
     unique: true,
+    trim: true,
   },
   price: {
     type: Number,
     required: [true, "please enter product price"],
+    trim: true,
   },
   id: {
     type: Number,
     required: [true, "please enter product ID"],
+    trim: true,
     unique: true,
   },
   img: {
     type: String,
     required: [true, "please enter product image"],
     unique: true,
+    trim: true,
   }
 });
 

@@ -6,14 +6,22 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter exercise name'],
     unique: true,
+    trim: true,
   },
   exercisedescription: {
     type: String,
     required: [true, 'Please enter exercise description'],
+    trim: true,
   },
   exerciseimage: {
     type: String,
     required: [true, 'Please enter exercise image URL'],
+    trim: true,
+  },
+  exercisetype: {
+    type: String,
+    enum: ['push', 'pull', 'leg', 'free'],
+    required: [true, 'Please select exercise type'],
   },
 });
 

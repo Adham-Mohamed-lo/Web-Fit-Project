@@ -6,15 +6,18 @@ const coachSchema = new mongoose.Schema({
     type: String,
     required: [true, "please enter coach name"],
     unique: true,
+    trim: true,
   },
   coachdescription: {
     type: String,
     required: [true, "please enter coach description"],
+    trim: true,
   },
   coachimage: {
     type: String,
     required: [true, "please enter coach image"],
     unique: true,
+    trim: true,
   },
 });
 

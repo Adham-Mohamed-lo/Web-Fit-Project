@@ -53,7 +53,7 @@
                                 data-container-id="removeExerciseContainer">Remove Exercise</a></li>
                         <li><a href="#" onclick="toggleVisibility('editExerciseContainer')"
                                 data-container-id="editExerciseContainer">Edit Exercise</a></li>
-                        <li><a href="/coaches">View Exercise</a></li>
+                        <li><a href="/user/front-workout">View Exercise</a></li>
                     </ul>
 
                 </div>
@@ -395,10 +395,20 @@
                         <label for="Exerciseimage">Exercise Image URL:</label>
                         <input type="text" id="Exerciseimage" name="Exerciseimage" required>
                     </div>
+                    <div class="form-group">
+                        <label for="Exercisetype">Exercise Type:</label>
+                        <select id="Exercisetype" name="Exercisetype" required>
+                            <option value="push">Push</option>
+                            <option value="pull">Pull</option>
+                            <option value="leg">Leg</option>
+                            <option value="free">Free</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn-action">Add Exercise</button>
                     <div id="ExerciseSuccessMessage" class="success-message"></div>
                 </form>
             </div>
+            
             
             <div class="action-container hidden" id="removeExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeExerciseContainer')">X</button>
@@ -413,10 +423,7 @@
                     <div id="removeExerciseSuccessMessage" class="success-message"></div>
                 </form>
             </div>
-            
-        
-            
-            
+              
             <div class="action-container hidden" id="editExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('editExerciseContainer')">X</button>
                 <h1>Edit Exercise</h1>

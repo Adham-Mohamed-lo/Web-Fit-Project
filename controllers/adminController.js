@@ -343,17 +343,20 @@ console.log( req.body)
     }
 };
 
-const addExercise = (req, res) => {
-    const { Exercisename, Exercisedescription, Exerciseimage } = req.body;
 
-    if (!Exercisename || !Exercisedescription || !Exerciseimage) {
+
+const addExercise = (req, res) => {
+    const { Exercisename, Exercisedescription, Exerciseimage, Exercisetype } = req.body;
+
+    if (!Exercisename || !Exercisedescription || !Exerciseimage || !Exercisetype) {
         return res.status(400).send('All fields are required.');
     }
 
     const newExercise = new Exercise({
         exercisename: Exercisename,
         exercisedescription: Exercisedescription,
-        exerciseimage: Exerciseimage // Assuming Exerciseimage is a URL string
+        exerciseimage: Exerciseimage, // Assuming Exerciseimage is a URL string
+        exercisetype: Exercisetype
     });
 
     newExercise.save()
@@ -368,7 +371,6 @@ const addExercise = (req, res) => {
 
 const removeExercise = (req, res) => {
     const { removeExerciseName } = req.body;
-    
 
     if (!removeExerciseName) {
         return res.status(400).send('Exercise Name is required.');
@@ -387,12 +389,10 @@ const removeExercise = (req, res) => {
         });
 };
 
-
 const editExercise = (req, res) => {
-   
-    const { editExerciseName, newExerciseName, exercisedescription, exerciseimage } = req.body;
+    const { editExerciseName, newExerciseName, exercisedescription, exerciseimage, Exercisetype } = req.body;
 
-    if (!editExerciseName || !newExerciseName || !exercisedescription || !exerciseimage) {
+    if (!editExerciseName || !newExerciseName || !exercisedescription || !exerciseimage || !Exercisetype) {
         return res.status(400).send('All fields are required.');
     }
 
@@ -401,7 +401,8 @@ const editExercise = (req, res) => {
         {
             exercisename: newExerciseName,
             exercisedescription: exercisedescription,
-            exerciseimage: exerciseimage
+            exerciseimage: exerciseimage,
+            exercisetype: Exercisetype
         },
         { new: true }
     )

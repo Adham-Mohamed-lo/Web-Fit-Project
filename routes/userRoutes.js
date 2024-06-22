@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const Product = require('../models/prodectshopModel'); 
 const mongoose = require('mongoose');
 const Meal = require('../models/mealModel');
+const Exercise = require('../models/excerciseModel');
 
 // Add a middleware to check if the user is logged in
 app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah 
@@ -54,14 +55,6 @@ app.get('/profile', async (req, res) => {
   }
 });
 
-
-app.get('/free-workout', (req, res) => {
-  res.render('Free-Workout-Page-Index', {
-    currentPage: 'free-workout',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
-});
-
 app.get('/front-workout', (req, res) => {
   res.render('Front-Workout-Page-Index', {
     currentPage: 'front-workout',
@@ -69,12 +62,6 @@ app.get('/front-workout', (req, res) => {
   });
 });
 
-app.get('/legs-workout', (req, res) => {
-  res.render('Legs-Workout-Index', {
-    currentPage: 'legs-workout',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
-});
 app.get('/meal', async (req, res) => {
   try {
     const meals = await Meal.find();
@@ -88,18 +75,67 @@ app.get('/meal', async (req, res) => {
   }
 });
 
+app.get('/free-workout', (req, res) => {
+  Exercise.find({ exercisetype: 'free' })
+    .then((exercises) => {
+      res.render('Free-Workout-Page-Index', {
+        currentPage: 'free-workout',
+        user: req.session.user === undefined ? '' : req.session.user,
+        exercises: exercises
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error fetching exercises.');
+    });
+});
+
+
+
+app.get('/legs-workout', (req, res) => {
+  Exercise.find({ exercisetype: 'leg' })
+    .then((exercises) => {
+      res.render('Legs-Workout-Index', {
+        currentPage: 'legs-workout',
+        user: req.session.user === undefined ? '' : req.session.user,
+        exercises: exercises
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error fetching exercises.');
+    });
+});
+
+
 app.get('/pull-workout', (req, res) => {
-  res.render('Pull-Workout-Index', {
-    currentPage: 'pull-workout',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
+  Exercise.find({ exercisetype: 'pull' })
+    .then((exercises) => {
+      res.render('Pull-Workout-Index', {
+        currentPage: 'pull-workout',
+        user: req.session.user === undefined ? '' : req.session.user,
+        exercises: exercises
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error fetching exercises.');
+    });
 });
 
 app.get('/push-workout', (req, res) => {
-  res.render('Push-Workout-Index', {
-    currentPage: 'push-workout',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
+  Exercise.find({ exercisetype: 'push' })
+    .then((exercises) => {
+      res.render('Push-Workout-Index', {
+        currentPage: 'push-workout',
+        user: req.session.user === undefined ? '' : req.session.user,
+        exercises: exercises
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error fetching exercises.');
+    });
 });
 
 module.exports = app;
