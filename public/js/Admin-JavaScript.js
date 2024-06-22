@@ -369,3 +369,34 @@ document.getElementById('editMealForm').addEventListener('submit', function (eve
         console.error('Error:', error);
     });
 });
+
+
+function toggleMainMenu(menuId) {
+    const submenus = document.querySelectorAll('.submenu');
+    submenus.forEach(menu => {
+        if (menu.id === menuId) {
+            menu.classList.toggle('open'); // Toggle the 'open' class for the clicked menu
+        } else {
+            menu.classList.remove('open'); // Close other menus
+        }
+    });
+}
+
+function toggleVisibility(containerId) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        // Check if the container is currently visible or hidden
+        const isVisible = window.getComputedStyle(container).display !== 'none';
+
+        // Close all other action containers
+        const allContainers = document.querySelectorAll('.action-container');
+        allContainers.forEach(cont => {
+            if (cont.id !== containerId) {
+                cont.classList.add('hidden');
+            }
+        });
+
+        // Toggle visibility of the clicked container
+        container.classList.toggle('hidden', isVisible);
+    }
+}
