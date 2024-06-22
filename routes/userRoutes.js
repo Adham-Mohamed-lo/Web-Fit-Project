@@ -14,11 +14,6 @@ app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah
    } else {
     const notification = 'Please log in to access this page.';
       res.redirect(`/auth/login?notification=${notification}`);
-  //res.status(401).json({ error: 'You must log in first.' });
-  //   res.render("404", {
-  //     user: req.session.user === undefined ? "" : req.session.user,
-  //     currentPage: "404",
-  //   });
   }
 });
 

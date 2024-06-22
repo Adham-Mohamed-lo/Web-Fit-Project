@@ -10,12 +10,10 @@ const User = require('../models/userModel');
 //   if (req.session.user !== undefined) {
 //     next();
 //   } else {
-//     const notification = 'Please log in to access this page.';
-//       res.redirect(`/auth/login?notification=${notification}`);
-//     // res.render("404", {
-//     //   user: req.session.user === undefined ? "" : req.session.user,
-//     //   currentPage: "404",
-//     // });
+//     res.render("404", {
+//       user: req.session.user === undefined ? "" : req.session.user,
+//       currentPage: "404",
+//     });
 //   }
 // });
 
@@ -28,16 +26,17 @@ app.get("/signup", (req, res) => {
 
 app.post("/signup", userController.postSignup);
 
-app.put("/update/:id", async (req, res) => {
-  const userId = req.params.id;
-  const updateData = req.body;
-  await updateUser(userId, updateData, res);
-});
+// app.put("/update/:id", async (req, res) => {
+  
+//   const userId = req.params.id;
+//   const updateData = req.body;
+//   await updateUser(userId, updateData, res);
+// });
 
-app.delete("/delete/:id", async (req, res) => {
-  const userId = req.params.id;
-  await deleteUser(userId, res);
-});
+// app.delete("/delete/:id", async (req, res) => {
+//   const userId = req.params.id;
+//   await deleteUser(userId, res);
+// });
 
 app.get("/login", (req, res) => {
   res.render("Login-Index", {

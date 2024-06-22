@@ -21,16 +21,6 @@ const coachstorage = multer.diskStorage({
 const coachupload = multer({ storage: coachstorage });
 
 
-const getAllProducts = (req, res) => {
-    Product.find()
-        .then((products) => {
-            res.render('shop', { products });
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).send('Error fetching products');
-        });
-};
 
 const productStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -42,6 +32,16 @@ const productStorage = multer.diskStorage({
 });
 const productUpload = multer({ storage: productStorage });
 
+const getAllProducts = (req, res) => {
+    Product.find()
+        .then((products) => {
+            res.render('shop', { products });
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error fetching products');
+        });
+};
 
 
 const addProduct = (req, res) => {
@@ -72,6 +72,9 @@ const addProduct = (req, res) => {
             })
             .catch((err) => {
                 console.error("Error saving product:", err);
+            fs.unlink(path.join(__dirname, '..', 'public', `/images/products/${productImage.filename}`), (err) => {
+                if (err) console.error("Failed to remove uploaded image:", err);
+            });
                 res.status(500).send("Error saving product");
             });
     });
@@ -140,6 +143,11 @@ const editProduct = (req, res) => {
             })
             .catch((err) => {
                 console.error("Error updating product:", err);
+                if (productImage) {
+                    fs.unlink(path.join(__dirname, '..', 'public', `/images/products/${productImage.filename}`), (err) => {
+                        if (err) console.error("Failed to remove uploaded image:", err);
+                    });
+                }
                 res.status(500).send("Error updating product");
             });
     });
@@ -180,6 +188,9 @@ const addCoach = (req, res) => {
             })
             .catch((err) => {
                 console.error(err);
+            fs.unlink(path.join(__dirname, '..', 'public', `/images/coaches/${coachimage.filename}`), (err) => {
+                if (err) console.error("Failed to remove uploaded image:", err);
+            });
                 res.status(500).send("Error saving coach");
             });
     });
@@ -260,6 +271,11 @@ const editCoach = (req, res) => {
             })
             .catch((err) => {
                 console.error("Error updating coach:", err);
+                if (coachImage) {
+                    fs.unlink(path.join(__dirname, '..', 'public', `/images/coaches/${coachImage.filename}`), (err) => {
+                        if (err) console.error("Failed to remove uploaded image:", err);
+                    });
+                }
                 res.status(500).send("Error updating coach");
             });
     });

@@ -110,108 +110,108 @@
 //     sessionStorage.setItem("isLoggedIn", "false"); 
 //   }
 // }
-const express = require('express');
-const nodemailer = require('nodemailer');
-const app = express();
-const port = 3000;
+// const express = require('express');
+// const nodemailer = require('nodemailer');
+// const app = express();
+// const port = 3000;
 
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+// app.set('view engine', 'ejs');
+// app.use(express.static('public'));
+// app.use(express.urlencoded({ extended: true }));
 
-// Mock user database
-const users = [{ email: 'user@example.com' }];
+// // Mock user database
+// const users = [{ email: 'user@example.com' }];
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+// app.get('/', (req, res) => {
+//   res.render('index');
+// });
 
-app.get('/login', (req, res) => {
-  res.render('login');
-});
+// app.get('/login', (req, res) => {
+//   res.render('login');
+// });
 
-app.post('/auth/login', (req, res) => {
-  // Handle login logic here
-  res.send('Login form submitted');
-});
+// app.post('/auth/login', (req, res) => {
+//   // Handle login logic here
+//   res.send('Login form submitted');
+// });
 
-app.get('/auth/signup', (req, res) => {
-  res.render('signup');
-});
+// app.get('/auth/signup', (req, res) => {
+//   res.render('signup');
+// });
 
-app.get('/auth/forgot-password', (req, res) => {
-  res.render('forgot-password');
-});
+// app.get('/auth/forgot-password', (req, res) => {
+//   res.render('forgot-password');
+// });
 
-app.post('/auth/forgot-password', (req, res) => {
-  const email = req.body.email;
-  const user = users.find(user => user.email === email);
+// app.post('/auth/forgot-password', (req, res) => {
+//   const email = req.body.email;
+//   const user = users.find(user => user.email === email);
 
-  if (user) {
-    const resetToken = 'dummy-token'; // Generate a secure token in a real application
-    const resetLink = `http://localhost:${port}/auth/reset-password?token=${resetToken}`;
+//   if (user) {
+//     const resetToken = 'dummy-token'; // Generate a secure token in a real application
+//     const resetLink = `http://localhost:${port}/auth/reset-password?token=${resetToken}`;
 
-    // Send email
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'your-email@gmail.com',
-        pass: 'your-email-password'
-      }
-    });
+//     // Send email
+//     const transporter = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//         user: 'your-email@gmail.com',
+//         pass: 'your-email-password'
+//       }
+//     });
 
-    const mailOptions = {
-      from: 'your-email@gmail.com',
-      to: email,
-      subject: 'Password Reset',
-      text: `Click the link to reset your password: ${resetLink}`
-    };
+//     const mailOptions = {
+//       from: 'your-email@gmail.com',
+//       to: email,
+//       subject: 'Password Reset',
+//       text: `Click the link to reset your password: ${resetLink}`
+//     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-        res.send('Error sending email');
-      } else {
-        console.log('Email sent: ' + info.response);
-        res.send('Password reset link sent to your email');
-      }
-    });
-  } else {
-    res.send('No account found with that email');
-  }
-});
+//     transporter.sendMail(mailOptions, (error, info) => {
+//       if (error) {
+//         console.error(error);
+//         res.send('Error sending email');
+//       } else {
+//         console.log('Email sent: ' + info.response);
+//         res.send('Password reset link sent to your email');
+//       }
+//     });
+//   } else {
+//     res.send('No account found with that email');
+//   }
+// });
 
-app.get('/auth/reset-password', (req, res) => {
-  const token = req.query.token;
-  // Verify token and render password reset form
-  res.render('reset-password', { token });
-});
+// app.get('/auth/reset-password', (req, res) => {
+//   const token = req.query.token;
+//   // Verify token and render password reset form
+//   res.render('reset-password', { token });
+// });
 
-app.post('/auth/reset-password', (req, res) => {
-  const token = req.body.token;
-  const newPassword = req.body.password;
-  // Verify token and update password in the database
-  res.send('Password has been reset');
-});
+// app.post('/auth/reset-password', (req, res) => {
+//   const token = req.body.token;
+//   const newPassword = req.body.password;
+//   // Verify token and update password in the database
+//   res.send('Password has been reset');
+// });
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
-});
-
-
+// app.listen(port, () => {
+//   console.log(`App listening at http://localhost:${port}`);
+// });
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  const forgotPasswordLink = document.getElementById("forgot-password");
-  const loginContainer = document.getElementById("login-container");
-  const resetPasswordContainer = document.getElementById("reset-password-container");
 
-  if (forgotPasswordLink) {
-    forgotPasswordLink.addEventListener("click", function(event) {
-      event.preventDefault();
-      loginContainer.style.display = "none";
-      resetPasswordContainer.style.display = "block";
-    });
-  }
-});
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const forgotPasswordLink = document.getElementById("forgot-password");
+//   const loginContainer = document.getElementById("login-container");
+//   const resetPasswordContainer = document.getElementById("reset-password-container");
+
+//   if (forgotPasswordLink) {
+//     forgotPasswordLink.addEventListener("click", function(event) {
+//       event.preventDefault();
+//       loginContainer.style.display = "none";
+//       resetPasswordContainer.style.display = "block";
+//     });
+//   }
+// });

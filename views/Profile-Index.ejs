@@ -13,8 +13,10 @@
 
   <div class="card-container">
     <div class="card">
-      <img src="/images/PP.png" alt="Profile Picture" class="card-image" />
-      
+      <img src="<%= user.img %>" alt="Profile Picture" class="card-image" />
+      <!-- "/images/John Doe.jpeg" -->
+      <!-- "/images/users/John Doe.jpeg" -->
+      <!-- "<%= user.img %>" -->
       <div>
         <p>Name: <span id="userName"><%= user.fullname %></span></p>
         <p>Email: <span id="userEmail"><%= user.useremail %></span></p>

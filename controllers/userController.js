@@ -4,7 +4,9 @@ const bcrypt = require("bcrypt");
 const Product = require('../models/prodectshopModel');
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
-
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
 
 const displayAllUsers = async (req, res) => {
@@ -21,32 +23,25 @@ const displayAllUsers = async (req, res) => {
     }
 };
 
-// POST route to create a new user
-const postSignup = async (req, res) => {
-    const {
-        fullname,
-        username,
-        userpassword,
-        userphone,
-        useremail,
-        role,
-        gender,
-        age,
-        address,
-        img,
-        Subscription,
-    } = req.body;
+const userstorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/users');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const userupload = multer({ storage: userstorage });
 
-    try {
-        // Check if the user already exists
-        const existingUser = await User.findOne({ $or: [{ username }, { useremail }, { userphone }] });
-        if (existingUser) {
-            return res.redirect("/auth/signup");
-            //res.status(400).json({ error: "User with this username, email, or phone number already exists" });
+const postSignup = (req, res) => {
+    userupload.single('img')(req, res, async (err) => {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).send('Error uploading image.');
+        } else if (err) {
+            return res.status(500).send('Unknown error occurred.');
         }
 
-        // Create a new user instance
-        const newUser = new User({
+        const {
             fullname,
             username,
             userpassword,
@@ -56,55 +51,124 @@ const postSignup = async (req, res) => {
             gender,
             age,
             address,
-            img,
             Subscription,
-        });
+        } = req.body;
 
-        await newUser.save();
+        const img = req.file ? `/images/users/${req.file.filename}` : null; // Get the relative path of the uploaded image
 
-        res.redirect("/auth/login");
-    } catch (err) {
-        console.error(err);
-        //res.redirect("/auth/login#signup-container");
-        res.status(500).json({ error: "Failed to register user" });
-    }
+        try {
+            const existingUser = await User.findOne({ $or: [{ username }, { useremail }, { userphone }] });
+            if (existingUser) {
+                if (img) {
+                    fs.unlink(path.join('public', img), (err) => {
+                        if (err) console.error("Failed to remove uploaded image:", err);
+                    });
+                }
+                return res.redirect("/auth/signup");
+            }
 
+            const newUser = new User({
+                fullname,
+                username,
+                userpassword,
+                userphone,
+                useremail,
+                role,
+                gender,
+                age,
+                address,
+                img, 
+                Subscription,
+            });
+
+            await newUser.save();
+
+            res.redirect("/auth/login");
+        } catch (err) {
+            console.error("Error saving user:", err);
+            if (img) {
+                fs.unlink(path.join('public', img), (err) => {
+                    if (err) console.error("Failed to remove uploaded image:", err);
+                });
+            }
+            res.status(500).send("Error saving user");
+        }
+    });
 };
 
-const updateUser = async (userId, updateData, res) => {
-    try {
-        // Hash the password if it is being updated
-        if (updateData.userpassword) {
-            const salt = await bcrypt.genSalt(10);
-            updateData.userpassword = await bcrypt.hash(updateData.userpassword, salt);
-        }
+// const updateUser = async (req, res) => {
+//     userupload.single('img')(req, res, async (err) => {
+//         if (err instanceof multer.MulterError) {
+//             return res.status(500).send('Error uploading image.');
+//         } else if (err) {
+//             return res.status(500).send('Unknown error occurred.');
+//         }
 
-        // Update user in the database
-        const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true, runValidators: true });
+//         const userId = req.params.userId; // Assuming userId is passed as a route parameter
+//         const updateData = req.body;
 
-        if (!updatedUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
+//         if (req.file) {
+//             const newImgPath = `/images/users/${req.file.filename}`;
 
-        res.status(200).json({ message: "User updated successfully", user: updatedUser });
-    } catch (err) {
-        res.status(500).json({ error: "Failed to update user" });
-    }
-};
+//             try {
+//                 // Get the existing user to remove the old image
+//                 const existingUser = await User.findById(userId);
+//                 if (existingUser && existingUser.img) {
+//                     fs.unlink(path.join('public', existingUser.img), (err) => {
+//                         if (err) console.error("Failed to remove old image:", err);
+//                     });
+//                 }
 
-const deleteUser = async (userId, res) => {
-    try {
-        const deletedUser = await User.findByIdAndDelete(userId);
+//                 // Update the image path in updateData
+//                 updateData.img = newImgPath;
+//             } catch (err) {
+//                 return res.status(500).json({ error: "Failed to update user image" });
+//             }
+//         }
 
-        if (!deletedUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
+//         try {
+//             // Hash the password if it is being updated
+//             if (updateData.userpassword) {
+//                 const salt = await bcrypt.genSalt(10);
+//                 updateData.userpassword = await bcrypt.hash(updateData.userpassword, salt);
+//             }
 
-        res.status(200).json({ message: "User deleted successfully" });
-    } catch (err) {
-        res.status(500).json({ error: "Failed to delete user" });
-    }
-};
+//             // Update user in the database
+//             const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true, runValidators: true });
+
+//             if (!updatedUser) {
+//                 return res.status(404).json({ error: "User not found" });
+//             }
+
+//             res.status(200).json({ message: "User updated successfully", user: updatedUser });
+//         } catch (err) {
+//             res.status(500).json({ error: "Failed to update user" });
+//         }
+//     });
+// };
+
+// const deleteUser = async (req, res) => {
+//     const userId = req.params.userId; // Assuming userId is passed as a route parameter
+
+//     try {
+//         const userToDelete = await User.findByIdAndDelete(userId);
+
+//         if (!userToDelete) {
+//             return res.status(404).json({ error: "User not found" });
+//         }
+
+//         // Remove the user's image if it exists
+//         if (userToDelete.img) {
+//             fs.unlink(path.join('public', userToDelete.img), (err) => {
+//                 if (err) console.error("Failed to remove user image:", err);
+//             });
+//         }
+
+//         res.status(200).json({ message: "User deleted successfully" });
+//     } catch (err) {
+//         res.status(500).json({ error: "Failed to delete user" });
+//     }
+// };
 
 
 
@@ -245,7 +309,7 @@ async function addCardToUser(userId, cardDetails) {
 
 
 module.exports = {
-    displayAllUsers, updateUser, postSignup, deleteUser, updateCart, getCart,addCardToUser,
+    displayAllUsers, postSignup, updateCart, getCart,addCardToUser,
 };
 
 
