@@ -32,7 +32,7 @@ main {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease;
-  box-shadow:  8px 8px 16px #8b8b8b,-8px -8px 16px #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); /* Black shadow */
 }
 
 .product-card:hover {
