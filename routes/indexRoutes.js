@@ -45,21 +45,19 @@ app.get('/about-contact-form', (req, res) => {
   });
 });
 
-app.get('/coaches',async (req, res) => {
- try {
-    const coach = await coaches.find(); // Fetch all products from the database
+app.get('/coaches', async (req, res) => {
+  try {
+    const coachList = await coaches.find(); 
+    
     res.render('Coaches-Page-Index', {
       currentPage: 'coaches',
       user: req.session.user === undefined ? '' : req.session.user,
-      coaches: coaches,
+      coaches: coachList, 
     });
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error fetching products');
+    res.status(500).send('Error fetching coaches');
   }
-
-
- 
 });
 
 app.get('/contact-form', (req, res) => {

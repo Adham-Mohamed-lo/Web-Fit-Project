@@ -4,6 +4,7 @@ const app = express.Router();
 const User = require('../models/userModel');
 const Product = require('../models/prodectshopModel'); 
 const mongoose = require('mongoose');
+const Meal = require('../models/mealModel');
 
 // Add a middleware to check if the user is logged in
 app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah 
@@ -74,12 +75,17 @@ app.get('/legs-workout', (req, res) => {
     user: req.session.user === undefined ? '' : req.session.user,
   });
 });
-
-app.get('/meal', (req, res) => {
-  res.render('Meal-Index', {
-    currentPage: 'meal',
-    user: req.session.user === undefined ? '' : req.session.user,
-  });
+app.get('/meal', async (req, res) => {
+  try {
+    const meals = await Meal.find();
+    res.render('Meal-Index', {
+      currentPage: 'meal',
+      user: req.session.user === undefined ? '' : req.session.user,
+      meals: meals
+    });
+  } catch (error) {
+    res.status(500).send('Error fetching meals');
+  }
 });
 
 app.get('/pull-workout', (req, res) => {

@@ -2,42 +2,35 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Coaches</title>
-  <link rel="stylesheet" href="/css/Coaches-Page-Style.css">
+  <link rel="stylesheet" href="/css/Coaches-Page-Style.css" />
 </head>
 
 <body>
-  <% include partials/Navigation-Index %>
+  <%- include('partials/Navigation-Index') %>
 
-    <div class="about-section">
-      <h1>OUR COACHES</h1>
-    </div>
+  <div class="about-section">
+    <h1>OUR COACHES</h1>
+  </div>
 
-    <div class="row">
-      <% coaches.forEach(coach=> { %>
-        <div class="column">
-          <div class="card">
-            <img src="<%= coach.image %>" alt="<%= coach.name %>" style="width: 100%">
-            <div class="container">
-              <h2>
-                <%= coach.name %>
-              </h2>
-              <p class="title">
-                <%= coach.title %>
-              </p>
-              <p>
-                <%= coach.quote %>
-              </p>
-              <p><a href="<%= coach.scheduleLink %>" class="contact-button">View Schedule</a></p>
-            </div>
+  <div class="row">
+    <% coaches.forEach(coach => { %>
+      <div class="column">
+        <div class="card">
+          <img src="<%= coach.coachimage %>" alt="<%= coach.coachname %>" style="width: 100%">
+          <div class="container">
+            <h2><%= coach.coachname %></h2>
+            <p class="title"><%= coach.coachdescription %></p>
+            <!-- <p><a href="/schedule-<%= coach._id %>" class="contact-button">View Schedule</a></p> -->
           </div>
         </div>
-        <% }); %>
-    </div>
+      </div>
+    <% }); %>
+  </div>
 
-    <script src="/js/Coaches-Page-JavaScript.js"></script>
+  <script src="/js/Coaches-Page-JavaScript.js"></script>
 </body>
 
 </html>

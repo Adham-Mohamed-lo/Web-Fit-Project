@@ -6,20 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meal Plan</title>
   <link rel="stylesheet" href="/css/Meals-Style.css">
-
 </head>
 
 <body>
   <%- include('partials/Navigation-Index') %>
-    <h2 class="title">Meal Plan & Recipes</h2>
+  <h2 class="title">Meal Plan & Recipes</h2>
 
+  <div id="mealPlanContainer" class="container">
+    <% if (meals.length > 0) { %>
+      <% meals.forEach(meal => { %>
+        <div class="card">
+          <div class="card-content">
+            <h2><%= meal.mealname %></h2>
+            <p><%= meal.mealdescription %></p>
+            <ul>
+              <% meal.ingredients.forEach(ingredient => { %>
+                <li><%= ingredient.name %>: <%= ingredient.quantity %></li>
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No meals available.</p>
+    <% } %>
+  </div>
 
-    <div id="mealPlanContainer" class="container">
-
-    </div>
-
-    <script src="/js/Meal-JavaScript.js"></script>
-
+  <script src="/js/Meal-JavaScript.js"></script>
 </body>
 
 </html>

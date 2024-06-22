@@ -286,17 +286,12 @@ const getCoaches = (req, res) => {
 
 
 const addmeal = async (req, res) => {
-
-
-    const { mealname, Mealdescription } = req.body;
-
-
-
+    const { mealname, mealdescription, ingredients } = req.body;
 
     const newMeal = new Meal({
-        mealname: mealname,
-        mealdescription: Mealdescription,
-
+        mealname,
+        mealdescription,
+        ingredients: Array.isArray(ingredients) ? ingredients : [ingredients]
     });
 
     newMeal.save()
@@ -323,9 +318,10 @@ const deleteMeal = async (req, res) => {
         res.status(500).send("Error deleting meal");
     }
 };
-const editMeal = async (req, res) => {
-    const { editMealName, newMealName, newMealdescription } = req.body;
 
+const editMeal = async (req, res) => {
+    const { editMealName, newMealName, newMealdescription, newIngredients } = req.body;
+console.log( req.body)
     try {
         const existingMeal = await Meal.findOne({ mealname: editMealName });
         if (!existingMeal) {
@@ -334,6 +330,10 @@ const editMeal = async (req, res) => {
 
         existingMeal.mealname = newMealName;
         existingMeal.mealdescription = newMealdescription;
+        existingMeal.ingredients = newIngredients.map(ingredient => ({
+            name: ingredient.name,
+            quantity: ingredient.quantity
+        }));
 
         await existingMeal.save();
         res.status(200).json({ message: 'Meal successfully updated.' });

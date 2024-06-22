@@ -282,3 +282,90 @@ function toggleStatsContainer() {
         isStatsContainerRight = true;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+let ingredientIndex = 1;
+function addIngredient() {
+    const container = document.getElementById('ingredientsContainer');
+    const newIngredientGroup = document.createElement('div');
+    newIngredientGroup.className = 'ingredient-group';
+    newIngredientGroup.innerHTML = `
+        <input type="text" name="ingredients[${ingredientIndex}][name]" placeholder="Ingredient Name" required>
+        <input type="text" name="ingredients[${ingredientIndex}][quantity]" placeholder="Quantity" required>
+    `;
+    container.appendChild(newIngredientGroup);
+    ingredientIndex++;
+}
+let newIngredientIndex = 1;
+function addNewIngredient() {
+    const container = document.getElementById('newIngredientsContainer');
+    const newIngredientGroup = document.createElement('div');
+    newIngredientGroup.className = 'ingredient-group';
+    newIngredientGroup.innerHTML = `
+        <input type="text" name="newIngredients[${newIngredientIndex}][name]" placeholder="Ingredient Name" required>
+        <input type="text" name="newIngredients[${newIngredientIndex}][quantity]" placeholder="Quantity" required>
+    `;
+    container.appendChild(newIngredientGroup);
+    newIngredientIndex++;
+}
+
+
+document.getElementById('editMealForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(this);
+    const jsonData = {
+        newIngredients: []
+    };
+
+    const ingredientMap = {};
+
+    formData.forEach((value, key) => {
+        if (key.startsWith('newIngredients[')) {
+            const index = key.match(/\d+/)[0];
+            const field = key.match(/\[\w+\]\[(\w+)\]/)[1];
+            if (!ingredientMap[index]) ingredientMap[index] = {};
+            ingredientMap[index][field] = value;
+            console.log(`Before: Ingredient ${index}, Field: ${field}, Value: ${value}`);
+        } else {
+            jsonData[key] = value;
+        }
+    });
+
+    // Convert the ingredientMap object to an array of ingredient objects
+    jsonData.newIngredients = Object.values(ingredientMap);
+
+    // Debug logs for the final ingredients array
+    jsonData.newIngredients.forEach((ingredient, index) => {
+        console.log(`After: Ingredient ${index}, Name: ${ingredient.name}, Quantity: ${ingredient.quantity}`);
+    });
+
+    fetch(this.action, {
+        method: this.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }).then(data => {
+        console.log(data); // Log the response for debugging
+        document.getElementById('editMealSuccessMessage').innerText = 'Meal successfully updated.';
+        toggleVisibility('editMealContainer');
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+});

@@ -46,7 +46,7 @@
                                 data-container-id="removeMealContainer">Remove Meals</a></li>
                         <li><a href="#" onclick="toggleVisibility('editMealContainer')"
                                 data-container-id="editMealContainer">Edit Meals</a></li>
-                        <li><a href="/coaches">View Meals</a></li>
+                        <li><a href="/user/meal">View Meals</a></li>
                         <li><a href="#" onclick="toggleVisibility('addExerciseContainer')"
                                 data-container-id="addExerciseContainer">Add Exercise</a></li>
                         <li><a href="#" onclick="toggleVisibility('removeExerciseContainer')"
@@ -240,14 +240,23 @@
                     </div>
                     <div class="form-group">
                         <label for="mealdescription">Meal Description:</label>
-                        <input type="text" id="Mealdescription" name="Mealdescription" required>
+                        <input type="text" id="mealdescription" name="mealdescription" required>
                     </div>
-
+                    <div class="form-group">
+                        <label>Ingredients:</label>
+                        <div id="ingredientsContainer">
+                            <div class="ingredient-group">
+                                <input type="text" name="ingredients[0][name]" placeholder="Ingredient Name" required>
+                                <input type="text" name="ingredients[0][quantity]" placeholder="Quantity" required>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addIngredient()">Add Ingredient</button>
+                    </div>
                     <button type="submit" class="btn-action">Add Meal</button>
                     <div id="MealSuccessMessage" class="success-message"></div>
                 </form>
             </div>
-
+            
             <div class="action-container hidden" id="removeMealContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeMealContainer')">X</button>
                 <h1>Remove Meal</h1>
@@ -261,7 +270,6 @@
                     <div id="removeMealSuccessMessage" class="success-message"></div>
                 </form>
             </div>
-
             <div class="action-container hidden" id="editMealContainer">
                 <button class="exit-button" onclick="toggleVisibility('editMealContainer')">X</button>
                 <h1>Edit Meal</h1>
@@ -277,47 +285,29 @@
                         <div id="newMealNameError" class="error-message"></div>
                     </div>
                     <div class="form-group">
-                        <label for="newMealdescription">Meal Description:</label>
+                        <label for="newMealdescription">New Description:</label>
                         <input type="text" id="newMealdescription" name="newMealdescription" required>
                         <div id="newMealdescriptionError" class="error-message"></div>
                     </div>
+                    <div class="form-group">
+                        <label>New Ingredients:</label>
+                        <div id="newIngredientsContainer">
+                            <div class="ingredient-group">
+                                <input type="text" name="newIngredients[0][name]" placeholder="Ingredient Name" required>
+                                <input type="text" name="newIngredients[0][quantity]" placeholder="Quantity" required>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addNewIngredient()">Add Ingredient</button>
+                    </div>
+                    
+                    
                     <button type="submit" class="btn-action">Edit Meal</button>
                     <div id="editMealSuccessMessage" class="success-message"></div>
                 </form>
             </div>
-            <script>
-
-
-                document.getElementById('editMealForm').addEventListener('submit', function (event) {
-                    event.preventDefault(); // Prevent the default form submission
-
-                    const formData = new FormData(this);
-                    const jsonData = Object.fromEntries(formData.entries());
-
-                    console.log(jsonData); // Log form data for debugging
-
-                    fetch(this.action, {
-                        method: this.method,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(jsonData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    }).then(data => {
-                        console.log(data); // Log the response for debugging
-                        document.getElementById('editMealSuccessMessage').innerText = 'Meal successfully updated.';
-                        toggleVisibility('editMealContainer');
-                    }).catch(error => {
-                        console.error('Error:', error);
-                    });
-                });
-
-            </script>
-
+           
+            
+           
 
 
 
