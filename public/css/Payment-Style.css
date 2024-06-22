@@ -1,4 +1,6 @@
-
+html, body {
+    overflow: hidden;
+}
 .container{
     min-height: 100vh;
     background: rgb(243, 243, 243);
@@ -173,6 +175,10 @@
     height: 30px;
 }
 
+
+.card-select-input option:disabled {
+    color: red;
+}
 @media (max-width: 800px) {
     .container form {
         width: 90%; 

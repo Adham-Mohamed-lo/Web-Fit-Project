@@ -1,3 +1,26 @@
+document.addEventListener('DOMContentLoaded', () => {
+    toggleNewCardInputs(document.querySelector('.card-select-input'));
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const monthInput = document.getElementById('month-input');
+    const yearInput = document.getElementById('year-input');
+    const currentYear = new Date().getFullYear();
+
+    for (let month = 1; month <= 12; month++) {
+        const option = document.createElement('option');
+        option.value = month < 10 ? `0${month}` : month;
+        option.textContent = month < 10 ? `0${month}` : month;
+        monthInput.appendChild(option);
+    }
+
+    for (let year = currentYear; year <= currentYear + 10; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearInput.appendChild(option);
+    }
+});
 document.querySelector('.card-number-input').oninput = () => {
     document.querySelector('.card-number-box').innerText = document.querySelector('.card-number-input').value;
 };
@@ -32,7 +55,7 @@ const cardSelectInput = document.querySelector('.card-select-input');
 if (cardSelectInput) {
     cardSelectInput.onchange = (event) => {
         const selectedCard = event.target.value;
-        if (selectedCard) {
+        if (selectedCard&&(selectedCard != 'new')) {
             document.querySelector('.card-number-input').disabled = true;
             document.querySelector('.card-holder-input').disabled = true;
             document.querySelector('.month-input').disabled = true;
@@ -52,7 +75,7 @@ function validateCreditCard() {
     const errors = [];
     const selectedCard = document.querySelector('.card-select-input').value;
 
-    if (!selectedCard) {
+    if (selectedCard === 'new') {
         const cardNumber = document.querySelector('.card-number-input').value;
         const cardHolder = document.querySelector('.card-holder-input').value;
         const expMonth = document.querySelector('.month-input').value;
@@ -78,9 +101,6 @@ function validateCreditCard() {
         if (cvv.length !== 3 && cvv.length !== 4 || isNaN(cvv)) {
             errors.push("Invalid CVV!");
         }
-        if (!last4Digits) {
-            errors.push("Last 4 digits are missing!");
-        }
     }
 
     if (errors.length > 0) {
@@ -90,9 +110,14 @@ function validateCreditCard() {
     return true;
 }
 
-function updateLast4Digits() {
-    const cardNumberInput = document.querySelector('.card-number-input').value;
-    const last4Digits = cardNumberInput.slice(-4);
-    document.querySelector('.last4digits-input').value = last4Digits;
-    console.log("Last 4 Digits:", last4Digits); // Debugging step
+function toggleNewCardInputs(selectElement) {
+    const selectedValue = selectElement.value;
+    const newCardInputs = document.querySelectorAll('.card-number-input, .card-holder-input, .month-input, .year-input, .cvv-input, .last4digits-input');
+
+    if (selectedValue === 'new') {
+        newCardInputs.forEach(input => input.disabled = false);
+    } else {
+        newCardInputs.forEach(input => input.disabled = true);
+    }
 }
+

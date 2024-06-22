@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +7,6 @@
     <title>Payment</title>
     <link rel="stylesheet" href="/css/Payment-Style.css">
 </head>
-
 <body>
     <%- include('partials/Navigation-Index') %>
 
@@ -47,11 +45,14 @@
         <form action="/auth/add-card" method="POST" onsubmit="return validateCreditCard()">
             <% if (cards.length > 0) { %>
                 <div class="inputBox">
-                    <span>Select an existing card</span>
-                    <select name="selectedCard" class="card-select-input">
-                        <option value="" selected disabled>Select a card</option>
-                        <% cards.forEach(card => { %>
-                            <option value="<%= card._id %>"><%= card.maskedNumber %> (expires: <%= card.expiredate %>)</option>
+                    <span>Select an existing card or add a new card</span>
+                    <select name="selectedCard" class="card-select-input" onchange="toggleNewCardInputs(this)">
+                        <option value="new">Add a new card</option>
+                        <% cards.forEach(card => {
+                            const [expMonth, expYear] = card.expiredate.split('/');
+                            const isExpired = new Date(expYear, expMonth - 1) < new Date();
+                        %>
+                            <option value="<%= card._id %>" <%= isExpired ? 'class="expired" disabled' : '' %>><%= card.maskedNumber %> (expires: <%= card.expiredate %>) <%= isExpired ? ' - expired' : '' %></option>
                         <% }) %>
                     </select>
                 </div>
@@ -59,9 +60,8 @@
 
             <div class="inputBox">
                 <span>card number</span>
-                <input type="text" name="frontcardnumber" maxlength="16" class="card-number-input" oninput="updateLast4Digits()">
-                <input type="hidden" name="last4digits" class="last4digits-input">
-            </div>
+                <input type="text" name="frontcardnumber" maxlength="16" class="card-number-input">
+            </div> 
             <div class="inputBox">
                 <span>card holder</span>
                 <input type="text" name="cardholdername" class="card-holder-input">
@@ -69,36 +69,14 @@
             <div class="flexbox">
                 <div class="inputBox">
                     <span>expiration mm</span>
-                    <select name="expiremonth" class="month-input">
+                    <select name="expiremonth" class="month-input" id="month-input">
                         <option value="month" selected disabled>month</option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
                     </select>
                 </div>
                 <div class="inputBox">
                     <span>expiration yy</span>
-                    <select name="expireyear" class="year-input">
+                    <select name="expireyear" class="year-input" id="year-input">
                         <option value="year" selected disabled>year</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                        <option value="2030">2030</option>
-                        <option value="2031">2031</option>
-                        <option value="2032">2032</option>
-                        <option value="2033">2033</option>
                     </select>
                 </div>
                 <div class="inputBox">
@@ -110,7 +88,8 @@
         </form>
     </div>
 
+   
+
     <script src="/js/Payment-JavaScript.js"></script>
 </body>
-
 </html>
