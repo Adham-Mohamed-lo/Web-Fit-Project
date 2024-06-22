@@ -114,7 +114,7 @@
 }
 
 .dark-mode #title {
-  color: rgb(50, 205, 50);
+  color:rgb(14, 170, 92);
 }
 
 .dark-mode .plans-container {
@@ -127,11 +127,11 @@
 }
 
 .dark-mode .plan:before {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(50, 205, 50, 0.8));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0),rgb(14, 170, 92));
 }
 
 .dark-mode .plan h2 {
-  color: rgb(50, 205, 50);
+  color: rgb(14, 170, 92);
 }
 
 .dark-mode .plan ul li {
@@ -139,12 +139,12 @@
 }
 
 .dark-mode .plan button {
-  background-color: rgb(50, 205, 50);
+  background-color: rgb(14, 170, 92);
   color: rgb(18, 18, 18);
 }
 
 .dark-mode .plan button:hover {
   background-color: rgb(255, 255, 255);
-  color: rgb(50, 205, 50);
+  color: rgb(14, 170, 92);
 }
 

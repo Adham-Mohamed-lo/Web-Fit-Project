@@ -1,19 +1,17 @@
-
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
-   transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   height: auto;
   background: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   padding: 20px;
   border-radius: 8px;
 }
-
 
 .item {
   width: 100%;
@@ -58,7 +56,7 @@
   position: relative;
   top: 20px;
   left: 20px;
-  color:rgb(14, 170, 92);
+  color: rgb(14, 170, 92);
   text-align: left;
   margin: 5px;
 }
@@ -86,6 +84,7 @@ form {
   border-radius: 20px;
   padding-left: 20px;
   font-size: 16px;
+  color: #000; /* Default text color */
 }
 
 .inputbox label {
@@ -96,7 +95,7 @@ form {
   transform: translateY(-50%);
   font-size: 20px;
   font-weight: 300;
-  color:rgb(14, 170, 92);
+  color: rgb(14, 170, 92);
   transition: 0.3s;
 }
 
@@ -130,15 +129,12 @@ textarea.input {
   color: rgb(255, 255, 255);
   cursor: pointer;
   transition: background-color 0.3s ease;
-
-  
 }
-.mesgbtn:hover{
-  border: solid  0.5px; 
-  background-color: rgb(255, 255, 255);
-  color: rgba(14, 170, 92, 0.8); 
-  transform: scale(1.05);
 
+.mesgbtn:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8);
+  transform: scale(1.05);
 }
 
 @media (max-width: 800px) {
@@ -150,7 +146,6 @@ textarea.input {
   .item {
     height: auto;
     max-width: 100%;
-   
   }
 
   .contactimage {
@@ -201,17 +196,10 @@ textarea.input {
     padding: 10px;
     display: flex;
     margin-top: 40px;
-    justify-content: center; 
-  align-items: center;
- }
+    justify-content: center;
+    align-items: center;
+  }
 }
-
-
-
-
-
-
-
 
 /* Dark Mode Styles */
 body.dark-mode {
@@ -220,11 +208,11 @@ body.dark-mode {
 }
 
 .container.dark-mode {
-  background-color: #333; /* Dark background */
+  background-color: #333; /* Darker background */
 }
 
 .item.dark-mode {
-  background-color: #444; /* Darker background */
+  background-color: #444; /* Even darker background */
 }
 
 .text1.dark-mode {
@@ -237,6 +225,7 @@ body.dark-mode {
 
 .input.dark-mode {
   border: 2px solid rgb(14, 170, 92); /* Green border */
+  color: #ffffff; /* White text */
 }
 
 .inputbox label.dark-mode {
@@ -245,11 +234,11 @@ body.dark-mode {
 
 .mesgbtn.dark-mode {
   background-color: rgb(14, 170, 92); /* Green background */
-  color: rgb(255, 255, 255); /* White text */
+  color: #ffffff; /* White text */
 }
 
 .mesgbtn.dark-mode:hover {
-  background-color: rgb(255, 255, 255); /* White background */
+  background-color: #fff; /* White background */
   color: rgba(14, 170, 92, 0.8); /* Slightly transparent green text */
 }
 
