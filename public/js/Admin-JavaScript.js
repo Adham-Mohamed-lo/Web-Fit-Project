@@ -205,7 +205,7 @@ function validateremoveProductForm() {
     return isValid;
 }
 
-// Edit Product Form Validation
+
 function validateEditProductForm() {
     const editProductNameInput = document.getElementById('editProductName');
     const newProductNameInput = document.getElementById('newProductName');
@@ -244,20 +244,18 @@ function validateEditProductForm() {
 
     return isValid;
 }
-
-// Toggle visibility of containers
 let isStatsContainerRight = false;
 let isStatsContainerMiddle = false;
 
 function toggleVisibility(containerId) {
-    // Hide all other containers
+
     document.querySelectorAll('.action-container').forEach(container => {
         if (container.id !== containerId) {
             container.classList.add('hidden');
         }
     });
 
-    // Toggle visibility of the selected container
+
     const container = document.getElementById(containerId);
     if (container) {
         container.classList.toggle('hidden');
@@ -282,14 +280,6 @@ function toggleStatsContainer() {
         isStatsContainerRight = true;
     }
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -321,7 +311,7 @@ function addNewIngredient() {
 
 
 document.getElementById('editMealForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
     const formData = new FormData(this);
     const jsonData = {
@@ -342,10 +332,10 @@ document.getElementById('editMealForm').addEventListener('submit', function (eve
         }
     });
 
-    // Convert the ingredientMap object to an array of ingredient objects
+
     jsonData.newIngredients = Object.values(ingredientMap);
 
-    // Debug logs for the final ingredients array
+   
     jsonData.newIngredients.forEach((ingredient, index) => {
         console.log(`After: Ingredient ${index}, Name: ${ingredient.name}, Quantity: ${ingredient.quantity}`);
     });
@@ -362,7 +352,7 @@ document.getElementById('editMealForm').addEventListener('submit', function (eve
         }
         return response.json();
     }).then(data => {
-        console.log(data); // Log the response for debugging
+        console.log(data); 
         document.getElementById('editMealSuccessMessage').innerText = 'Meal successfully updated.';
         toggleVisibility('editMealContainer');
     }).catch(error => {
@@ -370,14 +360,13 @@ document.getElementById('editMealForm').addEventListener('submit', function (eve
     });
 });
 
-
 function toggleMainMenu(menuId) {
     const submenus = document.querySelectorAll('.submenu');
     submenus.forEach(menu => {
         if (menu.id === menuId) {
-            menu.classList.toggle('open'); // Toggle the 'open' class for the clicked menu
+            menu.classList.toggle('open');
         } else {
-            menu.classList.remove('open'); // Close other menus
+            menu.classList.remove('open');
         }
     });
 }
@@ -385,10 +374,9 @@ function toggleMainMenu(menuId) {
 function toggleVisibility(containerId) {
     const container = document.getElementById(containerId);
     if (container) {
-        // Check if the container is currently visible or hidden
-        const isVisible = window.getComputedStyle(container).display !== 'none';
+        const isVisible = container.classList.contains('hidden');
 
-        // Close all other action containers
+        // Hide all other containers
         const allContainers = document.querySelectorAll('.action-container');
         allContainers.forEach(cont => {
             if (cont.id !== containerId) {
@@ -397,6 +385,24 @@ function toggleVisibility(containerId) {
         });
 
         // Toggle visibility of the clicked container
-        container.classList.toggle('hidden', isVisible);
+        container.classList.toggle('hidden');
+
+        // Reset hover effect for submenu links if container is visible
+        const submenuLinks = container.querySelectorAll('.submenu-link');
+        submenuLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                if (!isVisible) {
+                    container.classList.add('open');
+                }
+            });
+            link.addEventListener('mouseleave', () => {
+                if (!isVisible) {
+                    container.classList.remove('open');
+                }
+            });
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+            });
+        });
     }
 }
