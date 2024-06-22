@@ -9,27 +9,64 @@
 </head>
 
 <body>
-  <%- include('partials/Navigation-Index') %>
+  <% include('partials/Navigation-Index') %>
 
   <h1 class="profile-heading">My Profile</h1>
 
   <div class="profile-container">
     <img src="<%= user.img %>" alt="Profile Picture" class="profile-image" />
     <div class="profile-details">
-      <p>Name: <span id="userName"><%= user.fullname %></span></p>
-      <p>Email: <span id="userEmail"><%= user.useremail %></span></p>
-      <p>Address: <span id="userAddress"><%= user.address %></span></p>
-      <p>Gender: <span id="userGender"><%= user.gender %></span></p>
-      <p>Age: <span id="userAge"><%= user.age %></span></p>
-      <p>Subscription Status: <span id="userSubscriptionStatus"><%= user.Subscription %></span></p>
+      <p>Name: <span id="userName">
+          <%= user.fullname %>
+        </span></p>
+      <p>Email: <span id="userEmail">
+          <%= user.useremail %>
+        </span></p>
+      <p>Address: <span id="userAddress">
+          <%= user.address %>
+        </span></p>
+      <p>Gender: <span id="userGender">
+          <%= user.gender %>
+        </span></p>
+      <p>Age: <span id="userAge">
+          <%= user.age %>
+        </span></p>
+      <p>Subscription Status: <span id="userSubscriptionStatus">
+          <%= user.Subscription %>
+        </span></p>
+      <p>Phone Number: <span id="userPhoneNumber">
+          <%= user.userphone %>
+        </span></p>
+
+      <% if (user.visa && user.visa.length > 0) { %>
+        <h2>Visa Information</h2>
+        <% user.visa.forEach(function(visa, index) { %>
+          <div class="visa-details" id="visaDetails<%= index %>">
+            <p>Visa <%= index + 1 %>
+            </p>
+            <p>Cardholder Name: <span id="visaCardholderName<%= index %>">
+                <%= visa.cardholdername %>
+              </span></p>
+            <p>Expire Date: <span id="visaExpireDate<%= index %>">
+                <%= visa.expiredate %>
+              </span></p>
+            <p>Last 4 Digits: <span id="visaLast4Digits<%= index %>">
+                <%= visa.last4digits %>
+              </span></p>
+            <button class="remove-visa-button">Remove Visa</button>
+          </div>
+        <% }); %>
+      <% } %>
     </div>
   </div>
 
+  <!-- Edit Profile and Save Changes Section -->
   <div class="button-group">
     <button id="workoutsButton">My Workouts</button>
     <button id="mealsButton">My Meals</button>
     <button id="subscriptionButton">Subscription</button>
-    <button id="editProfileButton">Edit My Profile</button>
+    <button id="editProfileButton" onclick="toggleEditFields(true)">Edit My Profile</button>
+    <button id="saveChangesButton" class="hidden" onclick="saveProfileChanges()">Save Changes</button>
   </div>
 
   <script src="/js/Profile-JavaScript.js"></script>
