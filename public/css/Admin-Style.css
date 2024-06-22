@@ -296,6 +296,24 @@ h1 {
     }
 }
 
+.remove-button {
+    background-color: transparent;
+    border: none;
+    color: #000; /* or any color you prefer */
+    font-size: 27px;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.remove-button:hover {
+    color: rgb(14, 170, 92);
+    transform: scale(1.8);
+}
+
+
+
 
 
 /* Dark Mode Styles */

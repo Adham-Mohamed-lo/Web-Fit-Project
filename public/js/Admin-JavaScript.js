@@ -413,6 +413,8 @@ function toggleVisibility(containerId) {
 }
 
 
+
+
 // Check and apply stored dark mode preference on page load
 document.addEventListener('DOMContentLoaded', function () {
     const isDarkMode = localStorage.getItem('darkModeEnabled') === 'true';
