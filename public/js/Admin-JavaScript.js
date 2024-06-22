@@ -73,9 +73,9 @@ function validateCoachForm() {
 // Edit Coach Form Validation
 function validateEditCoachForm() {
     const editCoachNameInput = document.getElementById('editCoachName');
-    const editCoachSpecialtyInput = document.getElementById('editCoachSpecialty');
-    const newCoachNameInput = document.getElementById('newCoachName');
-    const newCoachSpecialtyInput = document.getElementById('newCoachSpecialty');
+    const editCoachSpecialtyInput = document.getElementId('editCoachSpecialty');
+    const newCoachNameInput = document.getElementId('newCoachName');
+    const newCoachSpecialtyInput = document.getElementId('newCoachSpecialty');
     const editCoachName = editCoachNameInput.value.trim();
     const editCoachSpecialty = editCoachSpecialtyInput.value.trim();
     const newCoachName = newCoachNameInput.value.trim();
@@ -205,7 +205,6 @@ function validateremoveProductForm() {
     return isValid;
 }
 
-
 function validateEditProductForm() {
     const editProductNameInput = document.getElementById('editProductName');
     const newProductNameInput = document.getElementById('newProductName');
@@ -244,17 +243,16 @@ function validateEditProductForm() {
 
     return isValid;
 }
+
 let isStatsContainerRight = false;
 let isStatsContainerMiddle = false;
 
 function toggleVisibility(containerId) {
-
     document.querySelectorAll('.action-container').forEach(container => {
         if (container.id !== containerId) {
             container.classList.add('hidden');
         }
     });
-
 
     const container = document.getElementById(containerId);
     if (container) {
@@ -281,9 +279,6 @@ function toggleStatsContainer() {
     }
 }
 
-
-
-
 let ingredientIndex = 1;
 function addIngredient() {
     const container = document.getElementById('ingredientsContainer');
@@ -292,10 +287,17 @@ function addIngredient() {
     newIngredientGroup.innerHTML = `
         <input type="text" name="ingredients[${ingredientIndex}][name]" placeholder="Ingredient Name" required>
         <input type="text" name="ingredients[${ingredientIndex}][quantity]" placeholder="Quantity" required>
+        <button type="button"   class="remove-button" onclick="removeIngredient(this)">-</button>
     `;
     container.appendChild(newIngredientGroup);
     ingredientIndex++;
 }
+
+function removeIngredient(button) {
+    const container = document.getElementById('ingredientsContainer');
+    container.removeChild(button.parentElement);
+}
+
 let newIngredientIndex = 1;
 function addNewIngredient() {
     const container = document.getElementById('newIngredientsContainer');
@@ -304,11 +306,16 @@ function addNewIngredient() {
     newIngredientGroup.innerHTML = `
         <input type="text" name="newIngredients[${newIngredientIndex}][name]" placeholder="Ingredient Name" required>
         <input type="text" name="newIngredients[${newIngredientIndex}][quantity]" placeholder="Quantity" required>
+        <button type="button"   class="remove-button" onclick="removeNewIngredient(this)">-</button>
     `;
     container.appendChild(newIngredientGroup);
     newIngredientIndex++;
 }
 
+function removeNewIngredient(button) {
+    const container = document.getElementById('newIngredientsContainer');
+    container.removeChild(button.parentElement);
+}
 
 document.getElementById('editMealForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -332,10 +339,8 @@ document.getElementById('editMealForm').addEventListener('submit', function (eve
         }
     });
 
-
     jsonData.newIngredients = Object.values(ingredientMap);
 
-   
     jsonData.newIngredients.forEach((ingredient, index) => {
         console.log(`After: Ingredient ${index}, Name: ${ingredient.name}, Quantity: ${ingredient.quantity}`);
     });
@@ -406,7 +411,6 @@ function toggleVisibility(containerId) {
         });
     }
 }
-
 
 
 // Check and apply stored dark mode preference on page load
