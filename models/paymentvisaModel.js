@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const visaSchema = new mongoose.Schema({
-
   cardholdername: {
     type: String,
     required: true,
@@ -20,12 +20,10 @@ const visaSchema = new mongoose.Schema({
   expiredate: {
     type: Number,
     required: true,
-    
   },
-  
-  // Add more fields as needed
 });
 
-const User = mongoose.model("payment", visaSchema);
+visaSchema.plugin(mongoosePaginate);
 
-module.exports = User;
+const Visa = mongoose.model("Payment", visaSchema);
+module.exports = Visa;

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const workoutSchema = new mongoose.Schema({
   workoutname: {
@@ -16,8 +17,9 @@ const workoutSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  // Add more fields as needed
-
 });
 
-const User = mongoose.model("workout", workoutSchema);
+workoutSchema.plugin(mongoosePaginate);
+
+const Workout = mongoose.model("Workout", workoutSchema);
+module.exports = Workout;

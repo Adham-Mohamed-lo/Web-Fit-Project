@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const mongoosePaginate = require('mongoose-paginate-v2');
 
-// Define the schema for the user cart items
+
+//mongoosePaginate = require('mongoose-paginate-v2') lesa l 7war dah fy l routes !!
 const cartItemSchema = new mongoose.Schema({
   productId: {
-    type: String, // Assuming product IDs are MongoDB ObjectIDs
-    ref: 'Product', // Reference to the Product model
+    type: String,
+    ref: 'Product',
     required: true,
   },
   quantity: {
@@ -15,18 +17,17 @@ const cartItemSchema = new mongoose.Schema({
   },
 });
 
-// Define the main user schema with the cart field
 const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
     required: [true, 'Name is required'],
-    trim: true, 
+    trim: true,
   },
   username: {
     type: String,
     required: [true, 'Username is required'],
     unique: true,
-    trim: true, 
+    trim: true,
   },
   userpassword: {
     type: String,
@@ -41,13 +42,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Email is required'],
     unique: true,
-    trim: true, 
+    trim: true,
     lowercase: true,
   },
   role: {
     type: String,
     enum: ['user', 'admin', 'coach'],
-    default: 'user', 
+    default: 'user',
     required: true,
   },
   gender: {
@@ -67,18 +68,19 @@ const userSchema = new mongoose.Schema({
   },
   img: {
     type: String,
-    required: false, // Optional field, can be adjusted as needed
+    required: false,
   },
   Subscription: {
     type: String,
     enum: ['Free Plan', 'Standard Plan', 'Premium Plan'],
-    default: 'Free Plan', 
+    default: 'Free Plan',
     required: true,
   },
-  cart: [cartItemSchema], // Embed the cart items as a subdocument array
+  cart: [cartItemSchema],
 });
 
-// Pre-save hook to hash password before saving
+userSchema.plugin(mongoosePaginate);
+
 userSchema.pre('save', async function(next) {
   if (this.isModified('userpassword')) {
     try {
@@ -92,5 +94,4 @@ userSchema.pre('save', async function(next) {
 });
 
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;

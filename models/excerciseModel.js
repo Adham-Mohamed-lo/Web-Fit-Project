@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const exerciseSchema = new mongoose.Schema({
   exercisename: {
@@ -15,6 +16,8 @@ const exerciseSchema = new mongoose.Schema({
     required: [true, 'Please enter exercise image URL'],
   },
 });
+
+exerciseSchema.plugin(mongoosePaginate);
 
 const Exercise = mongoose.model('Exercise', exerciseSchema);
 module.exports = Exercise;

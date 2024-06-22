@@ -1,38 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="<%= lang %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Navigation</title>
   <link rel="stylesheet" href="/css/Navigation-Style.css">
 </head>
-
 <body>
   <div class="header-nav-container">
-    <header>
+    <header class="logo-container">
       <h1>WEB-FIT</h1>
     </header>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/shop">Shop</a>
-      <a href="/contact">Contact</a>
-      <a href="/plans">Join Us</a>
+    <nav class="nav-container">
+      <a href="/"><%= __("home") %></a>
+      <a href="/about"><%= __("about") %></a>
+      <a href="/shop"><%= __("shop") %></a>
+      <a href="/contact"><%= __("contact") %></a>
+      <a href="/plans"><%= __("joinUs") %></a>
       <% if (user && user.username) { %>
-        <% if (currentPage==='profile' || currentPage==='admin' ) { %>
-          <a id="login-link" href="/auth/logout">Logout</a>
+        <% if (currentPage === 'profile' || currentPage === 'admin') { %>
+          <a id="login-link" href="/auth/logout"><%= __("logout") %></a>
+        <% } else { %>
+          <% if (user.role === 'admin') { %>
+            <a id="login-link" href="/auth/admin"><%= __("adminProfile") %></a>
           <% } else { %>
-            <% if (user.role==='admin' ) { %>
-              <a id="login-link" href="/auth/admin">My Profile</a>
-              <% } else { %>
-                <a id="login-link" href="/user/profile">My Profile</a>
-                <% } %>
-                  <% } %>
-                    <% } else { %>
-                      <a id="login-link" href="/auth/login">Login</a>
-                      <% } %>
+            <a id="login-link" href="/user/profile"><%= __("myProfile") %></a>
+          <% } %>
+        <% } %>
+      <% } else { %>
+        <a id="login-link" href="/auth/login"><%= __("login") %></a>
+      <% } %>
     </nav>
+   
   </div>
 
   <% if (notification) { %>
@@ -41,9 +40,9 @@
         <%= notification %>
       </div>
     </div>
-    <% } %>
+  <% } %>
 
-      <script src="/js/Navigation-JavaScript.js"></script>
+  
+  <script src="/js/Navigation-JavaScript.js"></script>
 </body>
-
 </html>
