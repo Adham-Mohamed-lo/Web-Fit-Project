@@ -214,3 +214,57 @@ html, body {
         height: 25px; 
     }
 }
+
+
+
+
+
+
+
+/* Dark Mode */
+.dark-mode {
+    background: rgb(18, 18, 18);
+    color: white;
+}
+
+.dark-mode .container {
+    background: rgb(48, 48, 48);
+}
+
+.dark-mode .container form {
+    background: rgb(60, 60, 60);
+    color: white;
+}
+
+.dark-mode .container form .inputBox span {
+    color: #bbb;
+}
+
+.dark-mode .container form .inputBox input,
+.dark-mode .container form .inputBox select {
+    background: rgb(70, 70, 70);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, .3);
+}
+
+.dark-mode .container form .pay-btn {
+    background-color: rgb(14, 170, 92);
+    color: white;
+}
+
+.dark-mode .container .card-container .front {
+    background: rgb(14, 170, 92);
+}
+
+.dark-mode .container .card-container .back {
+    background: rgb(20, 92, 56);
+}
+
+.dark-mode .container form .pay-btn:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(14, 170, 92);
+}
+
+.dark-mode .card-select-input option:disabled {
+    color: red;
+}

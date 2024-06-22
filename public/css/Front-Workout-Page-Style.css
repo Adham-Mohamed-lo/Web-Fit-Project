@@ -71,3 +71,52 @@
     text-align: justify;
   }
   
+
+
+
+
+
+
+
+  /* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1f1f1f; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+.title.dark-mode {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+.container.dark-mode {
+  /* Adjust container styles for dark mode */
+}
+
+.card.dark-mode {
+  background-color: #333; /* Darker background */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5); /* Darker shadow */
+}
+
+.card.dark-mode:before {
+  /* Adjust gradient overlay for dark mode if needed */
+}
+
+.card.dark-mode:hover {
+  transform: scale(1.05); /* Scale up on hover */
+}
+
+.card.dark-mode:hover:before {
+  top: 0; /* Show gradient overlay on hover */
+}
+
+.card-content.dark-mode {
+  /* Adjust card content styles for dark mode */
+}
+
+.card h2.dark-mode {
+  color: rgb(14, 170, 92); /* Green heading */
+}
+
+.card p.dark-mode {
+  color: #ccc; /* Lighter text color for dark mode */
+}

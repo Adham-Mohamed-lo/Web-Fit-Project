@@ -53,3 +53,36 @@
 }
 
 
+
+
+
+
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1f1f1f; /* Dark background */
+    color: #ffffff; /* White text */
+}
+
+.title.dark-mode {
+    color: rgb(14, 170, 92); /* Green text */
+}
+
+.card.dark-mode {
+    background-color: #333; /* Dark background */
+    border-color: #555; /* Darker border color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Darker shadow */
+}
+
+.card.dark-mode:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+}
+
+.card.dark-mode img {
+    /* Adjust image styling for dark mode if needed */
+}
+
+.workout-details.dark-mode {
+    color: #ccc; /* Lighter text color for details */
+}

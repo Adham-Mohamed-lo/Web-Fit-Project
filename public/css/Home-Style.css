@@ -165,7 +165,32 @@ section {
 }
 
 .popup-button:focus {
-  box-shadow: 0 0 0 2px rgb(76, 175, 80);
+  box-shadow: rgb(69, 160, 73);
+}
+
+.darkmode-button {
+  background-color: rgb(76, 175, 80);
+  color: rgb(255, 255, 255);
+  border: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: larger;
+  border-radius: 30px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 10000;
+}
+
+.darkmode-button:hover {
+  background-color: rgb(69, 160, 73);
+}
+
+.darkmode-button:focus {
+  box-shadow: 0 0 0 2px rgb(69, 160, 73);
 }
 
 .popup-container {
@@ -180,7 +205,7 @@ section {
   background-color: rgba(255, 255, 255, 0.94);
   border-radius: 10px;
   z-index: 9999;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgb(69, 160, 73);
 }
 
 .popup-container #close_quick_test_button {
@@ -310,3 +335,130 @@ section {
     font-size: 14px; 
   }
 }
+
+
+
+
+body.dark-mode {
+  background-color: #333; /* Dark background color */
+  color: #f0f0f0; /* Light text color */
+}
+
+
+
+.dark-mode .quote {
+  color: #f0f0f0; /* Light text color for dark mode */
+}
+
+.dark-mode .title {
+  color: #8bc34a; /* Light green for dark mode */
+}
+
+.dark-mode .card {
+  background-color: #333; /* Dark card background color */
+  color: #f0f0f0; /* Light text color for dark mode */
+}
+
+.dark-mode .card:hover {
+  transform: scale(1.05);
+  background-color: #444; /* Darker hover background */
+}
+
+.dark-mode .info p,
+.dark-mode .opencontact {
+  color: #f0f0f0; /* Light text color for dark mode */
+}
+
+.dark-mode .coachcard h3,
+.dark-mode .planscard h3,
+.dark-mode .shopcard h3,
+.dark-mode .info h3 {
+  color: #8bc34a; /* Light green for dark mode */
+}
+
+.dark-mode .coachcard p,
+.dark-mode .planscard p,
+.dark-mode .shopcard p {
+  color: #f0f0f0; /* Light text color for dark mode */
+}
+
+.dark-mode .popup-button,
+.dark-mode .darkmode-button {
+  background-color: #000; /* Dark button background color */
+  color: #fff; /* White text color */
+}
+
+.dark-mode .popup-button:hover,
+.dark-mode .darkmode-button:hover {
+  background-color: #45a049; /* Darker green on hover for dark mode */
+}
+
+.dark-mode .popup-button:focus,
+.dark-mode .darkmode-button:focus {
+  box-shadow: 0 0 0 2px #4caf50; /* Green focus outline for dark mode */
+}
+
+.dark-mode .popup-container {
+  background-color: rgba(50, 50, 50, 0.94); /* Dark modal background color */
+  color: #f0f0f0; /* Light text color for dark mode */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Inverted shadow */
+  
+}
+
+.dark-mode .popup-container #close_quick_test_button {
+  color: #ccc; /* Lighter text color for dark mode */
+}
+
+.dark-mode .popup-container #close_quick_test_button:hover {
+  color: #999; /* Darker text color on hover for dark mode */
+}
+
+.dark-mode .popup-container .result {
+  color: #f0f0f0; /* Light text color for dark mode */
+}
+
+.dark-mode .popup-container #result_label {
+  color: #f0f0f0; /* Light text color for dark mode */
+}
+
+
+
+#caloriesForm {
+  color: black; /* Default text color */
+}
+
+
+/* Dark mode styles */
+.dark-mode #caloriesForm {
+  color: white; /* Text color in dark mode */
+}
+
+
+
+
+/* Default light mode styles */
+#quiz_label
+{
+  color: black; /* Default text color */
+}
+
+/* Dark mode styles */
+.dark-mode #quiz_label
+{
+  color: white; /* Text color in dark mode */
+}
+
+
+
+#quiz_label,
+#caloriesForm label {
+  color: black; /* Default text color */
+}
+
+/* Dark mode styles */
+.dark-mode #quiz_label,
+.dark-mode #caloriesForm label {
+  color: white; /* Text color in dark mode */
+}
+
+

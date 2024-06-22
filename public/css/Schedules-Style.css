@@ -91,3 +91,38 @@ a {
         padding: 20px;
     }
 }
+
+
+/* Dark Mode */
+.dark-mode .schedule {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode #book-now-btn {
+    background-color: rgb(50, 205, 50);
+    color: black;
+}
+
+.dark-mode #book-now-btn:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgba(50, 205, 50, 0.8);
+}
+
+.dark-mode h1, .dark-mode h2 {
+    color: rgb(50, 205, 50);
+}
+
+.dark-mode .schedule-table th {
+    background-color: #333;
+}
+
+.dark-mode .schedule-table td {
+    background-color: #444;
+    color: #ddd;
+}
+
+.dark-mode .schedule-table th, .dark-mode .schedule-table td {
+    border: 1px solid #555;
+}

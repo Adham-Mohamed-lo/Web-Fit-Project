@@ -70,3 +70,37 @@ body {
 .button-group button:hover {
   background-color: #0056b3;
 }
+
+
+
+/* Dark Mode */
+.dark-mode body {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .profile-heading {
+  color: rgb(50, 205, 50);  /* Lighter green for dark mode */
+}
+
+.dark-mode .profile-details {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .profile-details p {
+  color: #e0e0e0;  /* Light grey text for dark mode */
+}
+
+.dark-mode .profile-details span {
+  color: rgb(50, 205, 50);  /* Lighter green for dark mode */
+}
+
+.dark-mode .button-group button {
+  background-color: rgb(50, 205, 50);
+  color: #121212;
+}
+
+.dark-mode .button-group button:hover {
+  background-color: #33a532;  /* Darker green for hover in dark mode */
+}

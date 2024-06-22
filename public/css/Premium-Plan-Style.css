@@ -68,3 +68,41 @@
 .planimage {
   width: 245px;
 }
+
+
+
+
+
+
+
+
+/* Dark Mode */
+.dark-mode .title {
+  color: rgb(50, 205, 50);
+}
+
+.dark-mode .content {
+  background-color: rgb(18, 18, 18);
+  color: white;
+}
+
+.dark-mode .card {
+  background-color: rgb(48, 48, 48);
+  box-shadow: 0 5px 25px rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .card:before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(50, 205, 50, 0.8));
+}
+
+.dark-mode .card h3 {
+  color: rgb(50, 205, 50);
+}
+
+.dark-mode .card p {
+  color: #bbb;
+}
+
+.dark-mode .workoutimage, .dark-mode .planimage {
+  filter: brightness(0.8);
+}

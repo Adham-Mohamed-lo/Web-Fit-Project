@@ -54,3 +54,40 @@ input[type="submit"]:hover {
   transform: scale(1.05);
 }
 
+
+
+
+
+/* Dark Mode Styles */
+.dark-mode .container {
+  background-color: #333; /* Dark background */
+  color: #ccc; /* Light text */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+.dark-mode h2 {
+  color: #fff; /* White text */
+}
+
+.dark-mode label {
+  color: #aaa; /* Medium-light text */
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode textarea {
+  background-color: #444; /* Darker background */
+  border: 1px solid #777; /* Medium border */
+  color: #ccc; /* Light text */
+}
+
+.dark-mode input[type="submit"] {
+  background-color: rgb(14, 170, 92); /* Green button */
+  color: rgb(255, 255, 255); /* White text */
+}
+
+.dark-mode input[type="submit"]:hover {
+  background-color: rgb(255, 255, 255); /* White background */
+  color: rgba(14, 170, 92, 0.8); /* Semi-transparent green text */
+}
+

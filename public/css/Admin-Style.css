@@ -295,3 +295,132 @@ h1 {
         margin: 0 auto 20px;
     }
 }
+
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1f1f1f; /* Dark background */
+    color: #ffffff; /* White text */
+}
+
+.actions-container.dark-mode {
+    color: #ffffff; /* White text */
+}
+
+#admin_Panel.dark-mode {
+    background-color: #333; /* Darker background */
+    color: #ffffff; /* White text */
+    box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+.container.dark-mode {
+    background-color: #333; /* Darker background */
+    color: #ffffff; /* White text */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Lighter shadow */
+}
+
+h1.dark-mode,
+h2.dark-mode {
+    color: rgb(14, 170, 92); /* Green text */
+}
+
+.admin-menu.dark-mode .main-menu-button,
+.admin-menu.dark-mode a,
+.admin-menu.dark-mode .submenu-link {
+    background-color: rgb(14, 170, 92); /* Green background */
+    color: #ffffff; /* White text */
+}
+
+.admin-menu.dark-mode .main-menu-button:hover,
+.admin-menu.dark-mode a:hover,
+.admin-menu.dark-mode .submenu-link:hover {
+    background-color: rgb(9, 134, 73); /* Darker green background on hover */
+    color: rgba(14, 170, 92, 0.8); /* Slightly transparent green text */
+}
+
+.admin-menu.dark-mode a,
+.admin-menu.dark-mode .submenu-link {
+    color: #ffffff; /* White text */
+}
+
+.action-container.dark-mode {
+    background-color: #333; /* Darker background */
+    color: #ffffff; /* White text */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+.action-container.dark-mode h1 {
+    color: rgb(14, 170, 92); /* Green text */
+}
+
+.action-container.dark-mode .form-group label,
+.action-container.dark-mode .btn-action,
+#ingButton.dark-mode {
+    color: #ffffff; /* White text */
+    background-color: rgb(14, 170, 92); /* Green background */
+}
+
+.action-container.dark-mode .form-group input,
+.action-container.dark-mode .form-group select {
+    background-color: #333; /* Darker background */
+    color: #ffffff; /* White text */
+}
+
+.action-container.dark-mode .btn-action:hover,
+#ingButton.dark-mode:hover {
+    background-color: rgb(9, 134, 73); /* Darker green on hover */
+}
+
+.action-container.dark-mode .error-message,
+.action-container.dark-mode .success-message {
+    color: rgba(4, 161, 4, 0.8); /* Green text */
+}
+
+.success-message.dark-mode {
+    background-color: darkred; /* Dark red background for success */
+}
+
+.submenu.dark-mode .submenu-link {
+    color: #ffffff; /* White text */
+}
+
+.submenu.dark-mode .submenu-link:hover {
+    background-color: #444; /* Darker grey background on hover */
+}
+
+.ingredient-group.dark-mode input {
+    background-color: #333; /* Darker background */
+    color: #ffffff; /* White text */
+}
+
+@media (max-width: 800px) {
+    .actions-container.dark-mode {
+        color: #ffffff; /* White text */
+    }
+
+    .container.dark-mode {
+        background-color: #333; /* Darker background */
+        color: #ffffff; /* White text */
+    }
+
+    .action-container.dark-mode {
+        background-color: #333; /* Darker background */
+        color: #ffffff; /* White text */
+    }
+
+    .action-container.dark-mode .form-group input,
+    .action-container.dark-mode .form-group select {
+        background-color: #333; /* Darker background */
+        color: #ffffff; /* White text */
+    }
+
+    .submenu.dark-mode .submenu-link {
+        color: #ffffff; /* White text */
+    }
+
+    .ingredient-group.dark-mode input {
+        background-color: #333; /* Darker background */
+        color: #ffffff; /* White text */
+    }
+}

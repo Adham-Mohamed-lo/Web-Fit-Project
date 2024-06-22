@@ -102,3 +102,49 @@
   }
 }
 
+
+
+
+
+
+/* Dark Mode */
+.dark-mode {
+  background: rgb(18, 18, 18);
+  color: white;
+}
+
+.dark-mode #title {
+  color: rgb(50, 205, 50);
+}
+
+.dark-mode .plans-container {
+  color: white;
+}
+
+.dark-mode .plan {
+  background-color: rgb(48, 48, 48);
+  box-shadow: 0 5px 25px rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .plan:before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(50, 205, 50, 0.8));
+}
+
+.dark-mode .plan h2 {
+  color: rgb(50, 205, 50);
+}
+
+.dark-mode .plan ul li {
+  color: #bbb;
+}
+
+.dark-mode .plan button {
+  background-color: rgb(50, 205, 50);
+  color: rgb(18, 18, 18);
+}
+
+.dark-mode .plan button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(50, 205, 50);
+}
+

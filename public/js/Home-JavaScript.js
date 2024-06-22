@@ -37,3 +37,33 @@ document.getElementById("calculateButton").addEventListener("click", function() 
   resultLabelElement.innerHTML = "Calories Result: " + bmr.toFixed(0);
   resultLabelContainer.style.display = "block";
 });
+
+
+function toggleDarkMode() {
+  const body = document.body;
+  const isDarkMode = body.classList.contains('dark-mode');
+
+  if (isDarkMode) {
+    body.classList.remove('dark-mode');
+    localStorage.setItem('darkModeEnabled', 'false'); // Store light mode preference
+    document.querySelector('.darkmode-button').textContent = 'Dark Mode'; // Update button text
+  } else {
+    body.classList.add('dark-mode');
+    localStorage.setItem('darkModeEnabled', 'true'); // Store dark mode preference
+    document.querySelector('.darkmode-button').textContent = 'Light Mode'; // Update button text
+  }
+}
+
+// Check and apply stored dark mode preference on page load
+document.addEventListener('DOMContentLoaded', function () {
+  const isDarkMode = localStorage.getItem('darkModeEnabled') === 'true';
+  const darkModeButton = document.querySelector('.darkmode-button');
+  
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+    darkModeButton.textContent = 'Light Mode';
+  } else {
+    document.body.classList.remove('dark-mode');
+    darkModeButton.textContent = 'Dark Mode';
+  }
+});

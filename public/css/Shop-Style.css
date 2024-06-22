@@ -217,3 +217,97 @@ button:hover {
   font-weight: bold;
   text-align: right;
 }
+
+
+.dark-mode main {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-mode #products {
+  color: white;
+}
+
+.dark-mode #products h2 {
+  color: #0eaa5c;
+}
+
+.dark-mode .product-card {
+  background-color: #1f1f1f;
+  color: white;
+  box-shadow: 8px 8px 16px #000000, -8px -8px 16px #2d2d2d;
+}
+
+.dark-mode .product-card:hover {
+  transform: scale(1.04);
+}
+
+.dark-mode .product-card p {
+  color: rgb(200, 200, 200);
+}
+
+.dark-mode button {
+  background-color: #0eaa5c;
+  color: white;
+}
+
+.dark-mode button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8);
+}
+
+.dark-mode .cart-info {
+  background-color: #0eaa5c;
+  color: white;
+}
+
+.dark-mode .cart-info:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8);
+}
+
+.dark-mode #cart-Btn {
+  color: white;
+}
+
+.dark-mode .cart-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .cart-container {
+  background-color: #1f1f1f;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .cart-close {
+  color: white;
+}
+
+.dark-mode .cart-header {
+  color: white;
+}
+
+.dark-mode .cart-items {
+  border-top: 1px solid rgb(60, 60, 60);
+}
+
+.dark-mode .cart-items::-webkit-scrollbar-track {
+  background-color: rgb(60, 60, 60);
+}
+
+.dark-mode .cart-items::-webkit-scrollbar-thumb {
+  background-color: rgb(100, 100, 100);
+}
+
+.dark-mode .cart-items::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(150, 150, 150);
+}
+
+.dark-mode .cart-item {
+  border-bottom: 1px solid rgb(60, 60, 60);
+}
+
+.dark-mode .cart-total {
+  color: white;
+}

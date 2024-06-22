@@ -66,3 +66,45 @@
 .workoutimage {
   width: 245px;
 }
+
+
+
+
+
+
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1f1f1f; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+.title.dark-mode {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+.card.dark-mode {
+  background-color: #333; /* Dark background */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8); /* Darker shadow */
+}
+
+.card.dark-mode:before {
+  background: linear-gradient(to bottom, rgba(0, 128, 0, 0), rgba(4, 161, 4, 0.8)); /* Green gradient */
+}
+
+.card.dark-mode:hover {
+  transform: scale(1.05); /* Scale up on hover */
+}
+
+.card.dark-mode h3 {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+.card.dark-mode p {
+  color: #ffffff; /* White text */
+}
+
+.workoutimage.dark-mode {
+  /* Adjust styles for workout image in dark mode if needed */
+}

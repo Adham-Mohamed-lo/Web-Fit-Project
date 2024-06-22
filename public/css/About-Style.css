@@ -138,3 +138,46 @@
   }
 }
 
+
+
+
+.dark-mode .title {
+  color: white; /* White text */
+}
+
+.dark-mode .card-container {
+  color: white; /* White text */
+}
+
+.dark-mode .card {
+  background-color: #1f1f1f; /* Darker background */
+  color: white; /* White text */
+  box-shadow: 0 5px 25px rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+.dark-mode .card:before {
+  background: linear-gradient(to bottom, rgba(0, 128, 0, 0), rgba(4, 161, 4, 0.8)); /* Green gradient */
+}
+
+.dark-mode .card:hover {
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3); /* Lighter shadow */
+}
+
+.dark-mode .about-section {
+  background-color: rgb(20, 92, 56); /* Green background */
+  color: white; /* White text */
+}
+
+.dark-mode .container {
+  color: white; /* White text */
+}
+
+.dark-mode .contact-button {
+  background-color: rgb(14, 170, 92); /* Green button */
+  color: white; /* White text */
+}
+
+.dark-mode .contact-button:hover {
+  background-color: rgb(255, 255, 255); /* White background */
+  color: rgba(14, 170, 92, 0.8); /* Semi-transparent green text */
+}

@@ -124,3 +124,54 @@ input[type="submit"]:hover,
 #forgot-password:hover {
   text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #1f1f1f; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+#login-container,
+#signup-container {
+  background-color: #333; /* Darker background */
+  box-shadow: 16px 16px 30px rgba(0, 0, 0, 0.8), -16px -16px 30px #555; /* Darker shadow */
+}
+
+h2,
+label,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+#signup-gender {
+  color: #fff; /* White text */
+  border-color: #555; /* Darker border */
+}
+
+button[type="submit"],
+button[type="button"],
+#signup-button,
+#login-button,
+.signup-container-button,
+.back-to-login {
+  background-color: rgb(14, 170, 92); /* Green button background */
+  color: #333; /* Dark text */
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover,
+input[type="submit"]:hover,
+#signup-button:hover,
+#login-button:hover,
+.signup-container-button:hover,
+.back-to-login:hover {
+  background-color: #fff; /* White background on hover */
+  color: rgba(14, 170, 92, 0.8); /* Green text on hover */
+}

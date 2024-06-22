@@ -205,3 +205,56 @@ textarea.input {
   align-items: center;
  }
 }
+
+
+
+
+
+
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1f1f1f; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+.container.dark-mode {
+  background-color: #333; /* Dark background */
+}
+
+.item.dark-mode {
+  background-color: #444; /* Darker background */
+}
+
+.text1.dark-mode {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+.text3.dark-mode {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+.input.dark-mode {
+  border: 2px solid rgb(14, 170, 92); /* Green border */
+}
+
+.inputbox label.dark-mode {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+.mesgbtn.dark-mode {
+  background-color: rgb(14, 170, 92); /* Green background */
+  color: rgb(255, 255, 255); /* White text */
+}
+
+.mesgbtn.dark-mode:hover {
+  background-color: rgb(255, 255, 255); /* White background */
+  color: rgba(14, 170, 92, 0.8); /* Slightly transparent green text */
+}
+
+@media (max-width: 800px) {
+  .item.dark-mode {
+    background-color: #444; /* Darker background */
+  }
+}

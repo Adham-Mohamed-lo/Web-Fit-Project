@@ -132,3 +132,42 @@ footer {
 footer p {
   margin: 0;
 }
+
+
+
+
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #1f1f1f; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+.dark-mode .header-nav-container {
+  background-color: #1f1f1f; /* Dark background */
+  color: rgb(14, 170, 92); /* Green text */
+  border-bottom-color: rgb(14, 170, 92); /* Green border */
+}
+
+.dark-mode header {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+.dark-mode nav a {
+  color: #ffffff; /* White text */
+}
+
+.dark-mode nav a:hover {
+  color: rgb(14, 170, 92); /* Green hover text */
+  background-color: rgb(35, 35, 35); /* Dark grey background */
+}
+
+.dark-mode .notification-bar {
+  background-color: rgb(14, 170, 92); /* Green notification bar */
+  color: white; /* White text */
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+.dark-mode footer {
+  background-color: rgb(35, 35, 35); /* Dark footer background */
+}
