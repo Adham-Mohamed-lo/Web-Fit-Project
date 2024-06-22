@@ -7,7 +7,7 @@
 }
 #admin_Panel {
     width: 12%;
-    height:82.5%; 
+    height:84%; 
     background-color: #efefef;
     position: fixed;
     top: 0;
@@ -15,8 +15,8 @@
     overflow-y: auto; 
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
     padding: 20px;
-    margin-top: 77px;
-    margin-bottom: 20px;
+    margin-top: 4.5%;
+    margin-bottom: 10%;
 }
 
 
@@ -32,16 +32,6 @@
     position: relative;
 }
 
-.container2 {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    position: relative;
-}
 
 h2 {
     font-size: 24px;
@@ -113,15 +103,28 @@ h1 {
 }
 .action-container {
     position: absolute;
-    right: 1.5%; /* Adjusted to move 5% from the right edge */
-    top: 55%; /* Adjusted to center vertically */
+    right: 0.5%;
+    top: 54%;
     transform: translateY(-50%);
-    width: 80%;
+    width: 82%;
     background-color: #efefef;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 82.5%; /* Adjusted height */
+    height: 84%; 
+}
+#editUserContainer{
+    position: absolute;
+    right: 0.5%;
+    top: 73.5%;
+    transform: translateY(-50%);
+    width: 82%;
+    background-color: #efefef;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: auto;  
+    margin-bottom: 4%;
 }
 
 .action-container.hidden {
@@ -156,7 +159,7 @@ h1 {
 
 .action-container .btn-action {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 10px;
     background-color: rgb(14, 170, 92);
     color: #fff;
     border: none;
@@ -164,7 +167,7 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-button {
+#ingButton {
     display: inline-block;
     padding: 10px 20px;
     background-color: rgb(14, 170, 92);
@@ -173,9 +176,10 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 2px;
 }
 
-button:hover {
+#ingButton:hover {
     background-color: rgb(9, 134, 73);
 }
 
@@ -199,8 +203,8 @@ button:hover {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: red;
-    color: #fff;
+    background-color:  #efefef;
+    color: #000000;
     border: none;
     border-radius: 50%;
     width: 30px;
@@ -208,7 +212,8 @@ button:hover {
     cursor: pointer;
 }
 .exit-button:hover {
-    color: rgba(14, 170, 92, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+    background-color:  #ff0000;
 }
 
 .error-message {
@@ -229,10 +234,10 @@ button:hover {
             transition: max-height 0.5s ease-out;
         }
         .submenu.open {
-            max-height: 500px; /* Adjust as needed to fit content */
+            max-height: 500px; 
             transition: max-height 0.5s ease-in;
         }
-        /* Style for submenu links */
+        
         .admin-menu .submenu-link {
             display: block;
             padding: 8px 16px;
@@ -247,12 +252,12 @@ button:hover {
         
         .ingredient-group {
             display: flex;
-            gap: 10px; /* Adjust the gap value to your preference */
+            gap: 10px; 
         }
         
         .ingredient-group input {
-            flex: 1; /* This will make both input fields take up equal width */
-            padding: 8px; /* Adjust padding as needed */
+            flex: 1; 
+            padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
