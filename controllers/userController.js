@@ -243,7 +243,7 @@ async function addCardToUser(userId, cardDetails) {
     const { selectedCard, cardholdername, frontcardnumber, cvv, expiremonth, expireyear } = cardDetails;
     const errors = [];
 
-    if (!selectedCard) {
+    if (!selectedCard|| selectedCard === 'new') {
         if (!cardholdername || !frontcardnumber || !cvv || !expiremonth || !expireyear) {
             errors.push("All fields are required!");
         } else {

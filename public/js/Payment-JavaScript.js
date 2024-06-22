@@ -81,7 +81,6 @@ function validateCreditCard() {
         const expMonth = document.querySelector('.month-input').value;
         const expYear = document.querySelector('.year-input').value;
         const cvv = document.querySelector('.cvv-input').value;
-        const last4Digits = document.querySelector('.last4digits-input').value;
 
         if (cardNumber.length !== 16 || isNaN(cardNumber)) {
             errors.push("Invalid card number!");
