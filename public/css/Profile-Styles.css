@@ -9,7 +9,7 @@ body {
   text-align: center;
   margin-top: 20px;
   font-size: 3em;
-  color: rgb(14, 170, 92);  /* Changed color to green */
+  color: rgb(14, 170, 92);  
 }
 
 .profile-container {
@@ -41,18 +41,18 @@ body {
 .profile-details p {
   font-size: 1.5em;
   margin: 15px 0;
-  color: #333;  /* Text color set to black */
+  color: #333; 
 }
 
 .profile-details span {
   font-weight: bold;
-  color: rgb(14, 170, 92);  /* Text color set to green */
+  color: rgb(14, 170, 92);  
 }
 
 .button-group {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .button-group button {
@@ -60,6 +60,29 @@ body {
   color: white;
   border: none;
   padding: 15px 30px;
+  margin: 0px 15px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.button-group button:hover {
+  border: solid 0.5px; 
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8); 
+  transform: scale(1.05);
+}
+
+.hidden{
+  display: none;
+}
+.remove-visa-button{
+  background-color: rgb(14, 170, 92);
+  color: white;
+  border: none;
+  padding: 3px 7px;
   margin: 0 15px;
   font-size: 1.2em;
   cursor: pointer;
@@ -67,20 +90,28 @@ body {
   transition: background-color 0.3s;
 }
 
-.button-group button:hover {
-  background-color: #0056b3;
+.remove-visa-button:hover{
+  border: solid 0.5px; 
+  background-color: rgb(255, 255, 255);
+  color: rgba(14, 170, 92, 0.8); 
+  transform: scale(1.05);
 }
 
+input {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 18px;
+}
 
-
-/* Dark Mode */
 .dark-mode body {
   background-color: #121212;
   color: #e0e0e0;
 }
 
 .dark-mode .profile-heading {
-  color: rgb(50, 205, 50);  /* Lighter green for dark mode */
+  color: rgb(50, 205, 50); 
 }
 
 .dark-mode .profile-details {
@@ -89,11 +120,11 @@ body {
 }
 
 .dark-mode .profile-details p {
-  color: #e0e0e0;  /* Light grey text for dark mode */
+  color: #e0e0e0;  
 }
 
 .dark-mode .profile-details span {
-  color: rgb(50, 205, 50);  /* Lighter green for dark mode */
+  color: rgb(50, 205, 50); 
 }
 
 .dark-mode .button-group button {
@@ -102,5 +133,5 @@ body {
 }
 
 .dark-mode .button-group button:hover {
-  background-color: #33a532;  /* Darker green for hover in dark mode */
+  background-color: #33a532;  
 }
