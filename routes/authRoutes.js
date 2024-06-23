@@ -148,7 +148,7 @@ app.get("/payment", async(req, res) => {
       res.render("Payment-Index", {
         currentPage: "payment",
         user: req.session.user,
-        cards: maskedCards, // Pass the masked cards to the view
+        cards: maskedCards, 
       });
     } catch (err) {
       console.error(err);
@@ -178,7 +178,7 @@ app.put("/editcoaches", adminController.editCoach);
 app.delete("/removecoach", adminController.removeCoach);
 app.get("/getcoaches", adminController.getCoaches);
 
-//app.get('/shop', adminController.getAllProducts);
+ 
 app.post("/addProduct", adminController.addProduct);
 app.put("/editProduct", adminController.editProduct);
 app.delete("/removeProduct", adminController.deleteProduct);

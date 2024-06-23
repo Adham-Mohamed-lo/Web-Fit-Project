@@ -63,7 +63,7 @@
   }
   
   .dark-mode .title {
-    color: rgb(50, 205, 50);  /* Lighter green for dark mode */
+    color: rgb(50, 205, 50);  
   }
   
   .dark-mode .card {
@@ -77,13 +77,13 @@
   }
   
   .dark-mode .card img {
-    filter: brightness(0.8);  /* Darken images in dark mode */
+    filter: brightness(0.8); 
   }
   
   .dark-mode .workout-details h2 {
-    color: rgb(50, 205, 50);  /* Lighter green for dark mode */
+    color: rgb(50, 205, 50);  
   }
   
   .dark-mode .workout-details p {
-    color: #bbb;  /* Light grey text for dark mode */
+    color: #bbb; 
   }

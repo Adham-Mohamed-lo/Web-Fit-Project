@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const Meal = require('../models/mealModel');
 const Exercise = require('../models/excerciseModel');
 
-// Add a middleware to check if the user is logged in
+ 
 app.use((req, res, next) => { //"yet to know" shoft hn3ml eh fy dah 
   if (req.session.user !== undefined) {
     next();

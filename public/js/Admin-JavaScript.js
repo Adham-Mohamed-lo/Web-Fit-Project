@@ -143,7 +143,7 @@ function populateMealForms(meal) {
     const ingredientsContainer = document.getElementById('newIngredientsContainer');
     ingredientsContainer.innerHTML = '';
 
-  
+    // Populate the ingredients
     meal.ingredients.forEach((ingredient, index) => {
         const ingredientGroup = document.createElement('div');
         ingredientGroup.className = 'ingredient-group';
@@ -209,7 +209,7 @@ function editUser() {
 
     document.getElementById('editUsersName').value = user.username;
     document.getElementById('newUsersFullName').value = user.fullname;
-    document.getElementById('UsersPassword').value = user.password; 
+    document.getElementById('UsersPassword').value = user.password; // Do not pre-fill passwords
     document.getElementById('userphone').value = user.userphone;
     document.getElementById('edituseremail').value = user.useremail;
     document.getElementById('editUsersrole').value = user.role;
@@ -278,8 +278,8 @@ document.getElementById('removeUsersForm').addEventListener('submit', async func
 
 const notyf = new Notyf({
     position: {
-        x: 'right', 
-        y: 'top', 
+        x: 'right', // 'left' or 'right' or 'center'
+        y: 'top', // 'top' or 'bottom'
     },
 });
 
