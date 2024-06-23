@@ -158,8 +158,6 @@ const updateUser = async (req, res) => {
     });
 };
 
-app.put('/user/:userId', updateUser);
-
 
 const deleteUser = async (req, res) => {
     const userId = req.params.userId; // Assuming userId is passed as a route parameter
@@ -185,6 +183,7 @@ const deleteUser = async (req, res) => {
 };
 
 
+// app.put('/user/:userId', updateUser);
 
 
 const updateCart = async (req, res) => {
@@ -328,7 +327,7 @@ async function addCardToUser(userId, cardDetails) {
 
 
 module.exports = {
-    displayAllUsers, postSignup, updateCart, getCart,addCardToUser,updateUser,deleteUser
+    displayAllUsers, postSignup, updateCart, getCart,addCardToUser,updateUser,deleteUser,
 };
 
 

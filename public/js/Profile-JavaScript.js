@@ -1,80 +1,95 @@
+
+let selectedUserId = null;
+function selectUser(userId) {
+    selectedUserId = userId;
+
+    console.log(userId)
+    fetch(`/auth/user/${userId}`)
+        .then(response => response.json())
+        .then(user => {
+            sessionStorage.setItem('selectedUser', JSON.stringify(user));
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+}
+
+function showVisaDetails() {
+    document.querySelectorAll('.visa-details').forEach(function(visaDetail) {
+        visaDetail.classList.add('hidden');
+    });
+    const visaSelect = document.getElementById('visaSelect');
+    const selectedVisaIndex = visaSelect.value;
+    if (selectedVisaIndex !== "") {
+        document.getElementById('visaDetails' + selectedVisaIndex).classList.remove('hidden');
+    }
+}
+
+function toggleEditFields(enable) {
+    document.querySelectorAll('.profile-details input, .profile-details select').forEach(function(input) {
+        input.classList.toggle('hidden', !enable);
+    });
+
+
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    const editProfileButton = document.getElementById('editProfileButton');
-    const saveProfileButton = document.getElementById('saveChangesButton');
-    const removeVisaButtons = document.querySelectorAll('.remove-visa-button');
-  
-    // Clicking on Edit Profile button
-    editProfileButton.addEventListener('click', function () {
-        toggleEditFields(true); // Enable editing
-        showRemoveVisaButtons(true); // Show Remove Visa buttons
-        editProfileButton.classList.add('hidden'); // Hide Edit Profile button
-        saveProfileButton.classList.remove('hidden'); // Show Save Profile button
+    const userId = document.querySelector('.profile-container').getAttribute('data-user-id');
+    selectUser(userId);
+
+    const workoutsButton = document.getElementById("workoutsButton");
+    const mealsButton = document.getElementById("mealsButton");
+    const subscriptionButton = document.getElementById("subscriptionButton");
+
+    workoutsButton.addEventListener("click", function () {
+        window.location.href = "/user/front-workout";
     });
-  
-    // Clicking on Save Profile button
-    saveProfileButton.addEventListener('click', function () {
-        // Assuming you have a function saveProfileChanges() to handle saving changes
-        saveProfileChanges(); // Save profile changes
-        toggleEditFields(false); // Disable editing
-        showRemoveVisaButtons(false); // Hide Remove Visa buttons
-        saveProfileButton.classList.add('hidden'); // Hide Save Profile button
-        editProfileButton.classList.remove('hidden'); // Show Edit Profile button
+
+    mealsButton.addEventListener("click", function () {
+        window.location.href = "/user/meal";
     });
-  
-    function toggleEditFields(editable) {
-        const fields = ['userName', 'userEmail', 'userAddress', 'userGender', 'userAge', 'userSubscriptionStatus', 'userPhoneNumber'];
-        fields.forEach(field => {
-            const span = document.getElementById(field);
-            const value = span.textContent;
-            if (editable) {
-                const input = document.createElement('input');
-                input.type = field === 'userEmail' ? 'email' : 'text';
-                if (field === 'userAge') input.type = 'number';
-                input.value = value;
-                input.name = field.replace('user', '').toLowerCase();
-                input.id = 'input' + field;
-                // Apply styles to the input field (styles omitted for brevity)
-                span.parentNode.replaceChild(input, span);
-            } else {
-                const input = document.getElementById('input' + field);
-                const span = document.createElement('span');
-                span.id = field;
-                span.textContent = input.value;
-                input.parentNode.replaceChild(span, input);
-            }
-        });
-    }
-  
-    function showRemoveVisaButtons(visible) {
-        removeVisaButtons.forEach(button => {
-            button.style.display = visible ? 'inline-block' : 'none';
-        });
-    }
-  
-    // Function to simulate saving profile changes
-    function saveProfileChanges() {
-        // In a real application, you would typically submit form data or update backend
-        console.log('Profile changes saved.'); // Placeholder for demonstrating functionality
-    }
-  
-    // Initial state
-    saveProfileButton.classList.add('hidden'); // Hide Save Profile button initially
-    showRemoveVisaButtons(false); // Hide Remove Visa buttons initially
+
+    subscriptionButton.addEventListener("click", function () {
+        window.location.href = "/plans";
+    });
+
+    const editProfiletoDelete = document.getElementById('editProfiletoDelete');
+    const deleteAccountButton = document.getElementById('deleteAccountButton');
+    const editUserImage = document.getElementById('editUserImage');
+
+    editProfiletoDelete.addEventListener('click', function () {
+        toggleEditFields(true);
+        editProfiletoDelete.classList.add('hidden');
+        deleteAccountButton.classList.remove('hidden');
+    });
+
+    deleteAccountButton.addEventListener('click', function () {
+        const confirmation = confirm('Are you sure you want to delete your account? This action cannot be undone.');
+    
+        if (confirmation) {
+            console.log(selectedUserId);
+            fetch(`/auth/user/${selectedUserId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/auth/logout';
+                } else {
+                    console.error('Error deleting user data');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting user data:', error);
+            });
+        } else {
+            
+        }
+    });
+
 });
 
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    const isDarkMode = localStorage.getItem('darkModeEnabled') === 'true';
-    const darkModeButton = document.querySelector('.darkmode-button');
-
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-      darkModeButton.textContent = 'Light Mode';
-    } else {
-      document.body.classList.remove('dark-mode');
-      darkModeButton.textContent = 'Dark Mode';
-    }
-  });
-
-
+// howa dah 
