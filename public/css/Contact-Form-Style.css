@@ -207,43 +207,45 @@ body.dark-mode {
   color: #ffffff; /* White text */
 }
 
-.container.dark-mode {
-  background-color: #333; /* Darker background */
+body.dark-mode .container {
+  background-color: #333; /* Dark background */
 }
 
-.item.dark-mode {
-  background-color: #444; /* Even darker background */
+body.dark-mode .item {
+  background-color: #444; /* Darker background */
 }
 
-.text1.dark-mode {
-  color: rgb(14, 170, 92); /* Green text */
-}
-
-.text3.dark-mode {
-  color: rgb(14, 170, 92); /* Green text */
-}
-
-.input.dark-mode {
-  border: 2px solid rgb(14, 170, 92); /* Green border */
-  color: #ffffff; /* White text */
-}
-
-.inputbox label.dark-mode {
-  color: rgb(14, 170, 92); /* Green text */
-}
-
-.mesgbtn.dark-mode {
+body.dark-mode .contactform {
   background-color: rgb(14, 170, 92); /* Green background */
+}
+
+body.dark-mode .submit-form {
+  background-color: #333; /* Dark background for the form */
+}
+
+body.dark-mode .text1 {
   color: #ffffff; /* White text */
 }
 
-.mesgbtn.dark-mode:hover {
-  background-color: #fff; /* White background */
-  color: rgba(14, 170, 92, 0.8); /* Slightly transparent green text */
+body.dark-mode .text3 {
+  color: rgb(14, 170, 92); /* Green text */
 }
 
-@media (max-width: 800px) {
-  .item.dark-mode {
-    background-color: #444; /* Darker background */
-  }
+body.dark-mode .input {
+  background-color: #555; /* Darker input background */
+  color: #ffffff; /* White text */
+}
+
+body.dark-mode .inputbox label {
+  color: rgb(14, 170, 92); /* Green text */
+}
+
+body.dark-mode .mesgbtn {
+  background-color: rgb(14, 170, 92); /* Green button background */
+  color: #ffffff; /* White text */
+}
+
+body.dark-mode .mesgbtn:hover {
+  background-color: #fff; /* White background on hover */
+  color: rgba(14, 170, 92, 0.8); /* Green text on hover */
 }
