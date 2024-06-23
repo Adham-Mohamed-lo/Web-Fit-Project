@@ -1,53 +1,21 @@
 #Userview .btn {
-    display: block;
-    text-decoration: none;
-    width: 80%;
-    height: 60%;
-    text-align: center;
-    padding: 9px;
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    background-color: #28a745;
+    color: white;
     border: none;
-    border-radius: 10px;
-    background-color: rgb(14, 170, 92);
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 10px 3px;
-    margin-bottom: 7px;
-    font-size: 15px;
+    border-radius: 5px;
 }
 
 #Userview .btn:hover {
-    background-color: rgb(255, 255, 255);
-    color: rgba(14, 170, 92, 0.8);
-    border: solid 0.5px; 
-    transform: scale(1.05);
-}
-
-#ViewUserContainer,#removeUserContainer{
-    position: absolute;
-    right: 15%;
-    top: 54%;
-    transform: translateY(-50%);
-    width: 67%;
-    background-color: #efefef;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 84%; 
+    background-color: #218838;
 }
 
 
 
-
-#userDetails {
-    color: black;
-}
-
-#userDetails img {
-    display: block;
-    margin-top: 10px;
-    max-width: 200px;
-}
 .actions-container {
     display: flex;
     padding: 30px; 
@@ -177,28 +145,16 @@ h1 {
 }
 #editUserContainer{
     position: absolute;
-    right: 15%;
-    top: 80%;
+    right: 0.5%;
+    top: 73.5%;
     transform: translateY(-50%);
-    width: 67%;
+    width: 82%;
     background-color: #efefef;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: auto;  
     margin-bottom: 4%;
-}
-#ViewUserContainer,#removeUserContainer{
-    position: absolute;
-    right: 15%;
-    top: 54%;
-    transform: translateY(-50%);
-    width: 67%;
-    background-color: #efefef;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 84%; 
 }
 
 .action-container.hidden {
@@ -302,8 +258,6 @@ h1 {
     margin-top: 5px;
     background-color: darkred;
 }
-
-
    .submenu {
             max-height: 0;
             overflow: hidden;

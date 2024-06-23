@@ -6,16 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="/css/Admin-Style.css">
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
     <%- include('partials/Navigation-Index') %>
-<<<<<<< Updated upstream
         <div>
             <div class="actions-container">
                 <!-- Container for Product Buttons -->
@@ -115,81 +109,25 @@
 
                             <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewAdmin')">Admin's Profile</a>
 
-=======
-    <div>
-        <div class="actions-container">
-            <!-- Container for Product Buttons -->
-            <div class="container" id="admin_Panel">
-                <h2>Admin's Panel</h2>
-                <div class="admin-menu">
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('Stats')">Analysis</a>
-                    </div>
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewUsersMenu'),toggleVisibility('Userview')">Users</a>
-                        <div id="ViewUsersMenu" class="submenu">
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('ViewUserContainer'),viewUser()">View Users</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('editUserContainer'),editUser()">Edit User</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeUserContainer'),removeUser()">Remove User</a>
->>>>>>> Stashed changes
                         </div>
-                    </div>
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('mealsMenu')">Meals</a>
-                        <div id="mealsMenu" class="submenu">
-                            <a href="/user/meal" class="submenu-link">View Meals</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('addMealContainer')">Add Meals</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('editMealContainer')">Edit Meals</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeMealContainer')">Remove Meals</a>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('productsMenu')">Products</a>
-                        <div id="productsMenu" class="submenu">
-                            <a href="/shop" class="submenu-link">View Products</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('addProductsContainer')">Add Products</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('editProductsContainer')">Edit Products</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('coachesMenu')">Coaches</a>
-                        <div id="coachesMenu" class="submenu">
-                            <a href="/coaches" class="submenu-link">View Coaches</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('schedulesMenu')">Schedules</a>
-                        <div id="schedulesMenu" class="submenu">
-                            <a href="/schedules" class="submenu-link">View Schedules</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('addSchedulesContainer')">Add Schedule</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('editSchedulesContainer')">Edit Schedules</a>
-                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeSchedulesContainer')">Remove Schedules</a>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('addAdminContainer')">Add Admin</a>
-                    </div>
-                    <div>
-                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewAdmin')">Admin's Profile</a>
                     </div>
                 </div>
+
+
             </div>
         </div>
-    </div>
 
-    <!-- Users Buttons -->
-    <div class="container hidden" id="Userview">
-        <h2>Users</h2>
-        <div id="user-buttons" class="btn-group-vertical">
-            <% data.users.forEach(function(user) { %>
-                <button type="button" class="btn btn-success mb-2" value="<%= user._id %>" onclick="selectUser('<%= user._id %>')"><%= user.username %></button>
-            <% }); %>
+
+        <!--   users Buttons -->
+        <div class="container" id="Userview">
+            <h2>Users</h2>
+            <div id="user-buttons" class="btn-group-vertical">
+                <% data.users.forEach(function(user) { %>
+                    <button type="button" class="btn btn-success mb-2" value="<%= user._id %>" onclick="selectUser('<%= user._id %>')"><%= user.username %></button>
+                <% }); %>
+            </div>
         </div>
-    </div>
+        
         <!-- View User Container -->
         <div class="action-container hidden" id="ViewUserContainer">
             <button class="exit-button" onclick="toggleVisibility('ViewUserContainer')">X</button>
