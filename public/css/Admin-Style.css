@@ -78,7 +78,9 @@ h1 {
     margin-bottom: 15px;
     text-transform: uppercase;
 }
-
+#userDetails{
+    color: black;
+}
 .admin-menu {
     list-style-type: none;
     padding: 0;
@@ -131,12 +133,13 @@ h1 {
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
 .action-container {
     position: absolute;
     right: 0.5%;
     top: 54%;
     transform: translateY(-50%);
-    width: 82%;
+    width: 83.5%;
     background-color: #efefef;
     padding: 20px;
     border-radius: 10px;
@@ -145,16 +148,28 @@ h1 {
 }
 #editUserContainer{
     position: absolute;
-    right: 0.5%;
-    top: 73.5%;
+    right: 15%;
+    top:81.5%;
     transform: translateY(-50%);
-    width: 82%;
+    width: 67%;
     background-color: #efefef;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: auto;  
     margin-bottom: 4%;
+}
+#ViewUserContainer,#removeUserContainer{
+    position: absolute;
+    right: 15%;
+    top: 54%;
+    transform: translateY(-50%);
+    width: 67%;
+    background-color: #efefef;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 84%; 
 }
 
 .action-container.hidden {
