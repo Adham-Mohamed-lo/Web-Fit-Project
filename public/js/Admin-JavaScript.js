@@ -13,6 +13,72 @@ function selectUser(userId) {
         });
 }
 
+let selectedProductId = null;
+function selectProduct(productId) {
+    selectedProductId = productId;
+
+    fetch(`/product/${productId}`)
+        .then(response => response.json())
+        .then(product => {
+            sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+        })
+        .catch(error => {
+            console.error('Error fetching product data:', error);
+        });
+}
+
+let selectedMealId = null;
+function selectMeal(mealId) {
+    selectedMealId = mealId;
+
+    fetch(`/meal/${mealId}`)
+        .then(response => response.json())
+        .then(meal => {
+            sessionStorage.setItem('selectedMeal', JSON.stringify(meal));
+        })
+        .catch(error => {
+            console.error('Error fetching meal data:', error);
+        });
+}
+
+let selectedExerciseId = null;
+function selectExercise(exerciseId) {
+    selectedExerciseId = exerciseId;
+
+    fetch(`/exercise/${exerciseId}`)
+        .then(response => response.json())
+        .then(exercise => {
+            sessionStorage.setItem('selectedExercise', JSON.stringify(exercise));
+        })
+        .catch(error => {
+            console.error('Error fetching exercise data:', error);
+        });
+}
+
+let selectedCoachId = null;
+function selectCoach(coachId) {
+    selectedCoachId = coachId;
+
+    fetch(`/coach/${coachId}`)
+        .then(response => response.json())
+        .then(coach => {
+            sessionStorage.setItem('selectedCoach', JSON.stringify(coach));
+        })
+        .catch(error => {
+            console.error('Error fetching coach data:', error);
+        });
+}
+
+
+
+
+
+
+
+
+
+
+// user
 function viewUser() {
     const user = JSON.parse(sessionStorage.getItem('selectedUser'));
 
@@ -57,10 +123,7 @@ function removeUser() {
     document.getElementById('removeUserContainer').classList.remove('hidden');
 }
 
-function toggleVisibility(elementId) {
-    var element = document.getElementById(elementId);
-    element.classList.toggle('hidden');
-}
+
 
 document.getElementById('editUsersForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -104,6 +167,32 @@ document.getElementById('removeUsersForm').addEventListener('submit', function(e
         console.error('Error deleting user:', error);
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -357,20 +446,7 @@ function validateEditProductForm() {
 let isStatsContainerRight = false;
 let isStatsContainerMiddle = false;
 
-function toggleVisibility(containerId) {
-    document.querySelectorAll('.action-container').forEach(container => {
-        if (container.id !== containerId) {
-            container.classList.add('hidden');
-        }
-    });
 
-    const container = document.getElementById(containerId);
-    if (container) {
-        container.classList.toggle('hidden');
-    }
-
-    toggleStatsContainer();
-}
 
 function toggleStatsContainer() {
     const statsContainer = document.getElementById('stats_Container');
@@ -491,10 +567,10 @@ function toggleVisibility(containerId) {
     if (container) {
         const isVisible = container.classList.contains('hidden');
 
-        // Hide all other containers
-        const allContainers = document.querySelectorAll('.action-container');
+        // Hide all other containers except the admin_Panel
+        const allContainers = document.querySelectorAll('.action-container, .container');
         allContainers.forEach(cont => {
-            if (cont.id !== containerId) {
+            if (cont.id !== containerId && cont.id !== 'admin_Panel') {
                 cont.classList.add('hidden');
             }
         });
@@ -521,6 +597,7 @@ function toggleVisibility(containerId) {
         });
     }
 }
+
 
 
 

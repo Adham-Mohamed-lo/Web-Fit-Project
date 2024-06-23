@@ -1,123 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="/css/Admin-Style.css">
 </head>
-
 <body>
     <%- include('partials/Navigation-Index') %>
-        <div>
-            <div class="actions-container">
-                <!-- Container for Product Buttons -->
-                <div class="container" id="admin_Panel">
-                    <h2>Admin's Panel</h2>
-                    <div class="admin-menu">
-
-                        <div>
-
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('Stats')">Analysis</a>
-
-                        </div>
-
-
-                        <div>
-
-
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewUsersMenu'),toggleVisibility('Userview')">Users</a>
-                            <div id="ViewUsersMenu" class="submenu">
-
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('ViewUserContainer'),viewUser()">View Users</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('editUserContainer'),editUser()">Edit User</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('removeUserContainer'),removeUser()">Remove User</a>
-                            </div>
-                        </div>
-
-                        <div>
-
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('mealsMenu')">Meals</a>
-                            <div id="mealsMenu" class="submenu">
-                                <a href="/user/meal" class="submenu-link">View Meals</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('addMealContainer')">Add
-                                    Meals</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('editMealContainer')">Edit
-                                    Meals</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('removeMealContainer')">Remove Meals</a>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('productsMenu')">Products</a>
-                            <div id="productsMenu" class="submenu">
-                                <a href="/shop" class="submenu-link">View Products</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('addProductsContainer')">Add
-                                    Products</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('editProductsContainer')">Edit Products</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('removeProductsContainer')">Remove Products</a>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('coachesMenu')">Coaches</a>
-                            <div id="coachesMenu" class="submenu">
-                                <a href="/coaches" class="submenu-link">View Coaches</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('addCoachesContainer')">Add
-                                    Coaches</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('editCoachesContainer')">Edit
-                                    Coaches</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('schedulesMenu')">Schedules</a>
-                            <div id="schedulesMenu" class="submenu">
-                                <a href="/schedules" class="submenu-link">View Schedules</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('addSchedulesContainer')">Add
-                                    Schedule</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('editSchedulesContainer')">Edit Schedules</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('removeSchedulesContainer')">Remove Schedules</a>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('ExcerciseMenu')">Excercises</a>
-                            <div id="ExcerciseMenu" class="submenu">
-                                <a href="/user/front-workout" class="submenu-link">View Excercise</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('addExerciseContainer')">Add
-                                    Excercise</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('editExerciseContainer')">Edit
-                                    Excercise</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('removeExerciseContainer')">Remove Excercise</a>
-                            </div>
-
-
-
-                        <div>
-
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewAdmin')">Admin's Profile</a>
-
+    <div>
+        <div class="actions-container">
+            <div class="container" id="admin_Panel">
+                <h2>Admin's Panel</h2>
+                <div class="admin-menu">
+                    <div>
+                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('Stats')">Analysis</a>
+                    </div>
+                    <div>
+                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewUsersMenu'), toggleVisibility('Userview')">Users</a>
+                        <div id="ViewUsersMenu" class="submenu">
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('ViewUserContainer'), viewUser()">View User</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('editUserContainer'), editUser()">Edit User</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeUserContainer'), removeUser()">Remove User</a>
                         </div>
                     </div>
+                    <div>
+                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('mealsMenu'), toggleVisibility('Mealview')">Meals</a>
+                        <div id="mealsMenu" class="submenu">
+                            <a href="/user/meal" class="submenu-link">View Meals</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('addMealContainer')">Add Meals</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('editMealContainer')">Edit Meals</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeMealContainer')">Remove Meals</a>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('productsMenu'), toggleVisibility('Productview')">Products</a>
+                        <div id="productsMenu" class="submenu">
+                            <a href="/shop" class="submenu-link">View Products</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('addProductsContainer')">Add Products</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('editProductsContainer')">Edit Products</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeProductsContainer')">Remove Products</a>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('coachesMenu'), toggleVisibility('Coachview')">Coaches</a>
+                        <div id="coachesMenu" class="submenu">
+                            <a href="/coaches" class="submenu-link">View Coaches</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('addCoachesContainer')">Add Coaches</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('editCoachesContainer')">Edit Coaches</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('ExcerciseMenu'), toggleVisibility('Exerciseview')">Exercises</a>
+                        <div id="ExcerciseMenu" class="submenu">
+                            <a href="/user/front-workout" class="submenu-link">View Exercises</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('addExerciseContainer')">Add Exercises</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('editExerciseContainer')">Edit Exercises</a>
+                            <a href="#" class="submenu-link" onclick="toggleVisibility('removeExerciseContainer')">Remove Exercises</a>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewAdmin')">Admin's Profile</a>
+                    </div>
                 </div>
-
-
             </div>
+            
         </div>
-
-
-        <!--   users Buttons -->
+        <!-- User Buttons -->
         <div class="container hidden" id="Userview">
             <h2>Users</h2>
             <div id="user-buttons" class="btn-group-vertical">
                 <% data.users.forEach(function(user) { %>
-                    <button type="button" class="btn btn-success mb-2" value="<%= user._id %>" onclick="selectUser('<%= user._id %>')"><%= user.username %></button>
+                    <button type="button" class="btn btn-success mb-2" value="<%= user._id %>" onclick="selectUser('<%= user._id %>')">
+                        <%= user.username %>
+                    </button>
                 <% }); %>
             </div>
         </div>
@@ -126,6 +83,7 @@
             <button class="exit-button" onclick="toggleVisibility('ViewUserContainer')">X</button>
             <h1>WebFit Users</h1>
             <div id="userDetails">
+                <img id="viewImage" src="" alt="User Image" style="max-width: 200px;">
                 <p><strong>Username:</strong> <span id="viewUsername"></span></p>
                 <p><strong>Full Name:</strong> <span id="viewFullName"></span></p>
                 <p><strong>Email:</strong> <span id="viewEmail"></span></p>
@@ -135,10 +93,9 @@
                 <p><strong>Age:</strong> <span id="viewAge"></span></p>
                 <p><strong>Address:</strong> <span id="viewAddress"></span></p>
                 <p><strong>Subscription:</strong> <span id="viewSubscription"></span></p>
-                <img id="viewImage" src="" alt="User Image" style="max-width: 200px;">
             </div>
         </div>
-        
+        <!-- Edit User Container -->
         <div class="action-container hidden" id="editUserContainer">
             <button class="exit-button" onclick="toggleVisibility('editUserContainer')">X</button>
             <h1>Edit Users</h1>
@@ -149,17 +106,17 @@
                     <div id="editUsersNameError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="newUsersFullName"> FullName:</label>
+                    <label for="newUsersFullName">FullName:</label>
                     <input type="text" id="newUsersFullName" name="newUsersFullName" required>
                     <div id="newUsersFullNameError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="UsersPassword"> Password:</label>
+                    <label for="UsersPassword">Password:</label>
                     <input type="password" id="UsersPassword" name="UsersPassword">
                     <div id="UsersPasswordError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="userphone"> Phone:</label>
+                    <label for="userphone">Phone:</label>
                     <input type="number" id="userphone" name="userphone" required>
                     <div id="userphoneError" class="error-message"></div>
                 </div>
@@ -169,41 +126,41 @@
                     <div id="edituseremailError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="editUsersrole"> role:</label>
+                    <label for="editUsersrole">Role:</label>
                     <select id="editUsersrole" name="role" required>
                         <option value="">Select</option>
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
-                    </select><br/>
+                    </select><br />
                     <div id="editUsersroleError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="editUsersgender"> gender:</label>
+                    <label for="editUsersgender">Gender:</label>
                     <select id="edit-gender" name="gender" required>
                         <option value="">Select</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
-                    </select><br/>
+                    </select><br />
                     <div id="editUsersgenderError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="editUsersage"> age:</label>
+                    <label for="editUsersage">Age:</label>
                     <input type="number" id="editUsersage" name="editUsersage" required>
                     <div id="editUsersageError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="editUsersaddress"> address:</label>
+                    <label for="editUsersaddress">Address:</label>
                     <input type="text" id="editUsersaddress" name="editUsersaddress" required>
                     <div id="editUsersaddressError" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label for="editUsersSubscription"> Subscription:</label>
+                    <label for="editUsersSubscription">Subscription:</label>
                     <select id="edit-subscribtion" name="Subscription" required>
                         <option value="">Select</option>
                         <option value="Free Plan">Free</option>
                         <option value="Standard Plan">Standard</option>
-                        <option value="Premium Plan">Premuim</option>
-                    </select><br/>
+                        <option value="Premium Plan">Premium</option>
+                    </select><br />
                     <div id="editUsersSubscriptionError" class="error-message"></div>
                 </div>
                 <div class="form-group">
@@ -214,7 +171,6 @@
                 <div id="editUsersSuccessMessage" class="success-message"></div>
             </form>
         </div>
-        
         <!-- Remove User Container -->
         <div class="action-container hidden" id="removeUserContainer">
             <button class="exit-button" onclick="toggleVisibility('removeUserContainer')">X</button>
@@ -229,14 +185,17 @@
                 <div id="removeUsersSuccessMessage" class="success-message"></div>
             </form>
         </div>
-        
-
-
-
-
-
-
-        <!--  Product Buttons -->
+        <!-- Product Buttons -->
+        <div class="container hidden" id="Productview">
+            <h2>Products</h2>
+            <div id="product-buttons" class="btn-group-vertical">
+                <% data.products.forEach(function(product) { %>
+                    <button type="button" class="btn btn-success mb-2" value="<%= product._id %>" onclick="selectProduct('<%= product._id %>')">
+                        <%= product.productname %> - $<%= product.price %>
+                    </button>
+                <% }); %>
+            </div>
+        </div>
         <div class="action-container hidden" id="addProductsContainer">
             <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
             <h1>Add Products</h1>
@@ -264,8 +223,6 @@
                 <div id="successMessage" class="success-message"></div>
             </form>
         </div>
-
-
         <div class="action-container hidden" id="removeProductsContainer">
             <button class="exit-button" onclick="toggleVisibility('removeProductsContainer')">X</button>
             <h1>Remove Products</h1>
@@ -284,7 +241,6 @@
                 <div id="removeProductSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
         <div class="action-container hidden" id="editProductsContainer">
             <button class="exit-button" onclick="toggleVisibility('editProductsContainer')">X</button>
             <h1>Edit Products</h1>
@@ -317,14 +273,17 @@
                 <div id="editProductSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
-
-
-
-
-
-        <!--  coches Buttons -->
-
+        <!-- Coach Buttons -->
+        <div class="container hidden" id="Coachview">
+            <h2>Coaches</h2>
+            <div id="coach-buttons" class="btn-group-vertical">
+                <% data.coaches.forEach(function(coach) { %>
+                    <button type="button" class="btn btn-success mb-2" value="<%= coach._id %>" onclick="selectCoach('<%= coach._id %>')">
+                        <%= coach.coachname %>
+                    </button>
+                <% }); %>
+            </div>
+        </div>
         <div class="action-container hidden" id="addCoachesContainer">
             <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
             <h1>Add Coach</h1>
@@ -345,7 +304,6 @@
                 <div id="coachSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
         <div class="action-container hidden" id="removeCoachesContainer">
             <button class="exit-button" onclick="toggleVisibility('removeCoachesContainer')">X</button>
             <h1>Remove Coaches</h1>
@@ -359,9 +317,6 @@
                 <div id="removeCoachSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
-
-
         <div class="action-container hidden" id="editCoachesContainer">
             <button class="exit-button" onclick="toggleVisibility('editCoachesContainer')">X</button>
             <h1>Edit Coaches</h1>
@@ -389,45 +344,44 @@
                 <div id="editCoachSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
-
-
-
-
-
-
-
-        <!--  Meals Buttons -->
-       
-           
-<div class="action-container hidden" id="addMealContainer" enctype="multipart/form-data">
-    <button class="exit-button" onclick="toggleVisibility('addMealContainer')">X</button>
-    <h1>Add Meal</h1>
-    <form action='/auth/addmeal' method="post" id="addMealForm">
-        <div class="form-group">
-            <label for="mealname">Meal Name:</label>
-            <input type="text" id="mealname" name="mealname" required>
-        </div>
-        <div class="form-group">
-            <label for="mealdescription">Meal Description:</label>
-            <input type="text" id="mealdescription" name="mealdescription" required>
-        </div>
-        <div class="form-group">
-            <label>Ingredients:</label>
-            <div id="ingredientsContainer">
-                <div class="ingredient-group">
-                    <input type="text" name="ingredients[0][name]" placeholder="Ingredient Name" required>
-                    <input type="text" name="ingredients[0][quantity]" placeholder="Quantity" required>
-                    <button type="button" class="remove-button" onclick="removeIngredient(this)">-</button>
-                </div>
+        <!-- Meals Buttons -->
+        <div class="container hidden" id="Mealview">
+            <h2>Meals</h2>
+            <div id="meal-buttons" class="btn-group-vertical">
+                <% data.meals.forEach(function(meal) { %>
+                    <button type="button" class="btn btn-success mb-2" value="<%= meal._id %>" onclick="selectMeal('<%= meal._id %>')">
+                        <%= meal.mealname %>
+                    </button>
+                <% }); %>
             </div>
-            <button type="button" id="ingButton" onclick="addIngredient()">Add Ingredient</button>
         </div>
-        <button type="submit" class="btn-action">Add Meal</button>
-        <div id="MealSuccessMessage" class="success-message"></div>
-    </form>
-</div>
-
+        <div class="action-container hidden" id="addMealContainer" enctype="multipart/form-data">
+            <button class="exit-button" onclick="toggleVisibility('addMealContainer')">X</button>
+            <h1>Add Meal</h1>
+            <form action='/auth/addmeal' method="post" id="addMealForm">
+                <div class="form-group">
+                    <label for="mealname">Meal Name:</label>
+                    <input type="text" id="mealname" name="mealname" required>
+                </div>
+                <div class="form-group">
+                    <label for="mealdescription">Meal Description:</label>
+                    <input type="text" id="mealdescription" name="mealdescription" required>
+                </div>
+                <div class="form-group">
+                    <label>Ingredients:</label>
+                    <div id="ingredientsContainer">
+                        <div class="ingredient-group">
+                            <input type="text" name="ingredients[0][name]" placeholder="Ingredient Name" required>
+                            <input type="text" name="ingredients[0][quantity]" placeholder="Quantity" required>
+                            <button type="button" class="remove-button" onclick="removeIngredient(this)">-</button>
+                        </div>
+                    </div>
+                    <button type="button" id="ingButton" onclick="addIngredient()">Add Ingredient</button>
+                </div>
+                <button type="submit" class="btn-action">Add Meal</button>
+                <div id="MealSuccessMessage" class="success-message"></div>
+            </form>
+        </div>
         <div class="action-container hidden" id="removeMealContainer">
             <button class="exit-button" onclick="toggleVisibility('removeMealContainer')">X</button>
             <h1>Remove Meal</h1>
@@ -441,8 +395,6 @@
                 <div id="removeMealSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
-
         <div class="action-container hidden" id="editMealContainer">
             <button class="exit-button" onclick="toggleVisibility('editMealContainer')">X</button>
             <h1>Edit Meal</h1>
@@ -477,82 +429,17 @@
                 <div id="editMealSuccessMessage" class="success-message"></div>
             </form>
         </div>
-            
-        
-
-
-
-
-
-
-        <!--  Schedules Buttons -->
-        <div class="action-container hidden" id="addSchedulesContainer">
-            <button class="exit-button" onclick="toggleVisibility('addSchedulesContainer')">X</button>
-            <h1>Add Schedules</h1>
-            <form action="/auth/addSchedules" method="post" id="addSchedulesForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="Schedulesname">Schedules Name:</label>
-                    <input type="text" id="Schedulesname" name="Schedulesname" required>
-                </div>
-                <div class="form-group">
-                    <label for="Schedulesdescription">Schedules Description:</label>
-                    <input type="text" id="Schedulesdescription" name="Schedulesdescription" required>
-                </div>
-                <div class="form-group">
-                    <label for="Schedulesimage">Schedules Image:</label>
-                    <input type="file" id="Schedulesimage" name="Schedulesimage" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn-action">Add Schedules</button>
-                <div id="SchedulesSuccessMessage" class="success-message"></div>
-            </form>
+        <!-- Exercise Buttons -->
+        <div class="container hidden" id="Exerciseview">
+            <h2>Exercises</h2>
+            <div id="exercise-buttons" class="btn-group-vertical">
+                <% data.exercises.forEach(function(exercise) { %>
+                    <button type="button" class="btn btn-success mb-2" value="<%= exercise._id %>" onclick="selectExercise('<%= exercise._id %>')">
+                        <%= exercise.exercisename %>
+                    </button>
+                <% }); %>
+            </div>
         </div>
-
-        <div class="action-container hidden" id="removeSchedulesContainer">
-            <button class="exit-button" onclick="toggleVisibility('removeSchedulesContainer')">X</button>
-            <h1>Remove Schedules</h1>
-            <form id="removeSchedulesForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="removeSchedulesName">Schedules Name:</label>
-                    <input type="text" id="removeSchedulesName" name="removeSchedulesName" required>
-                    <div id="removeSchedulesNameError" class="error-message"></div>
-                </div>
-                <button type="button" class="btn-action" onclick="validateremoveScheduleshForm()">Remove
-                    Schedules</button>
-                <div id="removeSchedulesSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-
-        <div class="action-container hidden" id="editSchedulesContainer">
-            <button class="exit-button" onclick="toggleVisibility('editSchedulesContainer')">X</button>
-            <h1>Edit Schedules</h1>
-            <form id="editSchedulesForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="editSchedulesName">Schedules Name:</label>
-                    <input type="text" id="editSchedulesName" name="editSchedulesName" required>
-                    <div id="editSchedulesNameError" class="error-message"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="newSchedulesName">New Name:</label>
-                    <input type="text" id="newSchedulesName" name="newSchedulesName" required>
-                    <div id="newSchedulesNameError" class="error-message"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="SchedulesImage">Schedules Image:</label>
-                    <input type="file" id="SchedulesImage" name="SchedulesImage" accept="image/*" required>
-                </div>
-                <button type="button" class="btn-action" onclick="validateEditSchedulesForm()">Edit
-                    Schedules</button>
-                <div id="editSchedulesSuccessMessage" class="success-message"></div>
-            </form>
-        </div>
-
-
-
-
-
-        <!--  Exercise Buttons -->
         <div class="action-container hidden" id="addExerciseContainer">
             <button class="exit-button" onclick="toggleVisibility('addExerciseContainer')">X</button>
             <h1>Add Exercise</h1>
@@ -582,8 +469,6 @@
                 <div id="ExerciseSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
-
         <div class="action-container hidden" id="removeExerciseContainer">
             <button class="exit-button" onclick="toggleVisibility('removeExerciseContainer')">X</button>
             <h1>Remove Exercise</h1>
@@ -597,7 +482,6 @@
                 <div id="removeExerciseSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
         <div class="action-container hidden" id="editExerciseContainer">
             <button class="exit-button" onclick="toggleVisibility('editExerciseContainer')">X</button>
             <h1>Edit Exercise</h1>
@@ -607,18 +491,15 @@
                     <input type="text" id="editExerciseName" name="editExerciseName" required>
                     <div id="editExerciseNameError" class="error-message"></div>
                 </div>
-
                 <div class="form-group">
                     <label for="newExerciseName">New Name:</label>
                     <input type="text" id="newExerciseName" name="newExerciseName" required>
                     <div id="newExerciseNameError" class="error-message"></div>
                 </div>
-
                 <div class="form-group">
                     <label for="exercisedescription">Exercise Description:</label>
                     <input type="text" id="exercisedescription" name="exercisedescription" required>
                 </div>
-
                 <div class="form-group">
                     <label for="exerciseimage">Exercise Image URL:</label>
                     <input type="text" id="exerciseimage" name="exerciseimage" required>
@@ -627,9 +508,7 @@
                 <div id="editExerciseSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
-
-        <!--  Add admin Buttons -->
+        <!-- Add Admin Buttons -->
         <div class="action-container hidden" id="addAdminContainer">
             <button class="exit-button" onclick="toggleVisibility('addAdminContainer')">X</button>
             <h1>Add Admin</h1>
@@ -657,33 +536,7 @@
                 <div id="successMessage" class="success-message"></div>
             </form>
         </div>
-
-
-     
-        <!-- 
-        <div class="actions-container">
-            Container for Product Buttons 
-            <div class="container2" id="stats_Container">
-                <h2>Stats</h2>
-
-
-            </div>
-        </div> -->
-       
-     
-
-        <!-- 
-            <div class="actions-container">
-                Container for Product Buttons 
-                <div class="container2" id="stats_Container">
-                    <h2>Stats</h2>
-
-
-                </div>
-            </div> -->
-
         <script src="/js/Admin-JavaScript.js"></script>
-
+    </div>
 </body>
-
 </html>

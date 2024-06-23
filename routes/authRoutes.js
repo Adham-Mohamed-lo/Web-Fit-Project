@@ -81,6 +81,43 @@ app.get("/admin", async (req, res) => {
     res.redirect(`/auth/login?notification=${notification}`);
   }
 });
+
+
+app.get('/product/:id', async (req, res) => {
+  try {
+      const product = await Product.findById(req.params.id).lean();
+      res.json(product);
+  } catch (err) {
+      res.status(500).json({ error: 'An error occurred while fetching product data' });
+  }
+});
+
+app.get('/meal/:id', async (req, res) => {
+  try {
+      const meal = await Meal.findById(req.params.id).lean();
+      res.json(meal);
+  } catch (err) {
+      res.status(500).json({ error: 'An error occurred while fetching meal data' });
+  }
+});
+
+app.get('/exercise/:id', async (req, res) => {
+  try {
+      const exercise = await Exercise.findById(req.params.id).lean();
+      res.json(exercise);
+  } catch (err) {
+      res.status(500).json({ error: 'An error occurred while fetching exercise data' });
+  }
+});
+
+app.get('/coach/:id', async (req, res) => {
+  try {
+      const coach = await Coach.findById(req.params.id).lean();
+      res.json(coach);
+  } catch (err) {
+      res.status(500).json({ error: 'An error occurred while fetching coach data' });
+  }
+});
 app.get('/user/:id', async (req, res) => {
   try {
       const user = await User.findById(req.params.id).lean();

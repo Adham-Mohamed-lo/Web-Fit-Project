@@ -1,4 +1,8 @@
-#Userview .btn {
+#Userview .btn,
+#Productview .btn,
+#Mealview .btn,
+#Exerciseview .btn
+,#Coachview .btn {
     width: 100%;
     text-align: left;
     padding: 10px 20px;
@@ -10,12 +14,21 @@
     border-radius: 5px;
 }
 
-#Userview .btn:hover {
+#Userview .btn:hover,
+#Productview .btn:hover,
+#Mealview .btn:hover,
+#Exerciseview .btn:hover,
+#Coachview .btn:hover {
     background-color: #218838;
 }
 
-
-
+#viewImage{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
 .actions-container {
     display: flex;
     padding: 30px; 
@@ -36,7 +49,11 @@
     margin-top: 4.5%;
     margin-bottom: 10%;
 }
-#Userview {
+#Userview,
+#Productview,
+#Mealview,
+#Exerciseview,
+#Coachview {
     width: 12%;
     height: 84%; 
     background-color: #efefef;
@@ -136,15 +153,16 @@ h1 {
 
 .action-container {
     position: absolute;
-    right: 0.5%;
+    right: 15%;
     top: 54%;
     transform: translateY(-50%);
-    width: 83.5%;
+    width: 67%;
     background-color: #efefef;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: 84%; 
+    
 }
 #editUserContainer{
     position: absolute;
