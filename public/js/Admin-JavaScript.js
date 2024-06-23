@@ -45,11 +45,11 @@ function toggleVisibility(containerId) {
     }
 }
 
-let selectedUserId =null;
-function selectUser(userId) {
+let selectedUserId = null;
+async function selectUser(userId) {
     selectedUserId = userId;
 
-    fetch(`/auth/user/${userId}`)
+    await fetch(`/auth/user/${userId}`)
         .then(response => response.json())
         .then(user => {
             sessionStorage.setItem('selectedUser', JSON.stringify(user));
@@ -60,10 +60,10 @@ function selectUser(userId) {
 }
 
 let selectedProductId = null;
-function selectProduct(productId) {
+async function selectProduct(productId) {
     selectedProductId = productId;
 
-    fetch(`/auth/product/${productId}`)
+    await fetch(`/auth/product/${productId}`)
         .then(response => response.json())
         .then(product => {
             sessionStorage.setItem('selectedProduct', JSON.stringify(product));
@@ -75,10 +75,10 @@ function selectProduct(productId) {
 }
 
 let selectedMealId = null;
-function selectMeal(mealId) {
+async function selectMeal(mealId) {
     selectedMealId = mealId;
 
-    fetch(`/auth/meal/${mealId}`)
+    await fetch(`/auth/meal/${mealId}`)
         .then(response => response.json())
         .then(meal => {
             sessionStorage.setItem('selectedMeal', JSON.stringify(meal));
@@ -89,10 +89,10 @@ function selectMeal(mealId) {
         });
 }
 let selectedExerciseId = null;
-function selectExercise(exerciseId) {
+async function selectExercise(exerciseId) {
     selectedExerciseId = exerciseId;
 
-    fetch(`/auth/exercise/${exerciseId}`)
+    await fetch(`/auth/exercise/${exerciseId}`)
         .then(response => response.json())
         .then(exercise => {
             sessionStorage.setItem('selectedExercise', JSON.stringify(exercise));
@@ -103,10 +103,10 @@ function selectExercise(exerciseId) {
         });
 }
 let selectedCoachId = null;
-function selectCoach(coachId) {
+async function selectCoach(coachId) {
     selectedCoachId = coachId;
 
-    fetch(`/auth/coach/${coachId}`)
+    await fetch(`/auth/coach/${coachId}`)
         .then(response => response.json())
         .then(coach => {
             sessionStorage.setItem('selectedCoach', JSON.stringify(coach));
@@ -231,47 +231,47 @@ function removeUser() {
     document.getElementById('removeUserContainer').classList.remove('hidden');
 }
 
-document.getElementById('editUsersForm').addEventListener('submit', function(event) {
+document.getElementById('editUsersForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
 
-    fetch(`/auth/user/${selectedUserId}`, {
+    await fetch(`/auth/user/${selectedUserId}`, {
         method: 'PUT',
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert(data.error);
-        } else {
-            alert(data.message);
-            toggleVisibility('editUserContainer');
-        }
-    })
-    .catch(error => {
-        console.error('Error updating user:', error);
-        alert('An error occurred while updating the user.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                alert(data.message);
+                toggleVisibility('editUserContainer');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating user:', error);
+            alert('An error occurred while updating the user.');
+        });
 });
 
-document.getElementById('removeUsersForm').addEventListener('submit', function(event) {
+document.getElementById('removeUsersForm').addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    fetch(`/auth/user/${selectedUserId}`, {
+    await fetch(`/auth/user/${selectedUserId}`, {
         method: 'DELETE'
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert(data.error);
-        } else {
-            alert(data.message);
-            toggleVisibility('removeUserContainer');
-        }
-    })
-    .catch(error => {
-        console.error('Error deleting user:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                alert(data.message);
+                toggleVisibility('removeUserContainer');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting user:', error);
+        });
 });
 
 
@@ -284,7 +284,7 @@ const notyf = new Notyf({
 });
 
 // Edit Exercise
-function editExercise() {
+async function editExercise() {
     const editExerciseName = document.getElementById('editExerciseName').value;
     const newExerciseName = document.getElementById('newExerciseName').value;
     const exercisedescription = document.getElementById('exercisedescription').value;
@@ -299,56 +299,56 @@ function editExercise() {
         Exercisetype
     };
 
-    fetch('/auth/editexercise', {
+    await fetch('/auth/editexercise', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(exerciseData)
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            notyf.error(data.error);
-        } else {
-            notyf.success(data.message);
-            toggleVisibility('editExerciseContainer');
-        }
-    })
-    .catch(error => {
-        console.error('Error updating exercise:', error);
-        notyf.error('An error occurred while updating the exercise.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                notyf.error(data.error);
+            } else {
+                notyf.success(data.message);
+                toggleVisibility('editExerciseContainer');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating exercise:', error);
+            notyf.error('An error occurred while updating the exercise.');
+        });
 }
 
 // Remove Exercise
-function removeExercise() {
+async function removeExercise() {
     const exerciseName = document.getElementById('removeExerciseName').value;
 
-    fetch('/auth/removeexercise', {
+    await fetch('/auth/removeexercise', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ removeExerciseName: exerciseName })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            notyf.error(data.error);
-        } else {
-            notyf.success(data.message);
-            toggleVisibility('removeExerciseContainer');
-        }
-    })
-    .catch(error => {
-        console.error('Error removing exercise:', error);
-        notyf.error('An error occurred while removing the exercise.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                notyf.error(data.error);
+            } else {
+                notyf.success(data.message);
+                toggleVisibility('removeExerciseContainer');
+            }
+        })
+        .catch(error => {
+            console.error('Error removing exercise:', error);
+            notyf.error('An error occurred while removing the exercise.');
+        });
 }
 
 // Edit Meal
-function editMeal() {
+async function editMeal() {
     const editMealName = document.getElementById('editMealName').value;
     const newMealName = document.getElementById('newMealName').value;
     const newMealdescription = document.getElementById('newMealDescription').value;
@@ -366,56 +366,56 @@ function editMeal() {
         newIngredients
     };
 
-    fetch('/auth/editmeal', {
+    await fetch('/auth/editmeal', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(mealData)
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            notyf.error(data.error);
-        } else {
-            notyf.success(data.message);
-            toggleVisibility('editMealContainer');
-        }
-    })
-    .catch(error => {
-        console.error('Error updating meal:', error);
-        notyf.error('An error occurred while updating the meal.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                notyf.error(data.error);
+            } else {
+                notyf.success(data.message);
+                toggleVisibility('editMealContainer');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating meal:', error);
+            notyf.error('An error occurred while updating the meal.');
+        });
 }
 
 // Remove Meal
-function removeMeal() {
+async function removeMeal() {
     const mealName = document.getElementById('removeMealName').value;
 
-    fetch('/auth/removemeal', {
+    await fetch('/auth/removemeal', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ removeMealName: mealName })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            notyf.error(data.error);
-        } else {
-            notyf.success(data.message);
-            toggleVisibility('removeMealContainer');
-        }
-    })
-    .catch(error => {
-        console.error('Error removing meal:', error);
-        notyf.error('An error occurred while removing the meal.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                notyf.error(data.error);
+            } else {
+                notyf.success(data.message);
+                toggleVisibility('removeMealContainer');
+            }
+        })
+        .catch(error => {
+            console.error('Error removing meal:', error);
+            notyf.error('An error occurred while removing the meal.');
+        });
 }
 
 // Edit Product
-function editProduct() {
+async function editProduct() {
     const editProductName = document.getElementById('editProductName').value;
     const newProductName = document.getElementById('newProductName').value;
     const productId = document.getElementById('productId').value;
@@ -428,57 +428,58 @@ function editProduct() {
         productPrice
     };
 
-    fetch('/auth/editProduct', {
+    await fetch('/auth/editProduct', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(productData)
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            notyf.error(data.error);
-        } else {
-            notyf.success(data.message);
-            toggleVisibility('editProductsContainer');
-        }
-    })
-    .catch(error => {
-        console.error('Error updating product:', error);
-        notyf.error('An error occurred while updating the product.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                notyf.error(data.error);
+            } else {
+                notyf.success(data.message);
+                toggleVisibility('editProductsContainer');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating product:', error);
+            notyf.error('An error occurred while updating the product.');
+        });
 }
 
 // Remove Product
-function removeProduct() {
+async function removeProduct() {
     const productName = document.getElementById('removeProductName').value;
     const productId = document.getElementById('removeProductId').value;
 
-    fetch('/auth/removeProduct', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ removeProductName: productName, removeProductId: productId })
-    })
-    .then(response => response.json())
-    .then(data => {
+    try {
+        const response = await fetch('/auth/removeProduct', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ removeProductName: productName, removeProductId: productId })
+        });
+
+        const data = await response.json();
         if (data.error) {
             notyf.error(data.error);
         } else {
             notyf.success(data.message);
             toggleVisibility('removeProductsContainer');
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error removing product:', error);
         notyf.error('An error occurred while removing the product.');
-    });
+    }
 }
 
+
 // Edit Coach
-function editCoach() {
+async function editCoach() {
     const editCoachName = document.getElementById('editCoachName').value;
     const newCoachName = document.getElementById('newCoachName').value;
     const coachDescription = document.getElementById('newCoachDescription').value;
@@ -489,96 +490,188 @@ function editCoach() {
         coachDescription
     };
 
-    fetch('/auth/editcoaches', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(coachData)
-    })
-    .then(response => response.json())
-    .then(data => {
+    try {
+        const response = await fetch('/auth/editcoaches', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(coachData)
+        });
+
+        const data = await response.json();
         if (data.error) {
             notyf.error(data.error);
         } else {
             notyf.success(data.message);
             toggleVisibility('editCoachesContainer');
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error updating coach:', error);
         notyf.error('An error occurred while updating the coach.');
-    });
+    }
 }
 
+
 // Remove Coach
-function removeCoach() {
+async function removeCoach() {
     const coachName = document.getElementById('removeCoachName').value;
 
-    fetch('/auth/removecoach', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ removeCoachName: coachName })
-    })
-    .then(response => response.json())
-    .then(data => {
+    try {
+        const response = await fetch('/auth/removecoach', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ removeCoachName: coachName })
+        });
+
+        const data = await response.json();
         if (data.error) {
             notyf.error(data.error);
         } else {
             notyf.success(data.message);
             toggleVisibility('removeCoachesContainer');
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error removing coach:', error);
         notyf.error('An error occurred while removing the coach.');
-    });
+    }
 }
 
+
 // Form Submission Event Listeners
-document.getElementById('editExerciseForm').addEventListener('submit', function(event) {
+document.getElementById('editExerciseForm').addEventListener('submit', function (event) {
     event.preventDefault();
     editExercise();
 });
 
-document.getElementById('removeExerciseForm').addEventListener('submit', function(event) {
+document.getElementById('removeExerciseForm').addEventListener('submit', function (event) {
     event.preventDefault();
     removeExercise();
 });
 
-document.getElementById('editMealForm').addEventListener('submit', function(event) {
+document.getElementById('editMealForm').addEventListener('submit', function (event) {
     event.preventDefault();
     editMeal();
 });
 
-document.getElementById('removeMealForm').addEventListener('submit', function(event) {
+document.getElementById('removeMealForm').addEventListener('submit', function (event) {
     event.preventDefault();
     removeMeal();
 });
 
-document.getElementById('editProductForm').addEventListener('submit', function(event) {
+document.getElementById('editProductForm').addEventListener('submit', function (event) {
     event.preventDefault();
     editProduct();
 });
 
-document.getElementById('removeProductForm').addEventListener('submit', function(event) {
+document.getElementById('removeProductForm').addEventListener('submit', function (event) {
     event.preventDefault();
     removeProduct();
 });
 
-document.getElementById('editCoachForm').addEventListener('submit', function(event) {
+document.getElementById('editCoachForm').addEventListener('submit', function (event) {
     event.preventDefault();
     editCoach();
 });
 
-document.getElementById('removeCoachForm').addEventListener('submit', function(event) {
+document.getElementById('removeCoachForm').addEventListener('submit', function (event) {
     event.preventDefault();
     removeCoach();
 });
 
 
+document.getElementById('addProductForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    await fetch('/auth/addProduct', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                notyf.error(data.error);
+            } else {
+                notyf.success('Product added successfully');
+                document.getElementById('addProductForm').reset();
+            }
+        })
+        .catch(error => {
+            console.error('Error adding product:', error);
+            notyf.error('An error occurred while adding the product.');
+        });
+});
+document.getElementById('addCoachForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    await fetch('/auth/addcoaches', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                notyf.error(data.error);
+            } else {
+                notyf.success('Coach added successfully');
+                document.getElementById('addCoachForm').reset();
+            }
+        })
+        .catch(error => {
+            console.error('Error adding coach:', error);
+            notyf.error('An error occurred while adding the coach.');
+        });
+});
+
+
+document.getElementById('addMealForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    try {
+        const response = await fetch('/auth/addmeal', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            notyf.success(result.message);  // Show success notification
+        } else {
+            notyf.error(result.error);  // Show error notification
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        notyf.error('An error occurred while adding the meal.');  // Show error notification
+    }
+});
+
+document.getElementById('addExerciseForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    try {
+        const response = await fetch('/auth/addexercise', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            notyf.success(result.message);  // Show success notification
+        } else {
+            notyf.error(result.error);  // Show error notification
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        notyf.error('An error occurred while adding the exercise.');  // Show error notification
+    }
+});
 
 
 
@@ -742,7 +835,7 @@ function validateEditCoachForm() {
 }
 
 // Remove Coach Form Validation
-function validateremoveCoachForm() {
+async function validateremoveCoachForm() {
     const coachNameInput = document.getElementById('removeCoachName');
     const coachName = coachNameInput.value.trim();
     let isValid = true;
@@ -759,27 +852,27 @@ function validateremoveCoachForm() {
 
     if (isValid) {
         // Send the form data to the server using fetch
-        fetch('/auth/removecoach', {
+        await fetch('/auth/removecoach', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ removeCoachName: coachName }) 
+            body: JSON.stringify({ removeCoachName: coachName })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(data => {
-            console.log('Server response:', data); 
-            document.getElementById('removeCoachSuccessMessage').textContent = 'Coach Removed'; 
-            coachNameInput.value = ''; 
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log('Server response:', data);
+                document.getElementById('removeCoachSuccessMessage').textContent = 'Coach Removed';
+                coachNameInput.value = '';
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
     }
 
     return isValid;
@@ -912,12 +1005,12 @@ function toggleStatsContainer() {
 document.addEventListener('DOMContentLoaded', function () {
     const isDarkMode = localStorage.getItem('darkModeEnabled') === 'true';
     const darkModeButton = document.querySelector('.darkmode-button');
-    
+
     if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-      darkModeButton.textContent = 'Light Mode';
+        document.body.classList.add('dark-mode');
+        darkModeButton.textContent = 'Light Mode';
     } else {
-      document.body.classList.remove('dark-mode');
-      darkModeButton.textContent = 'Dark Mode';
+        document.body.classList.remove('dark-mode');
+        darkModeButton.textContent = 'Dark Mode';
     }
-  });
+});

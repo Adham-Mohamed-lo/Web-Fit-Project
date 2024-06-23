@@ -205,6 +205,7 @@
                     <div id="removeUsersSuccessMessage" class="success-message"></div>
                 </form>
             </div>
+
             <!-- Product Buttons -->
             <div class="container hidden" id="Productview">
                 <h2>Products</h2>
@@ -219,12 +220,11 @@
                     <% }); %>
                 </div>
             </div>
-            
 
             <div class="action-container hidden" id="addProductsContainer">
                 <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
                 <h1>Add Products</h1>
-                <form action="/auth/addProduct" method="post" id="addProductForm" enctype="multipart/form-data">
+                <form id="addProductForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="productName">Product Name:</label>
                         <input type="text" id="productName" name="productName" required>
@@ -248,7 +248,6 @@
                     <div id="successMessage" class="success-message"></div>
                 </form>
             </div>
-
             <div class="action-container hidden" id="removeProductsContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeProductsContainer')">X</button>
                 <h1>Remove Products</h1>
@@ -314,7 +313,7 @@
             <div class="action-container hidden" id="addCoachesContainer">
                 <button class="exit-button" onclick="toggleVisibility('addCoachesContainer')">X</button>
                 <h1>Add Coach</h1>
-                <form action="/auth/addcoaches" method="post" id="addCoachForm" enctype="multipart/form-data">
+                <form id="addCoachForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="coachname">Coach Name:</label>
                         <input type="text" id="coachname" name="coachname" required>
@@ -331,6 +330,7 @@
                     <div id="coachSuccessMessage" class="success-message"></div>
                 </form>
             </div>
+            
             <div class="action-container hidden" id="removeCoachesContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeCoachesContainer')">X</button>
                 <h1>Remove Coaches</h1>
@@ -387,7 +387,7 @@
 <div class="action-container hidden" id="addMealContainer" enctype="multipart/form-data">
     <button class="exit-button" onclick="toggleVisibility('addMealContainer')">X</button>
     <h1>Add Meal</h1>
-    <form action='/auth/addmeal' method="post" id="addMealForm">
+    <form id="addMealForm">
         <div class="form-group">
             <label for="mealname">Meal Name:</label>
             <input type="text" id="mealname" name="mealname" required>
@@ -411,6 +411,7 @@
         <div id="MealSuccessMessage" class="success-message"></div>
     </form>
 </div>
+
 
 <div class="action-container hidden" id="removeMealContainer">
     <button class="exit-button" onclick="toggleVisibility('removeMealContainer')">X</button>
@@ -476,7 +477,7 @@
             <div class="action-container hidden" id="addExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('addExerciseContainer')">X</button>
                 <h1>Add Exercise</h1>
-                <form action="/auth/addexercise" method="post" id="addExerciseForm">
+                <form id="addExerciseForm">
                     <div class="form-group">
                         <label for="Exercisename">Exercise Name:</label>
                         <input type="text" id="Exercisename" name="Exercisename" required>
@@ -502,6 +503,7 @@
                     <div id="ExerciseSuccessMessage" class="success-message"></div>
                 </form>
             </div>
+            
             <div class="action-container hidden" id="removeExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeExerciseContainer')">X</button>
                 <h1>Remove Exercise</h1>

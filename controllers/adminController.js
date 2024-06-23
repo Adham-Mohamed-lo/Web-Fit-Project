@@ -71,7 +71,7 @@ const addProduct = (req, res) => {
 
         newProduct.save()
             .then(() => {
-                res.redirect("/auth/Admin");
+                res.json({ message: 'Product added successfully.' });
             })
             .catch((err) => {
                 console.error("Error saving product:", err);
@@ -147,7 +147,7 @@ const addCoach = (req, res) => {
 
         newCoach.save()
             .then(() => {
-                res.redirect("/auth/Admin");
+                res.json({ message: 'Coach added successfully.' });
             })
             .catch((err) => {
                 console.error(err);
@@ -218,20 +218,23 @@ const getCoaches = (req, res) => {
 const addmeal = async (req, res) => {
     const { mealname, mealdescription, ingredients } = req.body;
 
+    if (!mealname || !mealdescription) {
+        return sendErrorResponse(res, 'Meal name and description are required.', 400);
+    }
+
     const newMeal = new Meal({
         mealname,
         mealdescription,
         ingredients: Array.isArray(ingredients) ? ingredients : [ingredients]
     });
 
-    newMeal.save()
-        .then(() => {
-            res.redirect("/auth/Admin");
-        })
-        .catch((err) => {
-            console.error("Error saving meal:", err);
-            sendErrorResponse(res, "Error saving meal");
-        });
+    try {
+        await newMeal.save();
+        res.json({ message: 'Meal added successfully.' });
+    } catch (err) {
+        console.error("Error saving meal:", err);
+        sendErrorResponse(res, "Error saving meal");
+    }
 };
 
 const deleteMeal = async (req, res) => {
@@ -273,11 +276,11 @@ const editMeal = async (req, res) => {
 };
 
 // Exercise Handlers
-const addExercise = (req, res) => {
+const addExercise = async (req, res) => {
     const { Exercisename, Exercisedescription, Exerciseimage, Exercisetype } = req.body;
 
     if (!Exercisename || !Exercisedescription || !Exerciseimage || !Exercisetype) {
-        return sendErrorResponse(res, 'All fields are required.', 400);
+        return res.status(400).json({ error: 'All fields are required.' });
     }
 
     const newExercise = new Exercise({
@@ -287,15 +290,15 @@ const addExercise = (req, res) => {
         exercisetype: Exercisetype
     });
 
-    newExercise.save()
-        .then(() => {
-            res.redirect("/auth/Admin"); // Redirect to admin page after successful save
-        })
-        .catch((err) => {
-            console.error(err);
-            sendErrorResponse(res, "Error saving exercise.");
-        });
+    try {
+        await newExercise.save();
+        res.json({ message: 'Exercise added successfully.' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error saving exercise.' });
+    }
 };
+
 
 const removeExercise = (req, res) => {
     const { removeExerciseName } = req.body;

@@ -9,6 +9,8 @@ const Coach = require("../models/coachesModel.js");
 const Product = require("../models/prodectshopModel.js");
 const Meal = require("../models/mealModel.js");
 const Exercise = require("../models/excerciseModel.js");
+const multer = require('multer');
+const upload = multer();
 
 // app.use((req, res, next) => {
 //   if (req.session.user !== undefined) {
@@ -182,11 +184,13 @@ app.put("/editProduct", adminController.editProduct);
 app.delete("/removeProduct", adminController.deleteProduct);
 
 // meal routes functions
-app.post("/addmeal", adminController.addmeal);
+
+app.post('/addmeal', upload.none(), adminController.addmeal);
 app.put("/editmeal", adminController.editMeal);
 app.delete("/removemeal", adminController.deleteMeal);
 
-app.post("/addexercise", adminController.addExercise);
+app.post('/addexercise', upload.none(), adminController.addExercise);
+
 app.put("/editexercise", adminController.editExercise);
 app.delete("/removeexercise", adminController.removeExercise);
 
