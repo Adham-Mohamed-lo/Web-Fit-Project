@@ -9,7 +9,7 @@ const Meal = require("../models/mealModel.js");
 const Exercise = require("../models/excerciseModel.js");
 const User = require("../models/userModel.js");
 
-
+// Multer storage configuration
 const coachstorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/images/coaches');
@@ -19,8 +19,6 @@ const coachstorage = multer.diskStorage({
     }
 });
 const coachupload = multer({ storage: coachstorage });
-
-
 
 const productStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -32,6 +30,12 @@ const productStorage = multer.diskStorage({
 });
 const productUpload = multer({ storage: productStorage });
 
+// Helper function to send consistent error responses
+const sendErrorResponse = (res, message, status = 500) => {
+    res.status(status).json({ error: message });
+};
+
+// Product Handlers
 const getAllProducts = (req, res) => {
     Product.find()
         .then((products) => {
@@ -39,24 +43,23 @@ const getAllProducts = (req, res) => {
         })
         .catch((err) => {
             console.error(err);
-            res.status(500).send('Error fetching products');
+            sendErrorResponse(res, 'Error fetching products');
         });
 };
-
 
 const addProduct = (req, res) => {
     productUpload.single('productImage')(req, res, (err) => {
         if (err instanceof multer.MulterError) {
-            return res.status(500).send('Error uploading image.');
+            return sendErrorResponse(res, 'Error uploading image.');
         } else if (err) {
-            return res.status(500).send('Unknown error occurred.');
+            return sendErrorResponse(res, 'Unknown error occurred.');
         }
 
         const { productName, productPrice, productId } = req.body;
         const productImage = req.file;
 
         if (!productImage) {
-            return res.status(400).send('No image uploaded.');
+            return sendErrorResponse(res, 'No image uploaded.', 400);
         }
 
         const newProduct = new Product({
@@ -72,10 +75,10 @@ const addProduct = (req, res) => {
             })
             .catch((err) => {
                 console.error("Error saving product:", err);
-            fs.unlink(path.join(__dirname, '..', 'public', `/images/products/${productImage.filename}`), (err) => {
-                if (err) console.error("Failed to remove uploaded image:", err);
-            });
-                res.status(500).send("Error saving product");
+                fs.unlink(path.join(__dirname, '..', 'public', `/images/products/${productImage.filename}`), (err) => {
+                    if (err) console.error("Failed to remove uploaded image:", err);
+                });
+                sendErrorResponse(res, "Error saving product");
             });
     });
 };
@@ -86,94 +89,54 @@ const deleteProduct = (req, res) => {
     Product.findOneAndDelete({ productname: removeProductName, id: removeProductId })
         .then((deletedProduct) => {
             if (!deletedProduct) {
-                return res.status(404).send('Product not found.');
+                return sendErrorResponse(res, 'Product not found.', 404);
             }
-
-            const imagePath = path.join(__dirname, '..', 'public', deletedProduct.img);
-            fs.unlink(imagePath, (err) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send('Error deleting product image.');
-                }
-                res.redirect("/auth/Admin");
-            });
+            res.json({ message: 'Product removed successfully.' });
         })
         .catch((err) => {
             console.error("Error deleting product:", err);
-            res.status(500).send("Error deleting product");
+            sendErrorResponse(res, "Error deleting product");
         });
 };
 
 const editProduct = (req, res) => {
-    productUpload.single('productImage')(req, res, (err) => {
-        if (err instanceof multer.MulterError) {
-            return res.status(500).send('Error uploading image.');
-        } else if (err) {
-            return res.status(500).send('Unknown error occurred.');
-        }
+    const { editProductName, newProductName, productId, productPrice } = req.body;
 
-        const { editProductName, newProductName, productId, productPrice } = req.body;
-        const productImage = req.file;
+    Product.findOne({ productname: editProductName })
+        .then((existingProduct) => {
+            if (!existingProduct) {
+                return sendErrorResponse(res, 'Product not found.', 404);
+            }
 
-        Product.findOne({ productname: editProductName })
-            .then((existingProduct) => {
-                if (!existingProduct) {
-                    return res.status(404).send('Product not found.');
-                }
+            existingProduct.productname = newProductName;
+            existingProduct.price = productPrice;
+            existingProduct.id = productId;
 
-                if (productImage) {
-                    const oldImagePath = path.join(__dirname, '..', 'public', existingProduct.img);
-                    fs.unlink(oldImagePath, (err) => {
-                        if (err) {
-                            console.error(err);
-                            return res.status(500).send('Error deleting old product image.');
-                        }
-                    });
-                    existingProduct.img = `/images/products/${productImage.filename}`;
-                }
-
-                existingProduct.productname = newProductName;
-                existingProduct.price = productPrice;
-                existingProduct.id = productId;
-
-                return existingProduct.save();
-            })
-            .then(() => {
-                res.redirect("/auth/Admin");
-            })
-            .catch((err) => {
-                console.error("Error updating product:", err);
-                if (productImage) {
-                    fs.unlink(path.join(__dirname, '..', 'public', `/images/products/${productImage.filename}`), (err) => {
-                        if (err) console.error("Failed to remove uploaded image:", err);
-                    });
-                }
-                res.status(500).send("Error updating product");
-            });
-    });
+            return existingProduct.save();
+        })
+        .then(() => {
+            res.json({ message: 'Product updated successfully.' });
+        })
+        .catch((err) => {
+            console.error("Error updating product:", err);
+            sendErrorResponse(res, "Error updating product");
+        });
 };
 
-
-
-
-
-
-
-
-
+// Coach Handlers
 const addCoach = (req, res) => {
     coachupload.single('coachimage')(req, res, (err) => {
         if (err instanceof multer.MulterError) {
-            return res.status(500).send('Error uploading image.');
+            return sendErrorResponse(res, 'Error uploading image.');
         } else if (err) {
-            return res.status(500).send('Unknown error occurred.');
+            return sendErrorResponse(res, 'Unknown error occurred.');
         }
 
         const { coachname, coachdescription } = req.body;
         const coachimage = req.file;
 
         if (!coachimage) {
-            return res.status(400).send('No image uploaded.');
+            return sendErrorResponse(res, 'No image uploaded.', 400);
         }
 
         const newCoach = new Coach({
@@ -188,103 +151,58 @@ const addCoach = (req, res) => {
             })
             .catch((err) => {
                 console.error(err);
-            fs.unlink(path.join(__dirname, '..', 'public', `/images/coaches/${coachimage.filename}`), (err) => {
-                if (err) console.error("Failed to remove uploaded image:", err);
-            });
-                res.status(500).send("Error saving coach");
+                fs.unlink(path.join(__dirname, '..', 'public', `/images/coaches/${coachimage.filename}`), (err) => {
+                    if (err) console.error("Failed to remove uploaded image:", err);
+                });
+                sendErrorResponse(res, "Error saving coach");
             });
     });
 };
 
-
 const removeCoach = (req, res) => {
-    console.log(req.body)
     const { removeCoachName } = req.body;
-    console.log(removeCoachName)
 
     if (!removeCoachName) {
-        return res.status(400).send('Coach name is required.');
+        return sendErrorResponse(res, 'Coach name is required.', 400);
     }
-    Coach.findOne({ coachname: removeCoachName })
+
+    Coach.findOneAndDelete({ coachname: removeCoachName })
         .then((coach) => {
             if (!coach) {
-                return res.status(404).send('Coach not found.');
+                return sendErrorResponse(res, 'Coach not found.', 404);
             }
-
-            // Coach found, now delete them
-            Coach.findOneAndDelete({ coachname: removeCoachName })
-                .then((deletedCoach) => {
-                    // Optionally, delete the coach's image from the filesystem
-                    if (deletedCoach.coachimage) {
-                        const imagePath = path.join(__dirname, '..', 'public', deletedCoach.coachimage);
-                        fs.unlinkSync(imagePath);
-                    }
-
-                    res.status(200).send('Coach removed successfully.');
-                })
-                .catch((err) => {
-                    console.error(err);
-                    res.status(500).send('Error removing coach.');
-                });
+            res.json({ message: 'Coach removed successfully.' });
         })
         .catch((err) => {
             console.error(err);
-            res.status(500).send('Error removing coach.');
+            sendErrorResponse(res, 'Error removing coach.');
         });
 };
 
 const editCoach = (req, res) => {
-    coachupload.single('coachImage')(req, res, (err) => {  // Updated here
-        if (err instanceof multer.MulterError) {
-            return res.status(500).send('Error uploading image.');
-        } else if (err) {
-            return res.status(500).send('Unknown error occurred.');
-        }
+    const { editCoachName, newCoachName, coachDescription } = req.body;
 
-        const { editCoachName, newCoachName, coachDescription } = req.body;
-        const coachImage = req.file;
+    Coach.findOne({ coachname: editCoachName })
+        .then((existingCoach) => {
+            if (!existingCoach) {
+                return sendErrorResponse(res, 'Coach not found.', 404);
+            }
 
-        Coach.findOne({ coachname: editCoachName })
-            .then((existingCoach) => {
-                if (!existingCoach) {
-                    return res.status(404).send('Coach not found.');
-                }
+            existingCoach.coachname = newCoachName;
+            existingCoach.description = coachDescription;
 
-                if (coachImage) {
-                    const oldImagePath = path.join(__dirname, '..', 'public', existingCoach.coachimage);
-                    fs.unlink(oldImagePath, (err) => {
-                        if (err) {
-                            console.error(err);
-                            return res.status(500).send('Error deleting old coach image.');
-                        }
-                    });
-                    existingCoach.coachimage = `/images/coaches/${coachImage.filename}`;
-                }
-
-                existingCoach.coachname = newCoachName;
-                existingCoach.description = coachDescription;
-
-                return existingCoach.save();
-            })
-            .then(() => {
-                res.redirect("/auth/Admin");
-            })
-            .catch((err) => {
-                console.error("Error updating coach:", err);
-                if (coachImage) {
-                    fs.unlink(path.join(__dirname, '..', 'public', `/images/coaches/${coachImage.filename}`), (err) => {
-                        if (err) console.error("Failed to remove uploaded image:", err);
-                    });
-                }
-                res.status(500).send("Error updating coach");
-            });
-    });
+            return existingCoach.save();
+        })
+        .then(() => {
+            res.json({ message: 'Coach updated successfully.' });
+        })
+        .catch((err) => {
+            console.error("Error updating coach:", err);
+            sendErrorResponse(res, "Error updating coach");
+        });
 };
 
-
-
-
-
+// Fetch Coaches
 const getCoaches = (req, res) => {
     Coach.find()
         .then(coaches => {
@@ -292,15 +210,11 @@ const getCoaches = (req, res) => {
         })
         .catch(err => {
             console.error(err);
-            res.status(500).send("Error retrieving coaches");
+            sendErrorResponse(res, "Error retrieving coaches");
         });
 };
 
-
-
-
-
-
+// Meal Handlers
 const addmeal = async (req, res) => {
     const { mealname, mealdescription, ingredients } = req.body;
 
@@ -316,7 +230,7 @@ const addmeal = async (req, res) => {
         })
         .catch((err) => {
             console.error("Error saving meal:", err);
-            res.status(500).send("Error saving meal");
+            sendErrorResponse(res, "Error saving meal");
         });
 };
 
@@ -326,12 +240,12 @@ const deleteMeal = async (req, res) => {
     try {
         const deletedMeal = await Meal.findOneAndDelete({ mealname: removeMealName });
         if (!deletedMeal) {
-            return res.status(404).send('Meal not found.');
+            return sendErrorResponse(res, 'Meal not found.', 404);
         }
-        res.status(200).send('Meal successfully deleted.');
+        res.json({ message: 'Meal successfully deleted.' });
     } catch (err) {
         console.error("Error deleting meal:", err);
-        res.status(500).send("Error deleting meal");
+        sendErrorResponse(res, "Error deleting meal");
     }
 };
 
@@ -340,7 +254,7 @@ const editMeal = async (req, res) => {
     try {
         const existingMeal = await Meal.findOne({ mealname: editMealName });
         if (!existingMeal) {
-            return res.status(404).send('Meal not found.');
+            return sendErrorResponse(res, 'Meal not found.', 404);
         }
 
         existingMeal.mealname = newMealName;
@@ -351,20 +265,19 @@ const editMeal = async (req, res) => {
         }));
 
         await existingMeal.save();
-        res.status(200).json({ message: 'Meal successfully updated.' });
+        res.json({ message: 'Meal successfully updated.' });
     } catch (err) {
         console.error("Error updating meal:", err);
-        res.status(500).json({ error: "Error updating meal" });
+        sendErrorResponse(res, "Error updating meal");
     }
 };
 
-
-
+// Exercise Handlers
 const addExercise = (req, res) => {
     const { Exercisename, Exercisedescription, Exerciseimage, Exercisetype } = req.body;
 
     if (!Exercisename || !Exercisedescription || !Exerciseimage || !Exercisetype) {
-        return res.status(400).send('All fields are required.');
+        return sendErrorResponse(res, 'All fields are required.', 400);
     }
 
     const newExercise = new Exercise({
@@ -380,7 +293,7 @@ const addExercise = (req, res) => {
         })
         .catch((err) => {
             console.error(err);
-            res.status(500).send("Error saving exercise.");
+            sendErrorResponse(res, "Error saving exercise.");
         });
 };
 
@@ -388,19 +301,19 @@ const removeExercise = (req, res) => {
     const { removeExerciseName } = req.body;
 
     if (!removeExerciseName) {
-        return res.status(400).send('Exercise Name is required.');
+        return sendErrorResponse(res, 'Exercise Name is required.', 400);
     }
 
     Exercise.findOneAndDelete({ exercisename: removeExerciseName })
         .then((exercise) => {
             if (!exercise) {
-                return res.status(404).send('Exercise not found.');
+                return sendErrorResponse(res, 'Exercise not found.', 404);
             }
-            res.status(200).send('Exercise removed successfully.');
+            res.json({ message: 'Exercise removed successfully.' });
         })
         .catch((err) => {
             console.error(err);
-            res.status(500).send('Error removing exercise.');
+            sendErrorResponse(res, 'Error removing exercise.');
         });
 };
 
@@ -408,7 +321,7 @@ const editExercise = (req, res) => {
     const { editExerciseName, newExerciseName, exercisedescription, exerciseimage, Exercisetype } = req.body;
 
     if (!editExerciseName || !newExerciseName || !exercisedescription || !exerciseimage || !Exercisetype) {
-        return res.status(400).send('All fields are required.');
+        return sendErrorResponse(res, 'All fields are required.', 400);
     }
 
     Exercise.findOneAndUpdate(
@@ -423,16 +336,17 @@ const editExercise = (req, res) => {
     )
     .then((exercise) => {
         if (!exercise) {
-            return res.status(404).send('Exercise not found.');
+            return sendErrorResponse(res, 'Exercise not found.', 404);
         }
-        res.status(200).send('Exercise updated successfully.');
+        res.json({ message: 'Exercise updated successfully.' });
     })
     .catch((err) => {
         console.error(err);
-        res.status(500).send('Error updating exercise.');
+        sendErrorResponse(res, 'Error updating exercise.');
     });
 };
 
+// User Handlers
 const getAllUsers = (req, res) => {
     User.find()
         .then((users) => {
@@ -440,9 +354,10 @@ const getAllUsers = (req, res) => {
         })
         .catch((err) => {
             console.error(err);
-            res.status(500).send('Error fetching users');
+            sendErrorResponse(res, 'Error fetching users');
         });
 };
+
 const getDashboardData = async (req, res) => {
     try {
         const userCount = await User.countDocuments();
@@ -458,10 +373,10 @@ const getDashboardData = async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).send('Error fetching dashboard data');
+        sendErrorResponse(res, 'Error fetching dashboard data');
     }
 };
 
 module.exports = {
-    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach, addExercise, editCoach,removeExercise,editExercise,getAllUsers,getDashboardData
-}; 
+    getAllProducts, addCoach, addmeal, deleteMeal, editMeal, addProduct, deleteProduct, getCoaches, editProduct, removeCoach, addExercise, editCoach, removeExercise, editExercise, getAllUsers, getDashboardData
+};

@@ -118,6 +118,7 @@ app.get('/coach/:id', async (req, res) => {
       res.status(500).json({ error: 'An error occurred while fetching coach data' });
   }
 });
+
 app.get('/user/:id', async (req, res) => {
   try {
       const user = await User.findById(req.params.id).lean();
@@ -171,24 +172,23 @@ app.post("/add-card", async (req, res) => {
 app.get("/logout", loginController.logout);
 
 app.post("/addcoaches", adminController.addCoach);
-app.post("/removecoach", adminController.removeCoach);
-app.post("/editcoaches", adminController.editCoach);
-
+app.put("/editcoaches", adminController.editCoach);
+app.delete("/removecoach", adminController.removeCoach);
 app.get("/getcoaches", adminController.getCoaches);
 
 //app.get('/shop', adminController.getAllProducts);
 app.post("/addProduct", adminController.addProduct);
-app.post("/removeProduct", adminController.deleteProduct);
-app.post("/editProduct", adminController.editProduct);
+app.put("/editProduct", adminController.editProduct);
+app.delete("/removeProduct", adminController.deleteProduct);
 
 // meal routes functions
 app.post("/addmeal", adminController.addmeal);
-app.post("/removemeal", adminController.deleteMeal);
-app.post("/editmeal", adminController.editMeal);
+app.put("/editmeal", adminController.editMeal);
+app.delete("/removemeal", adminController.deleteMeal);
 
 app.post("/addexercise", adminController.addExercise);
-app.post("/removeexercise", adminController.removeExercise);
-app.post("/editexercise", adminController.editExercise);
+app.put("/editexercise", adminController.editExercise);
+app.delete("/removeexercise", adminController.removeExercise);
 
 // Add a middleware to check if the user is logged in
 app.get('/dashboard', adminController.getDashboardData);

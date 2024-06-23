@@ -231,18 +231,6 @@ function removeUser() {
     document.getElementById('removeUserContainer').classList.remove('hidden');
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 document.getElementById('editUsersForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = new FormData(this);
@@ -288,8 +276,307 @@ document.getElementById('removeUsersForm').addEventListener('submit', function(e
 
 
 
+const notyf = new Notyf({
+    position: {
+        x: 'right', // 'left' or 'right' or 'center'
+        y: 'top', // 'top' or 'bottom'
+    },
+});
 
+// Edit Exercise
+function editExercise() {
+    const editExerciseName = document.getElementById('editExerciseName').value;
+    const newExerciseName = document.getElementById('newExerciseName').value;
+    const exercisedescription = document.getElementById('exercisedescription').value;
+    const exerciseimage = document.getElementById('exerciseimage').value;
+    const Exercisetype = document.getElementById('Exercisetype').value;
 
+    const exerciseData = {
+        editExerciseName,
+        newExerciseName,
+        exercisedescription,
+        exerciseimage,
+        Exercisetype
+    };
+
+    fetch('/auth/editexercise', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(exerciseData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('editExerciseContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating exercise:', error);
+        notyf.error('An error occurred while updating the exercise.');
+    });
+}
+
+// Remove Exercise
+function removeExercise() {
+    const exerciseName = document.getElementById('removeExerciseName').value;
+
+    fetch('/auth/removeexercise', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ removeExerciseName: exerciseName })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('removeExerciseContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error removing exercise:', error);
+        notyf.error('An error occurred while removing the exercise.');
+    });
+}
+
+// Edit Meal
+function editMeal() {
+    const editMealName = document.getElementById('editMealName').value;
+    const newMealName = document.getElementById('newMealName').value;
+    const newMealdescription = document.getElementById('newMealDescription').value;
+    const newIngredients = [];
+    document.querySelectorAll('#newIngredientsContainer .ingredient-group').forEach((group, index) => {
+        const name = group.querySelector(`input[name="newIngredients[${index}][name]"]`).value;
+        const quantity = group.querySelector(`input[name="newIngredients[${index}][quantity]"]`).value;
+        newIngredients.push({ name, quantity });
+    });
+
+    const mealData = {
+        editMealName,
+        newMealName,
+        newMealdescription,
+        newIngredients
+    };
+
+    fetch('/auth/editmeal', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(mealData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('editMealContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating meal:', error);
+        notyf.error('An error occurred while updating the meal.');
+    });
+}
+
+// Remove Meal
+function removeMeal() {
+    const mealName = document.getElementById('removeMealName').value;
+
+    fetch('/auth/removemeal', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ removeMealName: mealName })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('removeMealContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error removing meal:', error);
+        notyf.error('An error occurred while removing the meal.');
+    });
+}
+
+// Edit Product
+function editProduct() {
+    const editProductName = document.getElementById('editProductName').value;
+    const newProductName = document.getElementById('newProductName').value;
+    const productId = document.getElementById('productId').value;
+    const productPrice = document.getElementById('productPrice').value;
+
+    const productData = {
+        editProductName,
+        newProductName,
+        productId,
+        productPrice
+    };
+
+    fetch('/auth/editProduct', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('editProductsContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating product:', error);
+        notyf.error('An error occurred while updating the product.');
+    });
+}
+
+// Remove Product
+function removeProduct() {
+    const productName = document.getElementById('removeProductName').value;
+    const productId = document.getElementById('removeProductId').value;
+
+    fetch('/auth/removeProduct', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ removeProductName: productName, removeProductId: productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('removeProductsContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error removing product:', error);
+        notyf.error('An error occurred while removing the product.');
+    });
+}
+
+// Edit Coach
+function editCoach() {
+    const editCoachName = document.getElementById('editCoachName').value;
+    const newCoachName = document.getElementById('newCoachName').value;
+    const coachDescription = document.getElementById('newCoachDescription').value;
+
+    const coachData = {
+        editCoachName,
+        newCoachName,
+        coachDescription
+    };
+
+    fetch('/auth/editcoaches', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(coachData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('editCoachesContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating coach:', error);
+        notyf.error('An error occurred while updating the coach.');
+    });
+}
+
+// Remove Coach
+function removeCoach() {
+    const coachName = document.getElementById('removeCoachName').value;
+
+    fetch('/auth/removecoach', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ removeCoachName: coachName })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            notyf.error(data.error);
+        } else {
+            notyf.success(data.message);
+            toggleVisibility('removeCoachesContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error removing coach:', error);
+        notyf.error('An error occurred while removing the coach.');
+    });
+}
+
+// Form Submission Event Listeners
+document.getElementById('editExerciseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    editExercise();
+});
+
+document.getElementById('removeExerciseForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    removeExercise();
+});
+
+document.getElementById('editMealForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    editMeal();
+});
+
+document.getElementById('removeMealForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    removeMeal();
+});
+
+document.getElementById('editProductForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    editProduct();
+});
+
+document.getElementById('removeProductForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    removeProduct();
+});
+
+document.getElementById('editCoachForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    editCoach();
+});
+
+document.getElementById('removeCoachForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    removeCoach();
+});
 
 
 
@@ -561,27 +848,6 @@ function validateEditProductForm() {
     return isValid;
 }
 
-let isStatsContainerRight = false;
-let isStatsContainerMiddle = false;
-
-
-
-function toggleStatsContainer() {
-    const statsContainer = document.getElementById('stats_Container');
-
-    if (isStatsContainerMiddle) {
-        statsContainer.classList.remove('middle');
-        isStatsContainerMiddle = false;
-        isStatsContainerRight = false;
-    } else if (isStatsContainerRight) {
-        statsContainer.classList.remove('right');
-        statsContainer.classList.add('middle');
-        isStatsContainerMiddle = true;
-    } else {
-        statsContainer.classList.add('right');
-        isStatsContainerRight = true;
-    }
-}
 
 let ingredientIndex = 1;
 function addIngredient() {
@@ -621,61 +887,28 @@ function removeNewIngredient(button) {
     container.removeChild(button.parentElement);
 }
 
-document.getElementById('editMealForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-    const jsonData = {
-        newIngredients: []
-    };
-
-    const ingredientMap = {};
-
-    formData.forEach((value, key) => {
-        if (key.startsWith('newIngredients[')) {
-            const index = key.match(/\d+/)[0];
-            const field = key.match(/\[\w+\]\[(\w+)\]/)[1];
-            if (!ingredientMap[index]) ingredientMap[index] = {};
-            ingredientMap[index][field] = value;
-            console.log(`Before: Ingredient ${index}, Field: ${field}, Value: ${value}`);
-        } else {
-            jsonData[key] = value;
-        }
-    });
-
-    jsonData.newIngredients = Object.values(ingredientMap);
-
-    jsonData.newIngredients.forEach((ingredient, index) => {
-        console.log(`After: Ingredient ${index}, Name: ${ingredient.name}, Quantity: ${ingredient.quantity}`);
-    });
-
-    fetch(this.action, {
-        method: this.method,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jsonData)
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    }).then(data => {
-        console.log(data); 
-        document.getElementById('editMealSuccessMessage').innerText = 'Meal successfully updated.';
-        toggleVisibility('editMealContainer');
-    }).catch(error => {
-        console.error('Error:', error);
-    });
-});
 
 
 
+function toggleStatsContainer() {
+    const statsContainer = document.getElementById('stats_Container');
+
+    if (isStatsContainerMiddle) {
+        statsContainer.classList.remove('middle');
+        isStatsContainerMiddle = false;
+        isStatsContainerRight = false;
+    } else if (isStatsContainerRight) {
+        statsContainer.classList.remove('right');
+        statsContainer.classList.add('middle');
+        isStatsContainerMiddle = true;
+    } else {
+        statsContainer.classList.add('right');
+        isStatsContainerRight = true;
+    }
+}
 
 
 
-
-// Check and apply stored dark mode preference on page load
 document.addEventListener('DOMContentLoaded', function () {
     const isDarkMode = localStorage.getItem('darkModeEnabled') === 'true';
     const darkModeButton = document.querySelector('.darkmode-button');

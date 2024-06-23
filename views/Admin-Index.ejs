@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="/css/Admin-Style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf/notyf.min.css">
 </head>
 
 <body>
@@ -15,9 +16,7 @@
                 <div class="container" id="admin_Panel">
                     <h2>Admin's Panel</h2>
                     <div class="admin-menu">
-                        <div>
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('Stats')">Analysis</a>
-                        </div>
+                        
                         <div>
                             <a href="#" class="main-menu-button"
                                 onclick="toggleMainMenu('ViewUsersMenu'), toggleVisibility('Userview')">Users</a>
@@ -82,10 +81,7 @@
                                     onclick="toggleVisibility('removeExerciseContainer')">Remove Exercises</a>
                             </div>
                         </div>
-                        <div>
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewAdmin')">Admin's
-                                Profile</a>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -126,7 +122,7 @@
                 <form id="editUsersForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="editUsersName">UserName:</label>
-                        <input type="text" id="editUsersName" name="editUsersName" required>
+                        <input type="text" id="editUsersName" name="editUsersName" required disabled>
                         <div id="editUsersNameError" class="error-message"></div>
                     </div>
                     <div class="form-group">
@@ -202,7 +198,7 @@
                 <form id="removeUsersForm">
                     <div class="form-group">
                         <label for="removeUsersName">Users Name:</label>
-                        <input type="text" id="removeUsersName" name="removeUsersName" required>
+                        <input type="text" id="removeUsersName" name="removeUsersName" required disabled>
                         <div id="removeUsersNameError" class="error-message"></div>
                     </div>
                     <button type="submit" class="btn-action">Remove Users</button>
@@ -212,15 +208,18 @@
             <!-- Product Buttons -->
             <div class="container hidden" id="Productview">
                 <h2>Products</h2>
+                <div id="product-count">
+                    <label style="color:  rgb(14, 170, 92);">Number of Products: <%= data.products.length %></label>
+                </div>
                 <div id="product-buttons" class="btn-group-vertical">
                     <% data.products.forEach(function(product) { %>
-                        <button type="button" class="btn btn-success mb-2" value="<%= product._id %>"
-                            onclick="selectProduct('<%= product._id %>')">
+                        <button type="button" class="btn btn-success mb-2" value="<%= product._id %>" onclick="selectProduct('<%= product._id %>')">
                             <%= product.productname %> - $<%= product.price %>
                         </button>
-                        <% }); %>
+                    <% }); %>
                 </div>
             </div>
+            
 
             <div class="action-container hidden" id="addProductsContainer">
                 <button class="exit-button" onclick="toggleVisibility('addProductsContainer')">X</button>
@@ -253,15 +252,15 @@
             <div class="action-container hidden" id="removeProductsContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeProductsContainer')">X</button>
                 <h1>Remove Products</h1>
-                <form action="/auth/removeProduct" method="post" id="removeProductForm">
+                <form id="removeProductForm">
                     <div class="form-group">
                         <label for="removeProductName">Product Name:</label>
-                        <input type="text" id="removeProductName" name="removeProductName" required>
+                        <input type="text" id="removeProductName" name="removeProductName" required disabled>
                         <div id="removeProductNameError" class="error-message"></div>
                     </div>
                     <div class="form-group">
                         <label for="removeProductId">Product ID:</label>
-                        <input type="number" id="removeProductId" name="removeProductId" required>
+                        <input type="number" id="removeProductId" name="removeProductId" required disabled>
                         <div id="removeProductIdError" class="error-message"></div>
                     </div>
                     <button type="submit" class="btn-action">Remove Product</button>
@@ -272,10 +271,10 @@
             <div class="action-container hidden" id="editProductsContainer">
                 <button class="exit-button" onclick="toggleVisibility('editProductsContainer')">X</button>
                 <h1>Edit Products</h1>
-                <form action="/auth/editProduct" method="post" id="editProductForm" enctype="multipart/form-data">
+                <form  id="editProductForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="editProductName">Product Name:</label>
-                        <input type="text" id="editProductName" name="editProductName" required>
+                        <input type="text" id="editProductName" name="editProductName" required disabled>
                         <div id="editProductNameError" class="error-message"></div>
                     </div>
                     <div class="form-group">
@@ -335,10 +334,10 @@
             <div class="action-container hidden" id="removeCoachesContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeCoachesContainer')">X</button>
                 <h1>Remove Coaches</h1>
-                <form action="/auth/removecoach" method="post" id="removeCoachForm" enctype="multipart/form-data">
+                <form  id="removeCoachForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="removeCoachName">Coach Name:</label>
-                        <input type="text" id="removeCoachName" name="removeCoachName" required>
+                        <input type="text" id="removeCoachName" name="removeCoachName" required disabled>
                         <div id="removeCoachNameError" class="error-message"></div>
                     </div>
                     <button type="submit" class="btn-action">Remove Coach</button>
@@ -348,10 +347,10 @@
             <div class="action-container hidden" id="editCoachesContainer">
                 <button class="exit-button" onclick="toggleVisibility('editCoachesContainer')">X</button>
                 <h1>Edit Coaches</h1>
-                <form action="/auth/editcoaches" method="post" id="editCoachForm" enctype="multipart/form-data">
+                <form  id="editCoachForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="editCoachName">Coach Name:</label>
-                        <input type="text" id="editCoachName" name="editCoachName" required>
+                        <input type="text" id="editCoachName" name="editCoachName" required disabled>
                         <div id="editCoachNameError" class="error-message"></div>
                     </div>
                     <div class="form-group">
@@ -416,10 +415,10 @@
 <div class="action-container hidden" id="removeMealContainer">
     <button class="exit-button" onclick="toggleVisibility('removeMealContainer')">X</button>
     <h1>Remove Meal</h1>
-    <form id="removeMealForm" action="/auth/removemeal" method="post">
+    <form id="removeMealForm" >
         <div class="form-group">
             <label for="removeMealName">Meal Name:</label>
-            <input type="text" id="removeMealName" name="removeMealName" required>
+            <input type="text" id="removeMealName" name="removeMealName" required disabled>
             <div id="removeMealNameError" class="error-message"></div>
         </div>
         <button type="submit" class="btn-action">Remove Meal</button>
@@ -430,10 +429,10 @@
 <div class="action-container hidden" id="editMealContainer">
     <button class="exit-button" onclick="toggleVisibility('editMealContainer')">X</button>
     <h1>Edit Meal</h1>
-    <form id="editMealForm" action="/auth/editmeal" method="post">
+    <form id="editMealForm" >
         <div class="form-group">
             <label for="editMealName">Meal Name:</label>
-            <input type="text" id="editMealName" name="editMealName" required>
+            <input type="text" id="editMealName" name="editMealName" required disabled>
             <div id="editMealNameError" class="error-message"></div>
         </div>
         <div class="form-group">
@@ -506,10 +505,10 @@
             <div class="action-container hidden" id="removeExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('removeExerciseContainer')">X</button>
                 <h1>Remove Exercise</h1>
-                <form action="/auth/removeexercise" method="post" id="removeExerciseForm">
+                <form  id="removeExerciseForm">
                     <div class="form-group">
                         <label for="removeExerciseName">Exercise Name:</label>
-                        <input type="text" id="removeExerciseName" name="removeExerciseName" required>
+                        <input type="text" id="removeExerciseName" name="removeExerciseName" required disabled>
                         <div id="removeExerciseNameError" class="error-message"></div>
                     </div>
                     <button type="submit" class="btn-action">Remove Exercise</button>
@@ -519,10 +518,10 @@
             <div class="action-container hidden" id="editExerciseContainer">
                 <button class="exit-button" onclick="toggleVisibility('editExerciseContainer')">X</button>
                 <h1>Edit Exercise</h1>
-                <form action="/auth/editexercise" method="post" id="editExerciseForm">
+                <form  id="editExerciseForm">
                     <div class="form-group">
                         <label for="editExerciseName">Current Exercise Name:</label>
-                        <input type="text" id="editExerciseName" name="editExerciseName" required>
+                        <input type="text" id="editExerciseName" name="editExerciseName" required disabled>
                         <div id="editExerciseNameError" class="error-message"></div>
                     </div>
                     <div class="form-group">
@@ -543,34 +542,7 @@
                 </form>
             </div>
             
-            <!-- Add Admin Buttons -->
-            <div class="action-container hidden" id="addAdminContainer">
-                <button class="exit-button" onclick="toggleVisibility('addAdminContainer')">X</button>
-                <h1>Add Admin</h1>
-                <form action="/auth/addAdmin" method="post" id="addAdminForm" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="AdminName">Admin Name:</label>
-                        <input type="text" id="AdminName" name="AdminName" required>
-                        <div id="AdminNameError" class="error-message"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="AdminPrice">Admin Price:</label>
-                        <input type="number" id="AdminPrice" name="AdminPrice" required>
-                        <div id="AdminPriceError" class="error-message"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="AdminId">Admin ID:</label>
-                        <input type="number" id="AdminId" name="AdminId" required>
-                        <div id="AdminIdError" class="error-message"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="AdminImage">Admin Image:</label>
-                        <input type="file" id="AdminImage" name="AdminImage" accept="image/*" required>
-                    </div>
-                    <button type="submit" class="btn-action">Add Admin</button>
-                    <div id="successMessage" class="success-message"></div>
-                </form>
-            </div>
+  <script src="https://cdn.jsdelivr.net/npm/notyf/notyf.min.js"></script>
             <script src="/js/Admin-JavaScript.js"></script>
         </div>
 </body>
