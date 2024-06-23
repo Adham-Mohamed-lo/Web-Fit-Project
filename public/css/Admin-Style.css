@@ -362,7 +362,7 @@ h1 {
 .remove-button {
     background-color: transparent;
     border: none;
-    color: #000; /* or any color you prefer */
+    color: #000; 
     font-size: 27px;
     cursor: pointer;
     padding: 5px;
@@ -381,127 +381,126 @@ h1 {
 
 /* Dark Mode Styles */
 body.dark-mode {
-    background-color: #1f1f1f; /* Dark background */
-    color: #ffffff; /* White text */
+    background-color: #1f1f1f; 
+    color: #ffffff; 
 }
 
 .actions-container.dark-mode {
-    color: #ffffff; /* White text */
+    color: #ffffff;
 }
 
 #admin_Panel.dark-mode {
-    background-color: #333; /* Darker background */
-    color: #ffffff; /* White text */
-    box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1); /* Light shadow */
+    background-color: #333; 
+    color: #ffffff; 
+    box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1); 
 }
 
 .container.dark-mode {
-    background-color: #333; /* Darker background */
-    color: #ffffff; /* White text */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Lighter shadow */
+    background-color: #333; 
+    color: #ffffff; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
 }
 
 h1.dark-mode,
 h2.dark-mode {
-    color: rgb(14, 170, 92); /* Green text */
+    color: rgb(14, 170, 92); 
 }
 
 .admin-menu.dark-mode .main-menu-button,
 .admin-menu.dark-mode a,
 .admin-menu.dark-mode .submenu-link {
-    background-color: rgb(14, 170, 92); /* Green background */
-    color: #ffffff; /* White text */
+    background-color: rgb(14, 170, 92); 
+    color: #ffffff; 
 }
 
 .admin-menu.dark-mode .main-menu-button:hover,
 .admin-menu.dark-mode a:hover,
 .admin-menu.dark-mode .submenu-link:hover {
-    background-color: rgb(9, 134, 73); /* Darker green background on hover */
-    color: rgba(14, 170, 92, 0.8); /* Slightly transparent green text */
+    background-color: rgb(9, 134, 73); 
+    color: rgba(14, 170, 92, 0.8); 
 }
 
 .admin-menu.dark-mode a,
 .admin-menu.dark-mode .submenu-link {
-    color: #ffffff; /* White text */
+    color: #ffffff; 
 }
 
 .action-container.dark-mode {
-    background-color: #333; /* Darker background */
-    color: #ffffff; /* White text */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Light shadow */
+    background-color: #333;
+    color: #ffffff; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
 }
 
 .action-container.dark-mode h1 {
-    color: rgb(14, 170, 92); /* Green text */
+    color: rgb(14, 170, 92);
 }
 
 .action-container.dark-mode .form-group label,
 .action-container.dark-mode .btn-action,
 #ingButton.dark-mode {
-    color: #ffffff; /* White text */
-    background-color: rgb(14, 170, 92); /* Green background */
+    color: #ffffff; 
+    background-color: rgb(14, 170, 92); 
 }
 
 .action-container.dark-mode .form-group input,
 .action-container.dark-mode .form-group select {
-    background-color: #333; /* Darker background */
-    color: #ffffff; /* White text */
+    background-color: #333; 
+    color: #ffffff; 
 }
 
 .action-container.dark-mode .btn-action:hover,
 #ingButton.dark-mode:hover {
-    background-color: rgb(9, 134, 73); /* Darker green on hover */
+    background-color: rgb(9, 134, 73); 
 }
 
 .action-container.dark-mode .error-message,
 .action-container.dark-mode .success-message {
-    color: rgba(4, 161, 4, 0.8); /* Green text */
+    color: rgba(4, 161, 4, 0.8); 
 }
 
 .success-message.dark-mode {
-    background-color: darkred; /* Dark red background for success */
+    background-color: darkred;
 }
 
 .submenu.dark-mode .submenu-link {
-    color: #ffffff; /* White text */
+    color: #ffffff; 
 }
 
 .submenu.dark-mode .submenu-link:hover {
-    background-color: #444; /* Darker grey background on hover */
+    background-color: #444; 
 }
 
 .ingredient-group.dark-mode input {
-    background-color: #333; /* Darker background */
-    color: #ffffff; /* White text */
+    background-color: #333; 
+    color: #ffffff;
 }
 
 @media (max-width: 800px) {
     .actions-container.dark-mode {
-        color: #ffffff; /* White text */
+        color: #ffffff; 
     }
 
     .container.dark-mode {
-        background-color: #333; /* Darker background */
-        color: #ffffff; /* White text */
+        background-color: #333; 
+        color: #ffffff; 
     }
 
     .action-container.dark-mode {
-        background-color: #333; /* Darker background */
-        color: #ffffff; /* White text */
-    }
+        background-color: #333; 
+        color: #ffffff; }
 
     .action-container.dark-mode .form-group input,
     .action-container.dark-mode .form-group select {
-        background-color: #333; /* Darker background */
-        color: #ffffff; /* White text */
+        background-color: #333; 
+        color: #ffffff;
     }
 
     .submenu.dark-mode .submenu-link {
-        color: #ffffff; /* White text */
+        color: #ffffff; 
     }
 
     .ingredient-group.dark-mode input {
-        background-color: #333; /* Darker background */
-        color: #ffffff; /* White text */
+        background-color: #333; 
+        color: #ffffff; 
     }
 }

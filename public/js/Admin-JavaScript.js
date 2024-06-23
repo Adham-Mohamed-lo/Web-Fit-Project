@@ -14,7 +14,7 @@ function toggleVisibility(containerId) {
     if (container) {
         const isVisible = container.classList.contains('hidden');
 
-        // Hide all other containers except the admin_Panel
+       
         const allContainers = document.querySelectorAll('.action-container, .container');
         allContainers.forEach(cont => {
             if (cont.id !== containerId && cont.id !== 'admin_Panel') {
@@ -22,10 +22,10 @@ function toggleVisibility(containerId) {
             }
         });
 
-        // Toggle visibility of the clicked container
+        
         container.classList.toggle('hidden');
 
-        // Reset hover effect for submenu links if container is visible
+        
         const submenuLinks = container.querySelectorAll('.submenu-link');
         submenuLinks.forEach(link => {
             link.addEventListener('mouseenter', () => {
@@ -139,11 +139,11 @@ function populateMealForms(meal) {
 
     document.getElementById('removeMealName').value = meal.mealname;
 
-    // Clear the existing ingredients
+   
     const ingredientsContainer = document.getElementById('newIngredientsContainer');
     ingredientsContainer.innerHTML = '';
 
-    // Populate the ingredients
+  
     meal.ingredients.forEach((ingredient, index) => {
         const ingredientGroup = document.createElement('div');
         ingredientGroup.className = 'ingredient-group';
@@ -209,7 +209,7 @@ function editUser() {
 
     document.getElementById('editUsersName').value = user.username;
     document.getElementById('newUsersFullName').value = user.fullname;
-    document.getElementById('UsersPassword').value = user.password; // Do not pre-fill passwords
+    document.getElementById('UsersPassword').value = user.password; 
     document.getElementById('userphone').value = user.userphone;
     document.getElementById('edituseremail').value = user.useremail;
     document.getElementById('editUsersrole').value = user.role;
@@ -278,8 +278,8 @@ document.getElementById('removeUsersForm').addEventListener('submit', async func
 
 const notyf = new Notyf({
     position: {
-        x: 'right', // 'left' or 'right' or 'center'
-        y: 'top', // 'top' or 'bottom'
+        x: 'right', 
+        y: 'top', 
     },
 });
 

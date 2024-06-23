@@ -286,7 +286,7 @@ const addExercise = async (req, res) => {
     const newExercise = new Exercise({
         exercisename: Exercisename,
         exercisedescription: Exercisedescription,
-        exerciseimage: Exerciseimage, // Assuming Exerciseimage is a URL string
+        exerciseimage: Exerciseimage, 
         exercisetype: Exercisetype
     });
 

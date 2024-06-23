@@ -3,10 +3,7 @@ const mongoose = require("mongoose");
 function connectToMongoDB() {
   return mongoose
     .connect(process.env.MONGODB_URI, {
-      //bygybo warning no need for them
-
-      //useNewUrlParser: true,    
-      //useUnifiedTopology: true,
+     
     })
     .then(() => {
       console.log("MongoDB connected")

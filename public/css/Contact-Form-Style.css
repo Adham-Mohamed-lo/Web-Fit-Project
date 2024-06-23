@@ -203,49 +203,49 @@ textarea.input {
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: #1f1f1f; /* Dark background */
-  color: #ffffff; /* White text */
+  background-color: #1f1f1f;  
+  color: #ffffff; 
 }
 
 body.dark-mode .container {
-  background-color: #333; /* Dark background */
+  background-color: #333;  
 }
 
 body.dark-mode .item {
-  background-color: #444; /* Darker background */
+  background-color: #444;  
 }
 
 body.dark-mode .contactform {
-  background-color: rgb(14, 170, 92); /* Green background */
+  background-color: rgb(14, 170, 92); 
 }
 
 body.dark-mode .submit-form {
-  background-color: #333; /* Dark background for the form */
+  background-color: #333; 
 }
 
 body.dark-mode .text1 {
-  color: #ffffff; /* White text */
+  color: #ffffff; 
 }
 
 body.dark-mode .text3 {
-  color: rgb(14, 170, 92); /* Green text */
+  color: rgb(14, 170, 92); 
 }
 
 body.dark-mode .input {
-  background-color: #555; /* Darker input background */
-  color: #ffffff; /* White text */
+  background-color: #555; 
+  color: #ffffff; 
 }
 
 body.dark-mode .inputbox label {
-  color: rgb(14, 170, 92); /* Green text */
+  color: rgb(14, 170, 92); 
 }
 
 body.dark-mode .mesgbtn {
-  background-color: rgb(14, 170, 92); /* Green button background */
-  color: #ffffff; /* White text */
+  background-color: rgb(14, 170, 92); 
+  color: #ffffff; 
 }
 
 body.dark-mode .mesgbtn:hover {
-  background-color: #fff; /* White background on hover */
-  color: rgba(14, 170, 92, 0.8); /* Green text on hover */
+  background-color: #fff; 
+  color: rgba(14, 170, 92, 0.8); 
 }

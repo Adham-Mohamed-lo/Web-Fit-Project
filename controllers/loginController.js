@@ -41,8 +41,8 @@ const loginProcess = async (req, res) => {
 
 const logout = (req, res) => {
   try {
-    req.session.destroy(); // Destroy the session
-    res.redirect('/'); // Redirect to the homepage or login page
+    req.session.destroy(); 
+    res.redirect('/'); 
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

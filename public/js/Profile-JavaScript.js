@@ -90,6 +90,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-
-
-// howa dah 

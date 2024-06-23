@@ -169,35 +169,35 @@ footer p {
 
 /* Dark Mode Styles */
 .dark-mode {
-  background-color: #1f1f1f; /* Dark background */
-  color: #ffffff; /* White text */
+  background-color: #1f1f1f; 
+  color: #ffffff;
 }
 
 .dark-mode .header-nav-container {
-  background-color: #1f1f1f; /* Dark background */
-  color: rgb(14, 170, 92); /* Green text */
-  border-bottom-color: rgb(14, 170, 92); /* Green border */
+  background-color: #1f1f1f; 
+  color: rgb(14, 170, 92); 
+  border-bottom-color: rgb(14, 170, 92); 
 }
 
 .dark-mode header {
-  color: rgb(14, 170, 92); /* Green text */
+  color: rgb(14, 170, 92); 
 }
 
 .dark-mode nav a {
-  color: #ffffff; /* White text */
+  color: #ffffff; 
 }
 
 .dark-mode nav a:hover {
-  color: rgb(14, 170, 92); /* Green hover text */
-  background-color: rgb(35, 35, 35); /* Dark grey background */
+  color: rgb(14, 170, 92); 
+  background-color: rgb(35, 35, 35);
 }
 
 .dark-mode .notification-bar {
-  background-color: rgb(14, 170, 92); /* Green notification bar */
-  color: white; /* White text */
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Light shadow */
+  background-color: rgb(14, 170, 92);
+  color: white; 
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); 
 }
 
 .dark-mode footer {
-  background-color: rgb(35, 35, 35); /* Dark footer background */
+  background-color: rgb(35, 35, 35); 
 }

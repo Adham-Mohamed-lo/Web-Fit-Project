@@ -54,7 +54,7 @@ const postSignup = (req, res) => {
             Subscription,
         } = req.body;
 
-        const img = req.file ? `/images/users/${req.file.filename}` : null; // Get the relative path of the uploaded image
+        const img = req.file ? `/images/users/${req.file.filename}` : null; 
 
         try {
             const existingUser = await User.findOne({ $or: [{ username }, { useremail }, { userphone }] });
@@ -160,8 +160,7 @@ const updateUser = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
-    const userId = req.params.userId; // Assuming userId is passed as a route parameter
-
+    const userId = req.params.userId; 
     try {
         const userToDelete = await User.findByIdAndDelete(userId);
 
@@ -207,15 +206,15 @@ const updateCart = async (req, res) => {
         const cartItemIndex = user.cart.findIndex(item => item.productId === productId);
 
         if (cartItemIndex > -1) {
-            // If product is already in cart, update the quantity
+            
             if (quantity > 0) {
                 user.cart[cartItemIndex].quantity = quantity;
             } else {
-                // Remove item from cart if quantity is 0
+               
                 user.cart.splice(cartItemIndex, 1);
             }
         } else if (quantity > 0) {
-            // If product is not in cart and quantity is more than 0, add new cart item
+            
             user.cart.push({ productId, quantity });
         }
 
