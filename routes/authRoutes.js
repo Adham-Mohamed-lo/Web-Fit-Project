@@ -5,6 +5,10 @@ const adminController = require("../controllers/adminController");
 const { sign } = require("crypto");
 const app = express.Router();
 const User = require('../models/userModel');
+const Coach = require("../models/coachesModel.js");
+const Product = require("../models/prodectshopModel.js");
+const Meal = require("../models/mealModel.js");
+const Exercise = require("../models/excerciseModel.js");
 
 // app.use((req, res, next) => {
 //   if (req.session.user !== undefined) {
@@ -49,17 +53,45 @@ app.get("/login", (req, res) => {
 
 app.post("/login", loginController.loginProcess);
 
-app.get("/admin", (req, res) => {
+app.get("/admin", async (req, res) => {
   if (req.session.user !== undefined && req.session.isAdmin) {
-    res.render("Admin-Index", {
-      currentPage: "admin",
-      user: req.session.user === undefined ? "" : req.session.user,
-    });
+    try {
+      const users = await User.find().lean();
+      const products = await Product.find().lean();
+      const meals = await Meal.find().lean();
+      const exercises = await Exercise.find().lean();
+      const coaches = await Coach.find().lean();
+
+      res.render("Admin-Index", {
+        currentPage: "admin",
+        user: req.session.user || "",
+        data: {
+          users,
+          products,
+          meals,
+          exercises,
+          coaches
+        }
+      });
+    } catch (err) {
+      res.status(500).json({ error: "An error occurred while fetching data" });
+    }
   } else {
     const notification = "Please log in to access this page.";
     res.redirect(`/auth/login?notification=${notification}`);
   }
 });
+app.get('/user/:id', async (req, res) => {
+  try {
+      const user = await User.findById(req.params.id).lean();
+      res.json(user);
+  } catch (err) {
+      res.status(500).json({ error: 'An error occurred while fetching user data' });
+  }
+});
+app.put('/user/:userId', userController.updateUser);
+app.delete('/user/:userId', userController.deleteUser);
+
 
 app.get("/payment", async(req, res) => {
   if (req.session.user !== undefined) {

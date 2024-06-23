@@ -96,79 +96,94 @@ const postSignup = (req, res) => {
     });
 };
 
-// const updateUser = async (req, res) => {
-//     userupload.single('img')(req, res, async (err) => {
-//         if (err instanceof multer.MulterError) {
-//             return res.status(500).send('Error uploading image.');
-//         } else if (err) {
-//             return res.status(500).send('Unknown error occurred.');
-//         }
+const updateUser = async (req, res) => {
+    userupload.single('img')(req, res, async (err) => {
 
-//         const userId = req.params.userId; // Assuming userId is passed as a route parameter
-//         const updateData = req.body;
+        if (err instanceof multer.MulterError) {
+            console.error("Multer error:", err);
+            return res.status(500).json({ error: 'Error uploading image.' });
+        } else if (err) {
+            console.error("Unknown error:", err);
+            return res.status(500).json({ error: 'Unknown error occurred.' });
+        }
 
-//         if (req.file) {
-//             const newImgPath = `/images/users/${req.file.filename}`;
+        const userId = req.params.userId;
+        const updateData = {};
 
-//             try {
-//                 // Get the existing user to remove the old image
-//                 const existingUser = await User.findById(userId);
-//                 if (existingUser && existingUser.img) {
-//                     fs.unlink(path.join('public', existingUser.img), (err) => {
-//                         if (err) console.error("Failed to remove old image:", err);
-//                     });
-//                 }
+        if (req.body.editUsersName) updateData.username = req.body.editUsersName;
+        if (req.body.newUsersFullName) updateData.fullname = req.body.newUsersFullName;
+        if (req.body.UsersPassword) {
+            const salt = await bcrypt.genSalt(10);
+            updateData.userpassword = await bcrypt.hash(req.body.UsersPassword, salt);
+        }
+        if (req.body.userphone) updateData.userphone = req.body.userphone;
+        if (req.body.edituseremail) updateData.useremail = req.body.edituseremail;
+        if (req.body.role) updateData.role = req.body.role;
+        if (req.body.gender) updateData.gender = req.body.gender;
+        if (req.body.editUsersage) updateData.age = req.body.editUsersage;
+        if (req.body.editUsersaddress) updateData.address = req.body.editUsersaddress;
+        if (req.body.Subscription) updateData.Subscription = req.body.Subscription;
 
-//                 // Update the image path in updateData
-//                 updateData.img = newImgPath;
-//             } catch (err) {
-//                 return res.status(500).json({ error: "Failed to update user image" });
-//             }
-//         }
+        if (req.file) {
+            const newImgPath = `/images/users/${req.file.filename}`;
 
-//         try {
-//             // Hash the password if it is being updated
-//             if (updateData.userpassword) {
-//                 const salt = await bcrypt.genSalt(10);
-//                 updateData.userpassword = await bcrypt.hash(updateData.userpassword, salt);
-//             }
+            try {
+                const existingUser = await User.findById(userId);
+                if (existingUser && existingUser.img) {
+                    fs.unlink(path.join('public', existingUser.img), (err) => {
+                        if (err) console.error("Failed to remove old image:", err);
+                    });
+                }
 
-//             // Update user in the database
-//             const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true, runValidators: true });
+                updateData.img = newImgPath;
+            } catch (err) {
+                console.error("Failed to update user image:", err);
+                return res.status(500).json({ error: "Failed to update user image" });
+            }
+        }
 
-//             if (!updatedUser) {
-//                 return res.status(404).json({ error: "User not found" });
-//             }
+        try {
 
-//             res.status(200).json({ message: "User updated successfully", user: updatedUser });
-//         } catch (err) {
-//             res.status(500).json({ error: "Failed to update user" });
-//         }
-//     });
-// };
+            const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true, runValidators: true });
 
-// const deleteUser = async (req, res) => {
-//     const userId = req.params.userId; // Assuming userId is passed as a route parameter
+            if (!updatedUser) {
+                return res.status(404).json({ error: "User not found" });
+            }
 
-//     try {
-//         const userToDelete = await User.findByIdAndDelete(userId);
+            res.status(200).json({ message: "User updated successfully", user: updatedUser });
+        } catch (err) {
+            console.error("Failed to update user:", err);
+            res.status(500).json({ error: "Failed to update user" });
+        }
+    });
+};
 
-//         if (!userToDelete) {
-//             return res.status(404).json({ error: "User not found" });
-//         }
+app.put('/user/:userId', updateUser);
 
-//         // Remove the user's image if it exists
-//         if (userToDelete.img) {
-//             fs.unlink(path.join('public', userToDelete.img), (err) => {
-//                 if (err) console.error("Failed to remove user image:", err);
-//             });
-//         }
 
-//         res.status(200).json({ message: "User deleted successfully" });
-//     } catch (err) {
-//         res.status(500).json({ error: "Failed to delete user" });
-//     }
-// };
+const deleteUser = async (req, res) => {
+    const userId = req.params.userId; // Assuming userId is passed as a route parameter
+
+    try {
+        const userToDelete = await User.findByIdAndDelete(userId);
+
+        if (!userToDelete) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        // Remove the user's image if it exists
+        if (userToDelete.img) {
+            fs.unlink(path.join('public', userToDelete.img), (err) => {
+                if (err) console.error("Failed to remove user image:", err);
+            });
+        }
+
+        res.status(200).json({ message: "User deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "Failed to delete user" });
+    }
+};
+
 
 
 
@@ -313,7 +328,7 @@ async function addCardToUser(userId, cardDetails) {
 
 
 module.exports = {
-    displayAllUsers, postSignup, updateCart, getCart,addCardToUser,
+    displayAllUsers, postSignup, updateCart, getCart,addCardToUser,updateUser,deleteUser
 };
 
 

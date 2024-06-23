@@ -1,3 +1,113 @@
+
+let selectedUserId =null;
+function selectUser(userId) {
+    selectedUserId = userId;
+
+    fetch(`/auth/user/${userId}`)
+        .then(response => response.json())
+        .then(user => {
+            sessionStorage.setItem('selectedUser', JSON.stringify(user));
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+}
+
+function viewUser() {
+    const user = JSON.parse(sessionStorage.getItem('selectedUser'));
+
+    document.getElementById('viewUsername').innerText = user.username;
+    document.getElementById('viewFullName').innerText = user.fullname;
+    document.getElementById('viewEmail').innerText = user.useremail;
+    document.getElementById('viewPhone').innerText = user.userphone;
+    document.getElementById('viewRole').innerText = user.role;
+    document.getElementById('viewGender').innerText = user.gender;
+    document.getElementById('viewAge').innerText = user.age;
+    document.getElementById('viewAddress').innerText = user.address;
+    document.getElementById('viewSubscription').innerText = user.Subscription;
+    document.getElementById('viewImage').src = user.img || 'default-image.png';
+
+    document.getElementById('ViewUserContainer').classList.remove('hidden');
+}
+
+function editUser() {
+    const user = JSON.parse(sessionStorage.getItem('selectedUser'));
+
+    document.getElementById('editUsersName').value = user.username;
+    document.getElementById('newUsersFullName').value = user.fullname;
+    document.getElementById('UsersPassword').value = user.password; // Do not pre-fill passwords
+    document.getElementById('userphone').value = user.userphone;
+    document.getElementById('edituseremail').value = user.useremail;
+    document.getElementById('editUsersrole').value = user.role;
+    document.getElementById('edit-gender').value = user.gender;
+    document.getElementById('editUsersage').value = user.age;
+    document.getElementById('editUsersaddress').value = user.address;
+    console.log(user.Subscription)
+    document.getElementById('edit-subscribtion').value = user.Subscription;
+
+    document.getElementById('editUserContainer').classList.remove('hidden');
+}
+
+function removeUser() {
+    const user = JSON.parse(sessionStorage.getItem('selectedUser'));
+
+    document.getElementById('removeUsersName').value = user.username;
+    document.getElementById('removeUsersId').value = user._id;
+
+    document.getElementById('removeUserContainer').classList.remove('hidden');
+}
+
+function toggleVisibility(elementId) {
+    var element = document.getElementById(elementId);
+    element.classList.toggle('hidden');
+}
+
+document.getElementById('editUsersForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    fetch(`/auth/user/${selectedUserId}`, {
+        method: 'PUT',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.message);
+            toggleVisibility('editUserContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating user:', error);
+        alert('An error occurred while updating the user.');
+    });
+});
+
+document.getElementById('removeUsersForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    fetch(`/auth/user/${selectedUserId}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.message);
+            toggleVisibility('removeUserContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting user:', error);
+    });
+});
+
+
+
+
 // Product Form Validation
 function validateForm() {
     const productNameInput = document.getElementById('productName');

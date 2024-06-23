@@ -26,14 +26,15 @@
 
                         <div>
 
-                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewUsersMenu')">Users</a>
+
+                            <a href="#" class="main-menu-button" onclick="toggleMainMenu('ViewUsersMenu'),toggleVisibility('Userview')">Users</a>
                             <div id="ViewUsersMenu" class="submenu">
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('ViewUserContainer')">View
+
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('ViewUserContainer'),viewUser()">View
                                     Users</a>
-                                <a href="#" class="submenu-link" onclick="toggleVisibility('editUserContainer')">Edit
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('editUserContainer'),editUser()">Edit
                                     User</a>
-                                <a href="#" class="submenu-link"
-                                    onclick="toggleVisibility('removeUserContainer')">Remove User</a>
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('removeUserContainer'),removeUser()">Remove User</a>
                             </div>
                         </div>
 
@@ -106,16 +107,37 @@
 
 
         <!--   users Buttons -->
+        <div class="container" id="Userview">
+            <h2>Users</h2>
+            <div id="user-buttons" class="btn-group-vertical">
+                <% data.users.forEach(function(user) { %>
+                    <button type="button" class="btn btn-success mb-2" value="<%= user._id %>" onclick="selectUser('<%= user._id %>')"><%= user.username %></button>
+                <% }); %>
+            </div>
+        </div>
+        
+        <!-- View User Container -->
         <div class="action-container hidden" id="ViewUserContainer">
             <button class="exit-button" onclick="toggleVisibility('ViewUserContainer')">X</button>
             <h1>WebFit Users</h1>
+            <div id="userDetails">
+                <p><strong>Username:</strong> <span id="viewUsername"></span></p>
+                <p><strong>Full Name:</strong> <span id="viewFullName"></span></p>
+                <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="viewPhone"></span></p>
+                <p><strong>Role:</strong> <span id="viewRole"></span></p>
+                <p><strong>Gender:</strong> <span id="viewGender"></span></p>
+                <p><strong>Age:</strong> <span id="viewAge"></span></p>
+                <p><strong>Address:</strong> <span id="viewAddress"></span></p>
+                <p><strong>Subscription:</strong> <span id="viewSubscription"></span></p>
+                <img id="viewImage" src="" alt="User Image" style="max-width: 200px;">
+            </div>
         </div>
-
         
         <div class="action-container hidden" id="editUserContainer">
             <button class="exit-button" onclick="toggleVisibility('editUserContainer')">X</button>
             <h1>Edit Users</h1>
-            <form action="/auth/editUsers" method="post" id="editUsersForm" enctype="multipart/form-data">
+            <form id="editUsersForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="editUsersName">UserName:</label>
                     <input type="text" id="editUsersName" name="editUsersName" required>
@@ -128,15 +150,14 @@
                 </div>
                 <div class="form-group">
                     <label for="UsersPassword"> Password:</label>
-                    <input type="password" id="UsersPassword" name="UsersPassword" required>
-                    <div id="UsersIdError" class="error-message"></div>
+                    <input type="password" id="UsersPassword" name="UsersPassword">
+                    <div id="UsersPasswordError" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label for="userphone"> Phone:</label>
                     <input type="number" id="userphone" name="userphone" required>
                     <div id="userphoneError" class="error-message"></div>
                 </div>
-              
                 <div class="form-group">
                     <label for="edituseremail">Email:</label>
                     <input type="email" id="edituseremail" name="edituseremail" required>
@@ -144,11 +165,10 @@
                 </div>
                 <div class="form-group">
                     <label for="editUsersrole"> role:</label>
-                    <select id="signup-gender" name="gender" required>
+                    <select id="editUsersrole" name="role" required>
                         <option value="">Select</option>
-                        <option value="male">Admin</option>
-                        <option value="female">User</option>
-                        <option value="female">Coach</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
                     </select><br/>
                     <div id="editUsersroleError" class="error-message"></div>
                 </div>
@@ -173,44 +193,38 @@
                 </div>
                 <div class="form-group">
                     <label for="editUsersSubscription"> Subscription:</label>
-                    <select id="edit-subscribtion" name="gender" required>
+                    <select id="edit-subscribtion" name="Subscription" required>
                         <option value="">Select</option>
-                        <option value="male">Free</option>
-                        <option value="female">Standard</option>
-                        <option value="female">Premuim</option>
+                        <option value="Free Plan">Free</option>
+                        <option value="Standard Plan">Standard</option>
+                        <option value="Premium Plan">Premuim</option>
                     </select><br/>
                     <div id="editUsersSubscriptionError" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label for="UsersImage">Image:</label>
-                    <input type="file" id="UsersImage" name="UsersImage" accept="image/*">
+                    <input type="file" id="UsersImage" name="img" accept="image/*">
                 </div>
-
                 <button type="submit" class="btn-action">Edit Users</button>
                 <div id="editUsersSuccessMessage" class="success-message"></div>
             </form>
         </div>
-
-
-
+        
+        <!-- Remove User Container -->
         <div class="action-container hidden" id="removeUserContainer">
             <button class="exit-button" onclick="toggleVisibility('removeUserContainer')">X</button>
             <h1>Remove User</h1>
-            <form action="/auth/removeUsers" method="post" id="removeUsersForm">
+            <form id="removeUsersForm">
                 <div class="form-group">
                     <label for="removeUsersName">Users Name:</label>
                     <input type="text" id="removeUsersName" name="removeUsersName" required>
                     <div id="removeUsersNameError" class="error-message"></div>
                 </div>
-                <div class="form-group">
-                    <label for="removeUsersId">Users ID:</label>
-                    <input type="number" id="removeUsersId" name="removeUsersId" required>
-                    <div id="removeUsersIdError" class="error-message"></div>
-                </div>
                 <button type="submit" class="btn-action">Remove Users</button>
                 <div id="removeUsersSuccessMessage" class="success-message"></div>
             </form>
         </div>
+        
 
 
 
