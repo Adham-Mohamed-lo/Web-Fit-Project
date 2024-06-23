@@ -1,3 +1,49 @@
+function toggleMainMenu(menuId) {
+    const submenus = document.querySelectorAll('.submenu');
+    submenus.forEach(menu => {
+        if (menu.id === menuId) {
+            menu.classList.toggle('open');
+        } else {
+            menu.classList.remove('open');
+        }
+    });
+}
+
+function toggleVisibility(containerId) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        const isVisible = container.classList.contains('hidden');
+
+        // Hide all other containers except the admin_Panel
+        const allContainers = document.querySelectorAll('.action-container, .container');
+        allContainers.forEach(cont => {
+            if (cont.id !== containerId && cont.id !== 'admin_Panel') {
+                cont.classList.add('hidden');
+            }
+        });
+
+        // Toggle visibility of the clicked container
+        container.classList.toggle('hidden');
+
+        // Reset hover effect for submenu links if container is visible
+        const submenuLinks = container.querySelectorAll('.submenu-link');
+        submenuLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                if (!isVisible) {
+                    container.classList.add('open');
+                }
+            });
+            link.addEventListener('mouseleave', () => {
+                if (!isVisible) {
+                    container.classList.remove('open');
+                }
+            });
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+            });
+        });
+    }
+}
 
 let selectedUserId =null;
 function selectUser(userId) {
@@ -17,10 +63,11 @@ let selectedProductId = null;
 function selectProduct(productId) {
     selectedProductId = productId;
 
-    fetch(`/product/${productId}`)
+    fetch(`/auth/product/${productId}`)
         .then(response => response.json())
         .then(product => {
             sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+            populateProductForms(product);
         })
         .catch(error => {
             console.error('Error fetching product data:', error);
@@ -31,42 +78,103 @@ let selectedMealId = null;
 function selectMeal(mealId) {
     selectedMealId = mealId;
 
-    fetch(`/meal/${mealId}`)
+    fetch(`/auth/meal/${mealId}`)
         .then(response => response.json())
         .then(meal => {
             sessionStorage.setItem('selectedMeal', JSON.stringify(meal));
+            populateMealForms(meal);
         })
         .catch(error => {
             console.error('Error fetching meal data:', error);
         });
 }
-
 let selectedExerciseId = null;
 function selectExercise(exerciseId) {
     selectedExerciseId = exerciseId;
 
-    fetch(`/exercise/${exerciseId}`)
+    fetch(`/auth/exercise/${exerciseId}`)
         .then(response => response.json())
         .then(exercise => {
             sessionStorage.setItem('selectedExercise', JSON.stringify(exercise));
+            populateExerciseForms(exercise);
         })
         .catch(error => {
             console.error('Error fetching exercise data:', error);
         });
 }
-
 let selectedCoachId = null;
 function selectCoach(coachId) {
     selectedCoachId = coachId;
 
-    fetch(`/coach/${coachId}`)
+    fetch(`/auth/coach/${coachId}`)
         .then(response => response.json())
         .then(coach => {
             sessionStorage.setItem('selectedCoach', JSON.stringify(coach));
+            populateCoachForms(coach);
         })
         .catch(error => {
             console.error('Error fetching coach data:', error);
         });
+}
+
+
+// Product
+function populateProductForms(product) {
+    document.getElementById('editProductName').value = product.productname;
+    document.getElementById('newProductName').value = product.productname;
+    document.getElementById('editproductId').value = product.id;
+    document.getElementById('editproductPrice').value = product.price;
+    document.getElementById('editproductImage').src = product.img || 'default-image.png';
+
+    document.getElementById('removeProductName').value = product.productname;
+    document.getElementById('removeProductId').value = product.id;
+}
+
+
+// Meal
+function populateMealForms(meal) {
+    document.getElementById('editMealName').value = meal.mealname;
+    document.getElementById('newMealName').value = meal.mealname;
+    document.getElementById('newMealDescription').value = meal.mealdescription;
+
+    document.getElementById('removeMealName').value = meal.mealname;
+
+    // Clear the existing ingredients
+    const ingredientsContainer = document.getElementById('newIngredientsContainer');
+    ingredientsContainer.innerHTML = '';
+
+    // Populate the ingredients
+    meal.ingredients.forEach((ingredient, index) => {
+        const ingredientGroup = document.createElement('div');
+        ingredientGroup.className = 'ingredient-group';
+        ingredientGroup.innerHTML = `
+            <input type="text" name="newIngredients[${index}][name]" placeholder="Ingredient Name" value="${ingredient.name}" required>
+            <input type="text" name="newIngredients[${index}][quantity]" placeholder="Quantity" value="${ingredient.quantity}" required>
+            <button type="button" class="remove-button" onclick="removeIngredient(this)">-</button>
+        `;
+        ingredientsContainer.appendChild(ingredientGroup);
+    });
+}
+
+// Exercise
+function populateExerciseForms(exercise) {
+    document.getElementById('editExerciseName').value = exercise.exercisename;
+    document.getElementById('newExerciseName').value = exercise.exercisename;
+    document.getElementById('exercisedescription').value = exercise.exercisedescription;
+    document.getElementById('exerciseimage').value = exercise.exerciseimage;
+
+    document.getElementById('removeExerciseName').value = exercise.exercisename;
+}
+
+
+// Coach
+function populateCoachForms(coach) {
+    document.getElementById('editCoachName').value = coach.coachname;
+    document.getElementById('newCoachName').value = coach.coachname;
+    document.getElementById('newCoachDescription').value = coach.coachdescription;
+    document.getElementById('editCoachImage').src = coach.coachimage || 'default-image.png';
+
+    document.getElementById('removeCoachName').value = coach.coachname;
 }
 
 
@@ -122,6 +230,16 @@ function removeUser() {
 
     document.getElementById('removeUserContainer').classList.remove('hidden');
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -551,52 +669,7 @@ document.getElementById('editMealForm').addEventListener('submit', function (eve
     });
 });
 
-function toggleMainMenu(menuId) {
-    const submenus = document.querySelectorAll('.submenu');
-    submenus.forEach(menu => {
-        if (menu.id === menuId) {
-            menu.classList.toggle('open');
-        } else {
-            menu.classList.remove('open');
-        }
-    });
-}
 
-function toggleVisibility(containerId) {
-    const container = document.getElementById(containerId);
-    if (container) {
-        const isVisible = container.classList.contains('hidden');
-
-        // Hide all other containers except the admin_Panel
-        const allContainers = document.querySelectorAll('.action-container, .container');
-        allContainers.forEach(cont => {
-            if (cont.id !== containerId && cont.id !== 'admin_Panel') {
-                cont.classList.add('hidden');
-            }
-        });
-
-        // Toggle visibility of the clicked container
-        container.classList.toggle('hidden');
-
-        // Reset hover effect for submenu links if container is visible
-        const submenuLinks = container.querySelectorAll('.submenu-link');
-        submenuLinks.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                if (!isVisible) {
-                    container.classList.add('open');
-                }
-            });
-            link.addEventListener('mouseleave', () => {
-                if (!isVisible) {
-                    container.classList.remove('open');
-                }
-            });
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-            });
-        });
-    }
-}
 
 
 
